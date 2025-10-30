@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installer et déployer un poste utilisateur - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .command-box {
+            background: #1a1a1a;
+            color: #3DDAB4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .command-box code {
+            color: #3DDAB4;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 2 -Mettre en Service des Équipements Numériques</div>
+        <h1>Installer et déployer un poste utilisateur</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📋 Introduction</h2>
+                <p>L'installation et le déploiement d'un poste utilisateur constituent une mission essentielle du technicien en assistance informatique. Cette activité englobe la préparation, l'installation du système d'exploitation, la configuration des logiciels, l'intégration au réseau d'entreprise et la personnalisation selon les besoins de l'utilisateur.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Fournir à l'utilisateur un poste de travail opérationnel, sécurisé et conforme aux standards de l'entreprise, dans un délai optimal et avec une expérience utilisateur fluide.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>🎯 1. Préparation du Déploiement</h2>
+                
+                <h3>Analyse des besoins</h3>
+                <p>Avant toute intervention, il est crucial d'identifier les besoins spécifiques de l'utilisateur :</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Profil utilisateur</h4>
+                        <p>Fonction, service, niveau d'autonomie technique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Configuration matérielle</h4>
+                        <p>Type de poste, performances requises, périphériques</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Logiciels métier</h4>
+                        <p>Applications spécifiques, licences, accès</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Droits et accès</h4>
+                        <p>Groupes AD, partages réseau, imprimantes</p>
+                    </div>
+                </div>
+
+                <h3>Documents nécessaires</h3>
+                <table>
+                    <tr>
+                        <th>Document</th>
+                        <th>Contenu</th>
+                        <th>Utilité</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Fiche d'inventaire</strong></td>
+                        <td>Modèle, n° série, config matérielle</td>
+                        <td>Traçabilité et gestion de parc</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Check-list déploiement</strong></td>
+                        <td>Étapes à suivre, validations</td>
+                        <td>Garantir la complétude</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Procédure standard</strong></td>
+                        <td>Guide d'installation de l'entreprise</td>
+                        <td>Uniformisation des postes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fiche utilisateur</strong></td>
+                        <td>Identifiants, droits, logiciels</td>
+                        <td>Configuration personnalisée</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Important :</strong> Toujours vérifier la disponibilité des licences logicielles avant le déploiement pour éviter tout blocage pendant l'installation.
+                </div>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>💿 2. Installation du Système d'Exploitation</h2>
+                
+                <h3>Méthodes d'installation</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Installation manuelle (USB/DVD)</h4>
+                            <p><strong>Usage :</strong> Postes uniques, environnements hétérogènes</p>
+                            <p><strong>Avantages :</strong> Contrôle total, simplicité</p>
+                            <p><strong>Inconvénients :</strong> Chronophage, erreurs humaines possibles</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Déploiement par image (Clonage)</h4>
+                            <p><strong>Usage :</strong> Configurations standardisées, multiple postes</p>
+                            <p><strong>Outils :</strong> Clonezilla, FOG Project, Ghost</p>
+                            <p><strong>Avantages :</strong> Rapidité, uniformité, pré-configuration</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Déploiement réseau (PXE)</h4>
+                            <p><strong>Usage :</strong> Déploiement massif, environnement entreprise</p>
+                            <p><strong>Outils :</strong> WDS, MDT, SCCM (Windows), Cobbler (Linux)</p>
+                            <p><strong>Avantages :</strong> Automatisation, déploiement à distance, sans média</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Provisioning Cloud</h4>
+                            <p><strong>Usage :</strong> Postes modernes, mobilité, télétravail</p>
+                            <p><strong>Outils :</strong> Windows Autopilot, Intune, Jamf (macOS)</p>
+                            <p><strong>Avantages :</strong> Déploiement à distance, configuration zero-touch</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Étapes de l'installation Windows 10/11</h3>
+                <ol>
+                    <li><strong>Démarrage sur le média d'installation</strong> - Configuration du BIOS/UEFI</li>
+                    <li><strong>Choix de la langue et du clavier</strong> - Paramètres régionaux</li>
+                    <li><strong>Partitionnement du disque</strong> - Création/formatage des partitions</li>
+                    <li><strong>Installation du système</strong> - Copie des fichiers, 20-30 minutes</li>
+                    <li><strong>Configuration initiale</strong> - Nom du PC, compte local/domaine</li>
+                    <li><strong>Mises à jour</strong> - Windows Update, drivers</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>💡 Bonnes pratiques de partitionnement</h4>
+                    <p><strong>Configuration recommandée :</strong></p>
+                    <ul>
+                        <li><strong>C:\ (Système)</strong> - 100-150 GB minimum pour Windows et programmes</li>
+                        <li><strong>D:\ (Données)</strong> - Reste du disque pour documents utilisateur</li>
+                    </ul>
+                    <p><em>Avantage : facilite les réinstallations sans perte de données</em></p>
+                </div>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>🔌 3. Installation des Pilotes et Mises à Jour</h2>
+                
+                <h3>Ordre d'installation des drivers</h3>
+                <table>
+                    <tr>
+                        <th>Ordre</th>
+                        <th>Type de pilote</th>
+                        <th>Importance</th>
+                        <th>Source</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>Chipset</td>
+                        <td>Critique - Base du système</td>
+                        <td>Site constructeur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>Carte réseau (Ethernet/WiFi)</td>
+                        <td>Critique - Connectivité</td>
+                        <td>Site constructeur ou Windows Update</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>Carte graphique</td>
+                        <td>Importante - Affichage optimal</td>
+                        <td>NVIDIA/AMD/Intel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>Audio</td>
+                        <td>Moyenne - Confort utilisateur</td>
+                        <td>Windows Update suffisant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>Périphériques spécifiques</td>
+                        <td>Variable - Selon usage</td>
+                        <td>Site constructeur périphérique</td>
+                    </tr>
+                </table>
+
+                <h3>Outils de gestion des drivers</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Windows Update</h4>
+                        <p>Intégré, automatique, suffisant pour 80% des cas</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Site constructeur</h4>
+                        <p>Versions optimisées, support du modèle spécifique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Snappy Driver Installer</h4>
+                        <p>Open source, hors ligne, complet</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Driver Booster (IObit)</h4>
+                        <p>Interface simple, détection automatique</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Attention :</strong> Privilégier toujours les drivers officiels du constructeur. Éviter les sites de téléchargement tiers qui peuvent contenir des logiciels malveillants.
+                </div>
+
+                <h3>Mises à jour système</h3>
+                <div class="command-box">
+                    <code>
+# Vérifier les mises à jour Windows en PowerShell<br>
+Get-WindowsUpdate<br><br>
+
+# Installer toutes les mises à jour disponibles<br>
+Install-WindowsUpdate -AcceptAll -AutoReboot
+                    </code>
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>💼 4. Installation des Logiciels</h2>
+                
+                <h3>Types de logiciels à installer</h3>
+
+                <table>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Exemples</th>
+                        <th>Caractère</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Bureautique</strong></td>
+                        <td>Microsoft Office 365, LibreOffice</td>
+                        <td>Standard entreprise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Navigation</strong></td>
+                        <td>Chrome, Firefox, Edge</td>
+                        <td>Standard + choix utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication</strong></td>
+                        <td>Teams, Outlook, Zoom, Slack</td>
+                        <td>Selon politique entreprise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sécurité</strong></td>
+                        <td>Antivirus, VPN, pare-feu</td>
+                        <td>Obligatoire</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Utilitaires</strong></td>
+                        <td>7-Zip, PDF Reader, VLC</td>
+                        <td>Standard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Métier</strong></td>
+                        <td>ERP, CRM, CAO selon fonction</td>
+                        <td>Spécifique utilisateur</td>
+                    </tr>
+                </table>
+
+                <h3>Méthodes de déploiement logiciel</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Installation manuelle</h4>
+                            <p>Téléchargement et installation un par un. Simple mais chronophage.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Scripts d'installation</h4>
+                            <p>Automatisation via batch, PowerShell ou bash. Gain de temps considérable.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Gestionnaires de paquets</h4>
+                            <p><strong>Windows :</strong> Chocolatey, Winget | <strong>Linux :</strong> apt, yum, pacman</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Déploiement centralisé</h4>
+                            <p>GPO (Group Policy), SCCM, Intune - Idéal pour le parc informatique</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de script PowerShell avec Chocolatey</h4>
+                    <div class="command-box">
+                        <code>
+# Installation de Chocolatey<br>
+Set-ExecutionPolicy Bypass -Force<br>
+iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))<br><br>
+
+# Installation des logiciels standards<br>
+choco install googlechrome firefox 7zip adobereader vlc -y<br>
+choco install microsoft-teams zoom -y
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>🌐 5. Configuration Réseau et Intégration au Domaine</h2>
+                
+                <h3>Configuration réseau de base</h3>
+                
+                <table>
+                    <tr>
+                        <th>Paramètre</th>
+                        <th>Configuration</th>
+                        <th>Remarque</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Adresse IP</strong></td>
+                        <td>DHCP ou Statique</td>
+                        <td>DHCP recommandé pour les postes utilisateurs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Passerelle</strong></td>
+                        <td>IP du routeur</td>
+                        <td>Automatique en DHCP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DNS</strong></td>
+                        <td>Serveurs DNS entreprise</td>
+                        <td>Essentiel pour la résolution de noms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nom du poste</strong></td>
+                        <td>Convention de nommage</td>
+                        <td>Ex: PC-SERVICE-NUMERO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Groupe de travail/Domaine</strong></td>
+                        <td>Domaine Active Directory</td>
+                        <td>Centralise l'authentification</td>
+                    </tr>
+                </table>
+
+                <h3>Intégration au domaine Active Directory</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Prérequis</h4>
+                            <p>Connectivité réseau fonctionnelle, DNS configuré vers le contrôleur de domaine, compte avec droits de jonction</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Jonction au domaine</h4>
+                            <p>Paramètres système → Informations système → Modifier les paramètres → Modifier → Domaine → Saisir le nom du domaine</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Authentification</h4>
+                            <p>Saisir identifiant et mot de passe d'un compte autorisé à joindre des machines au domaine</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Redémarrage et vérification</h4>
+                            <p>Redémarrer le poste, se connecter avec un compte du domaine, vérifier l'application des GPO</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Commandes PowerShell utiles</h4>
+                    <div class="command-box">
+                        <code>
+# Joindre un domaine en PowerShell<br>
+Add-Computer -DomainName "entreprise.local" -Credential (Get-Credential) -Restart<br><br>
+
+# Vérifier l'appartenance au domaine<br>
+Get-ComputerInfo | Select-Object CsDomain, CsDomainRole<br><br>
+
+# Forcer la mise à jour des GPO<br>
+gpupdate /force
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Configuration des partages réseau et imprimantes</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Lecteurs réseau</h4>
+                        <p>Mapper les partages selon les droits utilisateur (scripts de connexion ou GPO)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Imprimantes réseau</h4>
+                        <p>Installation automatique via serveur d'impression ou déploiement GPO</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Profil itinérant</h4>
+                        <p>Configuration pour la mobilité utilisateur entre postes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 6 -->
+            <div class="section">
+                <h2>🔒 6. Sécurisation du Poste</h2>
+                
+                <h3>Configuration de la sécurité</h3>
+
+                <div class="highlight-box danger">
+                    <strong>🔐 Mesures de sécurité essentielles :</strong>
+                    <ul>
+                        <li><strong>Antivirus/EDR</strong> - Windows Defender ou solution tierce, activé et à jour</li>
+                        <li><strong>Pare-feu</strong> - Activé avec règles appropriées</li>
+                        <li><strong>Chiffrement</strong> - BitLocker pour les disques, chiffrement des données sensibles</li>
+                        <li><strong>Mises à jour automatiques</strong> - Windows Update et logiciels tiers</li>
+                        <li><strong>Comptes utilisateurs</strong> - Principe du moindre privilège, pas d'admin local</li>
+                        <li><strong>Stratégies de mots de passe</strong> - Complexité, expiration, historique</li>
+                    </ul>
+                </div>
+
+                <h3>Configuration Windows Defender</h3>
+                <div class="command-box">
+                    <code>
+# Vérifier l'état de Windows Defender<br>
+Get-MpComputerStatus<br><br>
+
+# Lancer une analyse rapide<br>
+Start-MpScan -ScanType QuickScan<br><br>
+
+# Mettre à jour les définitions<br>
+Update-MpSignature
+                    </code>
+                </div>
+
+                <h3>Hardening du système</h3>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Objectif</th>
+                        <th>Méthode</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Désactiver les services inutiles</strong></td>
+                        <td>Réduire la surface d'attaque</td>
+                        <td>services.msc ou PowerShell</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Configurer UAC</strong></td>
+                        <td>Contrôle des élévations de privilèges</td>
+                        <td>Niveau maximum recommandé</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Désactiver comptes inutilisés</strong></td>
+                        <td>Limiter les vecteurs d'attaque</td>
+                        <td>Compte Invité, Administrateur local</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Activer le chiffrement</strong></td>
+                        <td>Protection des données</td>
+                        <td>BitLocker sur disque système</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Configurer Windows Firewall</strong></td>
+                        <td>Filtrage du trafic réseau</td>
+                        <td>Règles entrantes/sortantes</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 7 -->
+            <div class="section">
+                <h2>👤 7. Personnalisation et Configuration Utilisateur</h2>
+                
+                <h3>Création du compte utilisateur</h3>
+                <p>Deux approches selon l'environnement :</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Compte local</h4>
+                        <p>Pour postes autonomes, PME sans AD. Gestion manuelle sur chaque poste.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Compte domaine</h4>
+                        <p>Active Directory, centralisé. Mobilité entre postes, GPO, SSO.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Compte Microsoft</h4>
+                        <p>Synchronisation cloud, OneDrive, paramètres itinérants.</p>
+                    </div>
+                </div>
+
+                <h3>Configuration du profil utilisateur</h3>
+                <ol>
+                    <li><strong>Dossiers personnels</strong> - Redirection vers serveur de fichiers ou OneDrive</li>
+                    <li><strong>Signature email</strong> - Configuration Outlook avec modèle entreprise</li>
+                    <li><strong>Favoris navigateur</strong> - Sites internes, outils métier</li>
+                    <li><strong>Raccourcis bureau</strong> - Applications métier, dossiers partagés</li>
+                    <li><strong>Configuration messagerie</strong> - Comptes email, règles, délégations</li>
+                    <li><strong>Paramètres d'accessibilité</strong> - Si besoins spécifiques (malvoyance, etc.)</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>💡 Check-list de personnalisation standard</h4>
+                    <ul>
+                        <li>✅ Fond d'écran entreprise</li>
+                        <li>✅ Raccourcis applicatifs métier</li>
+                        <li>✅ Imprimante par défaut configurée</li>
+                        <li>✅ Lecteurs réseau mappés (H:, P:, S:...)</li>
+                        <li>✅ Signature Outlook configurée</li>
+                        <li>✅ Favoris intranet et outils</li>
+                        <li>✅ Paramètres régionaux (langue, fuseau horaire)</li>
+                    </ul>
+                </div>
+
+                <h3>Redirection de dossiers (Folder Redirection)</h3>
+                <p>Technique permettant de stocker les données utilisateur sur un serveur :</p>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Avantages</h4>
+                        <p>Sauvegarde centralisée, mobilité, espace disque local économisé</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Dossiers concernés</h4>
+                        <p>Documents, Bureau, Images, Téléchargements, AppData</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Configuration</h4>
+                        <p>Via GPO ou scripts de connexion</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 8 -->
+            <div class="section">
+                <h2>📦 8. Documentation et Gestion de Parc</h2>
+                
+                <h3>Inventaire du poste</h3>
+                <p>Enregistrement dans l'outil de gestion de parc (GLPI, OCS Inventory, etc.) :</p>
+
+                <table>
+                    <tr>
+                        <th>Information</th>
+                        <th>Détail</th>
+                        <th>Utilité</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Identifiant matériel</strong></td>
+                        <td>N° série, asset tag, modèle</td>
+                        <td>Traçabilité, garantie</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Configuration</strong></td>
+                        <td>CPU, RAM, disque, carte graphique</td>
+                        <td>Évolutions, support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logiciels installés</strong></td>
+                        <td>Liste complète avec versions</td>
+                        <td>Licences, mises à jour</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Affectation</strong></td>
+                        <td>Utilisateur, service, localisation</td>
+                        <td>Gestion, support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date de déploiement</strong></td>
+                        <td>Jour de mise en service</td>
+                        <td>Cycle de vie, renouvellement</td>
+                    </tr>
+                </table>
+
+                <h3>Documentation de configuration</h3>
+                <div class="highlight-box success">
+                    <strong>Éléments à documenter :</strong>
+                    <ul>
+                        <li>Configuration réseau (IP si statique, nom NetBIOS)</li>
+                        <li>Comptes et droits attribués</li>
+                        <li>Logiciels spécifiques installés</li>
+                        <li>Problèmes rencontrés et solutions appliquées</li>
+                        <li>Temps d'installation total</li>
+                    </ul>
+                </div>
+
+                <h3>Outils d'inventaire automatique</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>OCS Inventory</h4>
+                        <p>Open source, agent léger, inventaire matériel/logiciel automatique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>GLPI</h4>
+                        <p>Couplé avec OCS, gestion complète du parc et helpdesk</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Microsoft Intune</h4>
+                        <p>Cloud, intégration Microsoft 365, MDM</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Lansweeper</h4>
+                        <p>Découverte réseau, tableaux de bord, alertes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 9 -->
+            <div class="section">
+                <h2>✅ 9. Tests et Validation</h2>
+                
+                <h3>Check-list de validation finale</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">✓</div>
+                        <div class="step-content">
+                            <h4>Démarrage et performances</h4>
+                            <ul>
+                                <li>Temps de démarrage acceptable (< 1 min)</li>
+                                <li>Fluidité de l'interface</li>
+                                <li>Pas d'erreurs au démarrage</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">✓</div>
+                        <div class="step-content">
+                            <h4>Connectivité réseau</h4>
+                            <ul>
+                                <li>Accès internet fonctionnel</li>
+                                <li>Ping du serveur, passerelle, DNS</li>
+                                <li>Accès intranet et ressources partagées</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">✓</div>
+                        <div class="step-content">
+                            <h4>Logiciels et licences</h4>
+                            <ul>
+                                <li>Tous les logiciels demandés installés</li>
+                                <li>Licences activées</li>
+                                <li>Lancement sans erreur</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">✓</div>
+                        <div class="step-content">
+                            <h4>Périphériques</h4>
+                            <ul>
+                                <li>Imprimantes installées et test d'impression</li>
+                                <li>Écrans/dual screen configurés</li>
+                                <li>USB, audio fonctionnels</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">✓</div>
+                        <div class="step-content">
+                            <h4>Sécurité</h4>
+                            <ul>
+                                <li>Antivirus actif et à jour</li>
+                                <li>Pare-feu activé</li>
+                                <li>Dernières mises à jour installées</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">✓</div>
+                        <div class="step-content">
+                            <h4>Profil utilisateur</h4>
+                            <ul>
+                                <li>Connexion domaine réussie</li>
+                                <li>Accès aux dossiers partagés</li>
+                                <li>Email configuré et fonctionnel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Tests à effectuer AVANT la remise à l'utilisateur :</strong> Ne jamais livrer un poste sans avoir testé l'intégralité des fonctionnalités demandées.
+                </div>
+            </div>
+
+            <!-- Partie 10 -->
+            <div class="section">
+                <h2>🎓 10. Formation et Remise du Poste</h2>
+                
+                <h3>Brief utilisateur</h3>
+                <p>Lors de la remise du poste, prévoir un temps d'accompagnement :</p>
+
+                <ol>
+                    <li><strong>Présentation du poste</strong> - Configuration, spécificités matérielles</li>
+                    <li><strong>Démonstration de connexion</strong> - Identifiants, mot de passe, domaine</li>
+                    <li><strong>Tour des applications</strong> - Où trouver les logiciels, raccourcis</li>
+                    <li><strong>Accès aux ressources</strong> - Dossiers partagés, imprimantes, intranet</li>
+                    <li><strong>Consignes de sécurité</strong> - Mots de passe, verrouillage, signalement</li>
+                    <li><strong>Contact support</strong> - Comment créer un ticket, numéros utiles</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>💡 Document de remise type</h4>
+                    <p><strong>Informations à fournir par écrit :</strong></p>
+                    <ul>
+                        <li>Identifiant de connexion</li>
+                        <li>Adresse email et accès webmail</li>
+                        <li>Liste des logiciels installés</li>
+                        <li>Procédure de changement de mot de passe</li>
+                        <li>Contact du service support</li>
+                        <li>Charte informatique à signer</li>
+                    </ul>
+                </div>
+
+                <h3>Charte d'utilisation</h3>
+                <div class="highlight-box">
+                    <strong>Points clés de la charte à rappeler :</strong>
+                    <ul>
+                        <li>Usage professionnel du matériel</li>
+                        <li>Interdiction d'installer des logiciels non autorisés</li>
+                        <li>Obligation de verrouiller le poste en cas d'absence</li>
+                        <li>Signalement immédiat de tout incident de sécurité</li>
+                        <li>Sauvegarde régulière des données importantes</li>
+                        <li>Respect de la confidentialité des données</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 11 -->
+            <div class="section">
+                <h2>🔧 11. Maintenance et Suivi Post-Déploiement</h2>
+                
+                <h3>Actions de suivi</h3>
+                <table>
+                    <tr>
+                        <th>Période</th>
+                        <th>Actions</th>
+                        <th>Objectif</th>
+                    </tr>
+                    <tr>
+                        <td><strong>J+1</strong></td>
+                        <td>Appel ou email de suivi</td>
+                        <td>S'assurer que tout fonctionne</td>
+                    </tr>
+                    <tr>
+                        <td><strong>J+7</strong></td>
+                        <td>Vérification des tickets créés</td>
+                        <td>Identifier les problèmes récurrents</td>
+                    </tr>
+                    <tr>
+                        <td><strong>J+30</strong></td>
+                        <td>Enquête de satisfaction</td>
+                        <td>Amélioration continue du processus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mensuel</strong></td>
+                        <td>Vérification des mises à jour</td>
+                        <td>Sécurité et performances</td>
+                    </tr>
+                </table>
+
+                <h3>Optimisation continue</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Analyse des incidents</h4>
+                        <p>Identifier les problèmes post-déploiement pour améliorer le processus</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mise à jour des images</h4>
+                        <p>Intégrer les retours d'expérience dans les images de référence</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Documentation</h4>
+                        <p>Enrichir les procédures avec les cas particuliers rencontrés</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 12 -->
+            <div class="section">
+                <h2>⚡ 12. Déploiement Massif et Automatisation</h2>
+                
+                <h3>Stratégies pour déploiements multiples</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Création d'une image de référence (Golden Image)</h4>
+                            <p>Installation complète d'un poste type, sysprep pour généralisation, capture de l'image</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configuration d'un serveur de déploiement</h4>
+                            <p>WDS, MDT ou SCCM pour Windows. Serveur PXE avec images multiples</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Scripts post-installation</h4>
+                            <p>Automatisation des tâches spécifiques (nom PC, jonction domaine, logiciels)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Déploiement parallèle</h4>
+                            <p>Multicasting pour déployer simultanément sur plusieurs postes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Outils de déploiement d'entreprise</h3>
+                <table>
+                    <tr>
+                        <th>Outil</th>
+                        <th>Éditeur</th>
+                        <th>Caractéristiques</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>MDT</strong></td>
+                        <td>Microsoft</td>
+                        <td>Gratuit, flexible, task sequences</td>
+                        <td>PME, déploiements planifiés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SCCM/ConfigMgr</strong></td>
+                        <td>Microsoft</td>
+                        <td>Complet, gestion du parc, licences</td>
+                        <td>Grandes entreprises</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Windows Autopilot</strong></td>
+                        <td>Microsoft</td>
+                        <td>Cloud, zero-touch, moderne</td>
+                        <td>Postes récents, mobilité</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FOG Project</strong></td>
+                        <td>Open source</td>
+                        <td>Gratuit, clonage réseau, multiplateforme</td>
+                        <td>Budgets limités, flexibilité</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Exemple : Sysprep pour généralisation Windows</h4>
+                    <div class="command-box">
+                        <code>
+# Exécuter Sysprep pour préparer l'image<br>
+C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /shutdown<br><br>
+
+# Options :<br>
+# /generalize : Supprime les infos spécifiques (SID, etc.)<br>
+# /oobe : Redémarre en mode première utilisation<br>
+# /shutdown : Éteint après sysprep (prêt pour capture)
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bonnes pratiques -->
+            <div class="section">
+                <h2>✅ 13. Bonnes Pratiques et Conseils</h2>
+                
+                <div class="highlight-box success">
+                    <h3>Avant le déploiement</h3>
+                    <ul>
+                        <li>Vérifier la disponibilité de toutes les licences nécessaires</li>
+                        <li>S'assurer que les comptes utilisateurs sont créés dans l'AD</li>
+                        <li>Tester l'image de déploiement sur un poste témoin</li>
+                        <li>Préparer tous les médias et outils nécessaires</li>
+                        <li>Documenter la configuration cible</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Pendant le déploiement</h3>
+                    <ul>
+                        <li>Suivre la check-list méthodiquement</li>
+                        <li>Noter tous les problèmes rencontrés et solutions appliquées</li>
+                        <li>Respecter l'ordre d'installation des drivers</li>
+                        <li>Tester chaque étape avant de passer à la suivante</li>
+                        <li>Prendre des captures d'écran des configurations importantes</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Après le déploiement</h3>
+                    <ul>
+                        <li>Effectuer tous les tests de validation</li>
+                        <li>Mettre à jour l'inventaire immédiatement</li>
+                        <li>Former l'utilisateur sur les bases</li>
+                        <li>Assurer un suivi dans les jours suivants</li>
+                        <li>Capitaliser sur les retours pour améliorer le processus</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>🚫 Erreurs fréquentes à éviter :</strong>
+                    <ul>
+                        <li>Négliger les mises à jour de sécurité avant la livraison</li>
+                        <li>Oublier de tester les périphériques (imprimantes, scanners)</li>
+                        <li>Ne pas documenter les particularités de la configuration</li>
+                        <li>Livrer un poste sans avoir testé la connexion réseau</li>
+                        <li>Omettre la formation de base de l'utilisateur</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h3>🎓 Quiz d'auto-évaluation</h3>
+                <ol>
+                    <li>Quelles sont les 4 méthodes principales de déploiement d'un système d'exploitation ?</li>
+                    <li>Dans quel ordre doit-on installer les pilotes matériels et pourquoi ?</li>
+                    <li>Quelle est la différence entre un compte local et un compte domaine ?</li>
+                    <li>Citez 5 éléments de la check-list de validation finale d'un poste</li>
+                    <li>Qu'est-ce que Sysprep et à quoi sert-il ?</li>
+                    <li>Quels sont les avantages du déploiement par image (clonage) ?</li>
+                    <li>Pourquoi est-il important de documenter chaque déploiement ?</li>
+                    <li>Citez 3 mesures de sécurité essentielles à appliquer sur un poste utilisateur</li>
+                    <li>Qu'est-ce que la redirection de dossiers et quels sont ses avantages ?</li>
+                    <li>Quels sont les éléments à communiquer à l'utilisateur lors de la remise du poste ?</li>
+                </ol>
+            </div>
+
+            <!-- Cas pratiques -->
+            <div class="section">
+                <h2>🎯 14. Cas Pratiques</h2>
+                
+                <div class="example-box">
+                    <h4>Cas n°1 : Déploiement d'un poste pour un commercial</h4>
+                    <p><strong>Contexte :</strong> Marie, nouvelle commerciale, a besoin d'un laptop configuré rapidement pour ses déplacements clients.</p>
+                    <p><strong>Spécificités :</strong></p>
+                    <ul>
+                        <li>VPN pour connexions à distance</li>
+                        <li>CRM entreprise (Salesforce)</li>
+                        <li>Pack Office 365 avec Teams</li>
+                        <li>Accès mobile aux documents (OneDrive)</li>
+                        <li>Chiffrement BitLocker obligatoire</li>
+                    </ul>
+                    <p><strong>À faire :</strong> Planifier les étapes de déploiement en tenant compte de la mobilité et de la sécurité</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Cas n°2 : Déploiement massif pour un nouvel open space</h4>
+                    <p><strong>Contexte :</strong> 30 postes identiques à déployer pour l'ouverture d'un nouveau service.</p>
+                    <p><strong>Contrainte :</strong> Déploiement en 2 jours maximum</p>
+                    <p><strong>Questions :</strong></p>
+                    <ul>
+                        <li>Quelle méthode de déploiement choisir ?</li>
+                        <li>Comment optimiser le temps d'installation ?</li>
+                        <li>Quelles sont les étapes de préparation ?</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Cas n°3 : Déploiement pour un graphiste</h4>
+                    <p><strong>Contexte :</strong> Poste haute performance pour le service communication</p>
+                    <p><strong>Logiciels spécifiques :</strong></p>
+                    <ul>
+                        <li>Adobe Creative Cloud (Photoshop, Illustrator, InDesign)</li>
+                        <li>Écran calibré avec profil colorimétrique</li>
+                        <li>Tablette graphique Wacom</li>
+                        <li>Accès à un NAS pour les projets volumineux</li>
+                    </ul>
+                    <p><strong>Problématique :</strong> Gestion des licences Adobe et configuration des périphériques spécialisés</p>
+                </div>
+            </div>
+
+            <!-- Ressources -->
+            <div class="section">
+                <h2>📚 Ressources Complémentaires</h2>
+                
+                <h3>Documentation officielle</h3>
+                <ul>
+                    <li><strong>Microsoft Docs</strong> - Documentation complète Windows et déploiement</li>
+                    <li><strong>Microsoft Deployment Toolkit</strong> - Guide MDT complet</li>
+                    <li><strong>Windows Autopilot</strong> - Documentation du déploiement moderne</li>
+                    <li><strong>Chocolatey</strong> - Gestionnaire de paquets Windows</li>
+                </ul>
+
+                <h3>Outils et logiciels</h3>
+                <ul>
+                    <li><strong>Rufus</strong> - Création de clés USB bootables</li>
+                    <li><strong>Ninite</strong> - Installation multiple de logiciels</li>
+                    <li><strong>Speccy</strong> - Inventaire matériel détaillé</li>
+                    <li><strong>WinPE</strong> - Environnement de pré-installation Windows</li>
+                </ul>
+
+                <h3>Communautés et forums</h3>
+                <ul>
+                    <li><strong>Reddit r/sysadmin</strong> - Communauté d'administrateurs systèmes</li>
+                    <li><strong>TechNet Microsoft</strong> - Forums officiels Microsoft</li>
+                    <li><strong>Spiceworks</strong> - Communauté IT professionnelle</li>
+                </ul>
+
+                <h3>Certifications recommandées</h3>
+                <ul>
+                    <li><strong>Microsoft MD-102</strong> - Endpoint Administrator</li>
+                    <li><strong>CompTIA A+</strong> - Certification matériel et support</li>
+                    <li><strong>ITIL Foundation</strong> - Bonnes pratiques ITSM</li>
+                </ul>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎓 Conclusion</h2>
+                <p>Le déploiement d'un poste utilisateur est une compétence fondamentale du technicien en assistance informatique. Cette mission requiert rigueur, méthode et sens du service pour garantir une expérience optimale à l'utilisateur final.</p>
+                
+                <p>Les points clés à retenir sont la préparation minutieuse, le respect des procédures de sécurité, la documentation systématique et l'accompagnement de l'utilisateur. Avec l'évolution des technologies (cloud, déploiement moderne, automatisation), cette compétence reste en constante adaptation.</p>
+
+                <div class="highlight-box success">
+                    <strong>💡 Pour réussir un déploiement :</strong>
+                    <ul>
+                        <li>Anticiper et préparer tous les éléments nécessaires</li>
+                        <li>Suivre une méthodologie éprouvée et documentée</li>
+                        <li>Tester exhaustivement avant la mise à disposition</li>
+                        <li>Former et accompagner l'utilisateur</li>
+                        <li>Assurer un suivi post-déploiement</li>
+                        <li>Capitaliser sur les expériences pour améliorer le processus</li>
+                    </ul>
+                </div>
+
+                <p>La maîtrise de ces techniques vous permettra d'assurer des déploiements efficaces, qu'il s'agisse d'un poste unique ou d'un parc de plusieurs centaines de machines.</p>
+            </div>
+
+            <!-- Annexes -->
+            <div class="section">
+                <h2>📎 Annexes</h2>
+                
+                <h3>Annexe A : Commandes PowerShell utiles</h3>
+                <div class="command-box">
+                    <code>
+# Obtenir les informations système<br>
+Get-ComputerInfo<br>
+systeminfo<br><br>
+
+# Renommer un ordinateur<br>
+Rename-Computer -NewName "PC-COMPTA-01" -Restart<br><br>
+
+# Joindre un domaine<br>
+Add-Computer -DomainName "entreprise.local" -Credential (Get-Credential) -Restart<br><br>
+
+# Mapper un lecteur réseau<br>
+New-PSDrive -Name "P" -PSProvider FileSystem -Root "\\serveur\partage" -Persist<br><br>
+
+# Installer un logiciel silencieusement<br>
+Start-Process -FilePath "setup.exe" -ArgumentList "/S" -Wait<br><br>
+
+# Lister les logiciels installés<br>
+Get-WmiObject -Class Win32_Product | Select-Object Name, Version<br><br>
+
+# Forcer les mises à jour GPO<br>
+gpupdate /force<br><br>
+
+# Vérifier l'état de Windows Defender<br>
+Get-MpComputerStatus<br><br>
+
+# Activer BitLocker sur le disque C:<br>
+Enable-BitLocker -MountPoint "C:" -EncryptionMethod XtsAes256 -UsedSpaceOnly<br><br>
+
+# Obtenir l'adresse IP<br>
+Get-NetIPAddress | Where-Object {$_.AddressFamily -eq "IPv4"}<br><br>
+
+# Tester la connectivité réseau<br>
+Test-Connection -ComputerName google.com -Count 4
+                    </code>
+                </div>
+
+                <h3>Annexe B : Check-list complète de déploiement</h3>
+                <table>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Tâche</th>
+                        <th>Statut</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Préparation</strong></td>
+                        <td>Récupérer la fiche utilisateur avec besoins</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Vérifier la disponibilité des licences</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Préparer les médias d'installation</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Vérifier l'état matériel du poste</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Créer le compte utilisateur dans l'AD</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6"><strong>Installation OS</strong></td>
+                        <td>Installer Windows 10/11</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Configurer le nom du PC selon convention</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Installer les drivers (chipset, réseau, graphique)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Activer Windows avec la clé de licence</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Installer toutes les mises à jour Windows</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Redémarrer et vérifier la stabilité</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Logiciels</strong></td>
+                        <td>Installer Office 365 / Suite bureautique</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Installer navigateurs (Chrome, Firefox)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Installer logiciels standards (PDF, 7-Zip, VLC)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Installer logiciels métier spécifiques</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Activer toutes les licences logiciels</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6"><strong>Réseau</strong></td>
+                        <td>Configurer les paramètres réseau (IP/DHCP)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Joindre le poste au domaine</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Mapper les lecteurs réseau</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Installer les imprimantes réseau</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Tester la connectivité internet</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Vérifier l'accès aux ressources partagées</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Sécurité</strong></td>
+                        <td>Activer et mettre à jour Windows Defender</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Configurer le pare-feu Windows</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Activer BitLocker sur le disque système</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Configurer les stratégies de sécurité locales</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Désactiver les comptes inutiles</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Personnalisation</strong></td>
+                        <td>Configurer le profil utilisateur</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Configurer Outlook et la signature email</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Créer les raccourcis bureau nécessaires</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Configurer les favoris intranet</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Paramètres régionaux (langue, fuseau horaire)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Tests</strong></td>
+                        <td>Tester le démarrage et les performances</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Tester tous les logiciels installés</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Tester l'impression sur toutes les imprimantes</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Vérifier l'accès email et calendrier</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Tester les périphériques (USB, audio, webcam)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4"><strong>Documentation</strong></td>
+                        <td>Enregistrer le poste dans l'inventaire</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Documenter la configuration spécifique</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Préparer le document de remise utilisateur</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Noter le temps total d'installation</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Livraison</strong></td>
+                        <td>Remettre le poste à l'utilisateur</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Former l'utilisateur aux bases</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Faire signer la charte informatique</td>
+                        <td>☐</td>
+                    </tr>
+                </table>
+
+                <h3>Annexe C : Conventions de nommage recommandées</h3>
+                <div class="example-box">
+                    <h4>Exemples de conventions de nommage de postes</h4>
+                    <p><strong>Format 1 :</strong> [TYPE]-[SERVICE]-[NUMERO]</p>
+                    <ul>
+                        <li>PC-COMPTA-01, PC-COMPTA-02, etc.</li>
+                        <li>LAP-COMMERCIAL-05 (laptop)</li>
+                        <li>WKS-IT-10 (workstation)</li>
+                    </ul>
+                    
+                    <p><strong>Format 2 :</strong> [SITE]-[TYPE]-[NUMERO]</p>
+                    <ul>
+                        <li>PAR-PC-001 (Paris)</li>
+                        <li>LYO-LAP-042 (Lyon)</li>
+                    </ul>
+
+                    <p><strong>Format 3 :</strong> [UTILISATEUR]-[TYPE]</p>
+                    <ul>
+                        <li>JDUPONT-PC</li>
+                        <li>MMARTIN-LAP</li>
+                    </ul>
+
+                    <p><em>Règles générales : 15 caractères maximum, pas d'espaces ni de caractères spéciaux, cohérence dans toute l'entreprise</em></p>
+                </div>
+
+                <h3>Annexe D : Matrice de compatibilité matérielle</h3>
+                <table>
+                    <tr>
+                        <th>Configuration</th>
+                        <th>Usage Bureautique</th>
+                        <th>Usage Standard</th>
+                        <th>Usage Intensif</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Processeur</strong></td>
+                        <td>Intel i3 / Ryzen 3</td>
+                        <td>Intel i5 / Ryzen 5</td>
+                        <td>Intel i7-i9 / Ryzen 7-9</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RAM</strong></td>
+                        <td>8 GB</td>
+                        <td>16 GB</td>
+                        <td>32 GB ou plus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stockage</strong></td>
+                        <td>SSD 256 GB</td>
+                        <td>SSD 512 GB</td>
+                        <td>SSD 1 TB + HDD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carte graphique</strong></td>
+                        <td>Intégrée</td>
+                        <td>Intégrée ou GTX 1650</td>
+                        <td>RTX 3060+ / Quadro</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Profils types</strong></td>
+                        <td>Secrétariat, Accueil</td>
+                        <td>Commercial, RH, Comptabilité</td>
+                        <td>Graphisme, CAO, Développement</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Glossaire -->
+            <div class="section">
+                <h2>📖 Glossaire</h2>
+                <table>
+                    <tr>
+                        <th>Terme</th>
+                        <th>Définition</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Active Directory (AD)</strong></td>
+                        <td>Service d'annuaire Microsoft pour la gestion centralisée des utilisateurs et ressources</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BitLocker</strong></td>
+                        <td>Technologie de chiffrement de disque intégrée à Windows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clonage</strong></td>
+                        <td>Copie exacte d'un disque dur ou partition vers un autre support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DHCP</strong></td>
+                        <td>Protocole d'attribution automatique d'adresses IP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Golden Image</strong></td>
+                        <td>Image de référence d'un système configuré et testé, prête au déploiement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GPO (Group Policy)</strong></td>
+                        <td>Stratégie de groupe permettant la configuration centralisée des postes Windows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MDT</strong></td>
+                        <td>Microsoft Deployment Toolkit - Outil gratuit de déploiement automatisé</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PXE</strong></td>
+                        <td>Preboot Execution Environment - Démarrage réseau pour installation sans média</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SCCM</strong></td>
+                        <td>System Center Configuration Manager - Solution Microsoft de gestion du parc</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SLA</strong></td>
+                        <td>Service Level Agreement - Engagement sur les délais de service</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sysprep</strong></td>
+                        <td>Outil de généralisation d'une installation Windows avant clonage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UAC</strong></td>
+                        <td>User Account Control - Contrôle des comptes utilisateurs Windows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WDS</strong></td>
+                        <td>Windows Deployment Services - Service de déploiement réseau Microsoft</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zero-Touch</strong></td>
+                        <td>Déploiement entièrement automatisé sans intervention manuelle</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

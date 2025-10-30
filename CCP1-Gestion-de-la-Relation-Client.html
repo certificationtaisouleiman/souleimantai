@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de la relation client - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.error {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .dialogue-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 4px solid #3DDAB4;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .dialogue-box .tech {
+            color: #3B5BDB;
+            font-weight: 600;
+        }
+
+        .dialogue-box .client {
+            color: #ff9800;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .personality-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .personality-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .personality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .personality-card h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 1 - Assister ou Dépanner les Utilisateurs</div>
+        <h1>Gestion de la Relation Client</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📋 Introduction</h2>
+                <p>La gestion de la relation client est une compétence essentielle pour tout technicien en assistance informatique. Au-delà des compétences techniques, savoir communiquer efficacement, gérer les situations délicates et maintenir une relation professionnelle positive fait toute la différence dans la qualité du service fourni.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Développer les compétences relationnelles et communicationnelles nécessaires pour interagir efficacement avec les clients, gérer les situations de conflit, et fournir un support technique dans un contexte commercial tout en préservant la satisfaction client.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>🎯 1. Les Fondamentaux de la Communication Client</h2>
+                
+                <h3>Les 4 piliers de la communication efficace</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>🎧 Écoute active</h4>
+                        <p>Se concentrer pleinement sur ce que dit le client, poser des questions de clarification, reformuler pour valider la compréhension</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>💬 Clarté du message</h4>
+                        <p>Utiliser un langage simple et adapté, éviter le jargon technique, structurer ses explications logiquement</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>🤝 Empathie</h4>
+                        <p>Comprendre et reconnaître les émotions du client, montrer de la considération pour son problème</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>✅ Réactivité</h4>
+                        <p>Répondre rapidement, tenir ses engagements, donner des nouvelles régulièrement</p>
+                    </div>
+                </div>
+
+                <h3>Adapter son discours selon le profil</h3>
+                
+                <table>
+                    <tr>
+                        <th>Profil client</th>
+                        <th>Caractéristiques</th>
+                        <th>Approche recommandée</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Novice</strong></td>
+                        <td>Peu de connaissances IT, peut se sentir intimidé</td>
+                        <td>Vocabulaire simple, explications détaillées, patience, pédagogie</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intermédiaire</strong></td>
+                        <td>Connaissances de base, autonome</td>
+                        <td>Explications techniques modérées, valider sa compréhension</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expert</strong></td>
+                        <td>Bonnes connaissances IT, peut être exigeant</td>
+                        <td>Langage technique approprié, discussions techniques approfondies</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pressé/Stressé</strong></td>
+                        <td>Sous pression, veut une solution rapide</td>
+                        <td>Efficacité, rassurer sur les délais, prioriser la résolution</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de reformulation</h4>
+                    <p><strong>Client novice :</strong> "Mon ordinateur fait n'importe quoi, tout est lent et ça plante tout le temps !"</p>
+                    <p><strong>Reformulation technicien :</strong> "Je comprends, votre ordinateur est très lent et se bloque fréquemment. Est-ce que cela arrive depuis un moment particulier ou après une action spécifique ?"</p>
+                    <p><em>→ On valide la compréhension et on guide vers des informations utiles pour le diagnostic</em></p>
+                </div>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>😊 2. Les Types de Personnalités Clients</h2>
+                
+                <p>Identifier le type de personnalité permet d'adapter sa communication et sa stratégie d'intervention.</p>
+
+                <div class="personality-types">
+                    <div class="personality-card">
+                        <h4>🧘 Le Calme</h4>
+                        <p><strong>Comportement :</strong> Patient, compréhensif, coopératif</p>
+                        <p><strong>Approche :</strong> Communication standard, professionnelle et courtoise. Expliquer les étapes clairement.</p>
+                        <p><strong>Attention :</strong> Ne pas abuser de sa patience, tenir les engagements</p>
+                    </div>
+
+                    <div class="personality-card">
+                        <h4>⚡ L'Impatient</h4>
+                        <p><strong>Comportement :</strong> Veut une solution immédiate, peut être brusque</p>
+                        <p><strong>Approche :</strong> Aller droit au but, donner un délai réaliste, prioriser son cas si possible</p>
+                        <p><strong>Astuce :</strong> "Je comprends l'urgence, voici ce que je peux faire immédiatement..."</p>
+                    </div>
+
+                    <div class="personality-card">
+                        <h4>😤 L'Agressif</h4>
+                        <p><strong>Comportement :</strong> Hostile, peut hausser le ton, blâme le service IT</p>
+                        <p><strong>Approche :</strong> Rester calme, ne pas prendre personnellement, écouter sans interrompre, reconnaître sa frustration</p>
+                        <p><strong>Phrase clé :</strong> "Je comprends votre frustration, concentrons-nous sur la résolution"</p>
+                    </div>
+
+                    <div class="personality-card">
+                        <h4>🤔 Le Méfiant</h4>
+                        <p><strong>Comportement :</strong> Doute des solutions proposées, veut des preuves</p>
+                        <p><strong>Approche :</strong> Expliquer le "pourquoi", montrer les résultats, être transparent sur les limitations</p>
+                        <p><strong>Astuce :</strong> Utiliser des faits, des données, des démonstrations</p>
+                    </div>
+
+                    <div class="personality-card">
+                        <h4>💬 Le Bavard</h4>
+                        <p><strong>Comportement :</strong> Digressions fréquentes, raconte sa vie</p>
+                        <p><strong>Approche :</strong> Être cordial mais recentrer poliment, poser des questions fermées pour cadrer</p>
+                        <p><strong>Phrase clé :</strong> "C'est intéressant, mais revenons au problème technique..."</p>
+                    </div>
+
+                    <div class="personality-card">
+                        <h4>🎓 L'Expert (autoproclamé)</h4>
+                        <p><strong>Comportement :</strong> Pense tout savoir, peut contester vos solutions</p>
+                        <p><strong>Approche :</strong> Valoriser ses connaissances, proposer plutôt qu'imposer, expliquer avec diplomatie</p>
+                        <p><strong>Astuce :</strong> "Vous avez raison sur ce point, avez-vous également essayé..."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>⚠️ 3. Gestion des Situations Difficiles</h2>
+                
+                <h3>Le client mécontent ou en colère</h3>
+                
+                <div class="highlight-box warning">
+                    <h4>Méthode DESC pour gérer les conflits</h4>
+                    <ul>
+                        <li><strong>D - Décrire</strong> les faits de manière objective</li>
+                        <li><strong>E - Exprimer</strong> votre compréhension de la situation</li>
+                        <li><strong>S - Spécifier</strong> les solutions possibles</li>
+                        <li><strong>C - Conclure</strong> sur les conséquences positives</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple d'application méthode DESC</h4>
+                    <div class="dialogue-box">
+                        <p><span class="client">Client :</span> "C'est inadmissible ! Ça fait 3 jours que mon PC ne marche pas et personne ne fait rien !"</p>
+                        
+                        <p><span class="tech">Technicien :</span></p>
+                        <p><strong>(D)</strong> "Je vois dans le système que votre ticket a été créé il y a 3 jours effectivement."</p>
+                        <p><strong>(E)</strong> "Je comprends totalement votre frustration, c'est un délai important qui impacte votre travail."</p>
+                        <p><strong>(S)</strong> "Je prends en charge votre demande immédiatement et je vais intervenir dans l'heure. Si besoin, je peux vous prêter un poste de remplacement en attendant."</p>
+                        <p><strong>(C)</strong> "Ainsi vous pourrez reprendre votre activité rapidement et nous éviterons que cela se reproduise."</p>
+                    </div>
+                </div>
+
+                <h3>Les 5 erreurs à éviter absolument</h3>
+                
+                <div class="highlight-box error">
+                    <ol>
+                        <li><strong>❌ Se justifier ou rejeter la faute</strong> - "C'est pas moi, c'est mon collègue qui..."</li>
+                        <li><strong>❌ Minimiser le problème</strong> - "C'est pas si grave..."</li>
+                        <li><strong>❌ Interrompre le client</strong> - Le laisser exprimer sa frustration</li>
+                        <li><strong>❌ Promettre l'impossible</strong> - "Je vais tout régler en 5 minutes"</li>
+                        <li><strong>❌ Prendre la colère personnellement</strong> - Rester professionnel</li>
+                    </ol>
+                </div>
+
+                <h3>Techniques de désescalade</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>1. Écouter activement</h4>
+                        <p>Laisser le client s'exprimer complètement sans l'interrompre</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>2. Reconnaître l'émotion</h4>
+                        <p>"Je comprends que cette situation soit frustrante pour vous"</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>3. S'excuser sincèrement</h4>
+                        <p>"Je suis désolé pour ce désagrément"</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>4. Proposer une action</h4>
+                        <p>"Voici ce que je vais faire pour vous maintenant..."</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>5. Donner du contrôle</h4>
+                        <p>"Préférez-vous que je... ou que je... ?"</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>6. Suivre et informer</h4>
+                        <p>Tenir informé régulièrement de l'avancement</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>📞 4. Communication par Canal</h2>
+                
+                <h3>Support Téléphonique</h3>
+                
+                <table>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Actions</th>
+                        <th>Exemple de formulation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Accueil</strong></td>
+                        <td>Se présenter, identifier le client</td>
+                        <td>"Bonjour, Julien du support IT, comment puis-je vous aider ?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Écoute</strong></td>
+                        <td>Laisser parler, prendre des notes</td>
+                        <td>"Je vous écoute, décrivez-moi le problème"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qualification</strong></td>
+                        <td>Poser questions précises, reformuler</td>
+                        <td>"Si je comprends bien, depuis ce matin vous ne pouvez plus..."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Traitement</strong></td>
+                        <td>Expliquer les actions, guider pas à pas</td>
+                        <td>"Je vais vous guider, pouvez-vous cliquer sur..."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conclusion</strong></td>
+                        <td>Vérifier résolution, récapituler</td>
+                        <td>"Le problème est-il résolu ? Parfait, je vous envoie un récapitulatif par email"</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box success">
+                    <h4>✅ Bonnes pratiques téléphoniques</h4>
+                    <ul>
+                        <li><strong>Sourire au téléphone</strong> - Ça s'entend dans la voix</li>
+                        <li><strong>Parler clairement</strong> - Articuler, débit modéré</li>
+                        <li><strong>Utiliser le prénom</strong> - Personnalise l'échange</li>
+                        <li><strong>Mettre en attente avec permission</strong> - "Puis-je vous mettre en attente 2 minutes ?"</li>
+                        <li><strong>Éviter les bruits parasites</strong> - Environnement calme</li>
+                    </ul>
+                </div>
+
+                <h3>Support par Email</h3>
+                
+                <div class="example-box">
+                    <h4>💡 Structure d'un email professionnel</h4>
+                    <p><strong>Objet :</strong> Clair et précis (ex: "Résolution incident #12345 - Accès messagerie")</p>
+                    <p><strong>Formule d'appel :</strong> "Bonjour Madame Martin," / "Bonjour,"</p>
+                    <p><strong>Introduction :</strong> Référence au ticket ou à l'échange précédent</p>
+                    <p><strong>Corps :</strong> Information structurée, points numérotés si plusieurs étapes</p>
+                    <p><strong>Conclusion :</strong> Indiquer la marche à suivre, inviter à recontacter si besoin</p>
+                    <p><strong>Signature :</strong> Nom, fonction, coordonnées, horaires de disponibilité</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Règles d'or de l'email professionnel</h4>
+                    <ul>
+                        <li>✓ Répondre sous 24h maximum (accuser réception si plus long)</li>
+                        <li>✓ Rester concis et aller à l'essentiel</li>
+                        <li>✓ Utiliser des paragraphes courts et aérés</li>
+                        <li>✓ Relire avant d'envoyer (orthographe, ton)</li>
+                        <li>✓ Éviter les majuscules (= crier) et les couleurs excessives</li>
+                    </ul>
+                </div>
+
+                <h3>Support Chat / Messagerie instantanée</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Réactivité</h4>
+                        <p>Répondre rapidement, indiquer si traitement plus long nécessaire</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Concision</h4>
+                        <p>Messages courts et précis, aller à l'essentiel</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Ton adapté</h4>
+                        <p>Semi-formel, peut être légèrement moins rigide qu'un email</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Emojis modérés</h4>
+                        <p>Uniquement pour humaniser (sourire), jamais en excès</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>🤝 5. Service Client dans un Contexte Commercial</h2>
+                
+                <h3>Le technicien : ambassadeur de l'entreprise</h3>
+                
+                <p>Dans une entreprise de services IT (ESN, infogérance, MSP), le technicien représente l'entreprise auprès du client. Son comportement impacte directement l'image de marque et la fidélisation.</p>
+
+                <div class="highlight-box">
+                    <h4>Les 3 piliers de l'image professionnelle</h4>
+                    <ul>
+                        <li><strong>Compétence technique</strong> - Résoudre efficacement les problèmes</li>
+                        <li><strong>Professionnalisme</strong> - Ponctualité, tenue, respect des engagements</li>
+                        <li><strong>Relationnel</strong> - Courtoisie, écoute, communication claire</li>
+                    </ul>
+                </div>
+
+                <h3>Gestion des attentes clients</h3>
+                
+                <table>
+                    <tr>
+                        <th>Situation</th>
+                        <th>❌ À éviter</th>
+                        <th>✅ À privilégier</th>
+                    </tr>
+                    <tr>
+                        <td>Délai de résolution</td>
+                        <td>"Ce sera fait dans 10 minutes"</td>
+                        <td>"Je pense pouvoir résoudre ça d'ici 1h, je vous confirme d'ici 30min"</td>
+                    </tr>
+                    <tr>
+                        <td>Complexité technique</td>
+                        <td>"C'est ultra compliqué, je sais pas si..."</td>
+                        <td>"C'est un problème technique que je vais analyser, je vous tiens informé"</td>
+                    </tr>
+                    <tr>
+                        <td>Incertitude</td>
+                        <td>"Aucune idée, c'est bizarre"</td>
+                        <td>"Je vais investiguer et chercher la solution, je reviens vers vous sous 2h"</td>
+                    </tr>
+                    <tr>
+                        <td>Demande impossible</td>
+                        <td>"Non, on peut pas faire ça"</td>
+                        <td>"Je comprends votre besoin, voici les alternatives possibles..."</td>
+                    </tr>
+                </table>
+
+                <h3>Upselling et Cross-selling éthique</h3>
+                
+                <p>Dans un contexte commercial, le technicien peut être amené à identifier des opportunités d'amélioration ou de vente additionnelle.</p>
+
+                <div class="example-box">
+                    <h4>💡 Approche consultative</h4>
+                    <div class="dialogue-box">
+                        <p><strong>Situation :</strong> Vous intervenez sur un PC très lent, la RAM est saturée</p>
+                        
+                        <p><span class="tech">Approche technique pure :</span> "Voilà c'est réparé, j'ai fermé
+<div class="dialogue-box">
+                        <p><strong>Situation :</strong> Vous intervenez sur un PC très lent, la RAM est saturée</p>
+                        
+                        <p><span class="tech">Approche technique pure :</span> "Voilà c'est réparé, j'ai fermé les applications. Bonne journée !"</p>
+                        
+                        <p><span class="tech">Approche consultative :</span> "J'ai résolu le problème immédiat, mais j'ai constaté que votre PC a seulement 4Go de RAM, ce qui est juste pour vos besoins. Une mise à niveau vers 16Go améliorerait considérablement vos performances au quotidien. Souhaitez-vous que je vous prépare un devis ?"</p>
+                    </div>
+                    <p><em>→ On apporte de la valeur, on conseille, on ne force pas</em></p>
+                </div>
+
+                <div class="highlight-box success">
+                    <h4>Règles d'or de la vente conseil</h4>
+                    <ul>
+                        <li>✓ Identifier un réel besoin client</li>
+                        <li>✓ Expliquer le bénéfice concret pour l'utilisateur</li>
+                        <li>✓ Proposer, ne jamais imposer</li>
+                        <li>✓ Respecter le budget et les contraintes</li>
+                        <li>✓ Être transparent sur les coûts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 6 -->
+            <div class="section">
+                <h2>📊 6. Satisfaction Client et Indicateurs</h2>
+                
+                <h3>Mesurer la satisfaction</h3>
+                
+                <table>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Description</th>
+                        <th>Objectif type</th>
+                    </tr>
+                    <tr>
+                        <td><strong>CSAT (Customer Satisfaction)</strong></td>
+                        <td>Note de satisfaction après résolution (1-5 étoiles)</td>
+                        <td>> 4.5/5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NPS (Net Promoter Score)</strong></td>
+                        <td>Probabilité de recommandation (-100 à +100)</td>
+                        <td>> 50</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CES (Customer Effort Score)</strong></td>
+                        <td>Facilité perçue pour résoudre le problème (1-7)</td>
+                        <td>< 2 (faible effort)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FCR (First Contact Resolution)</strong></td>
+                        <td>% de problèmes résolus au premier contact</td>
+                        <td>> 70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Temps de réponse moyen</strong></td>
+                        <td>Délai avant première réponse</td>
+                        <td>< 30 min</td>
+                    </tr>
+                </table>
+
+                <h3>Facteurs clés de satisfaction</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Rapidité</h4>
+                        <p>Résoudre vite et bien, respecter les délais annoncés</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Clarté</h4>
+                        <p>Explications compréhensibles, transparence sur les actions</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Empathie</h4>
+                        <p>Reconnaissance du désagrément, considération sincère</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Proactivité</h4>
+                        <p>Anticiper, proposer, informer sans attendre la demande</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Personnalisation</h4>
+                        <p>Adapter l'approche, se souvenir des interactions précédentes</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Suivi</h4>
+                        <p>S'assurer de la satisfaction finale, proposer aide complémentaire</p>
+                    </div>
+                </div>
+
+                <h3>Récupérer un client insatisfait</h3>
+                
+                <div class="example-box">
+                    <h4>💡 Méthode de récupération en 5 étapes</h4>
+                    <ol>
+                        <li><strong>Écouter sans se justifier</strong> - Laisser le client exprimer son mécontentement</li>
+                        <li><strong>S'excuser sincèrement</strong> - Reconnaître le problème et présenter des excuses</li>
+                        <li><strong>Comprendre la cause</strong> - Identifier ce qui n'a pas fonctionné</li>
+                        <li><strong>Proposer une compensation</strong> - Geste commercial, priorité sur les prochaines demandes</li>
+                        <li><strong>Faire un suivi personnalisé</strong> - Rappeler pour vérifier que tout va bien</li>
+                    </ol>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>💡 Chiffre clé :</strong> Un client insatisfait dont le problème est bien géré peut devenir plus fidèle qu'un client qui n'a jamais eu de problème !
+                </div>
+            </div>
+
+            <!-- Partie 7 -->
+            <div class="section">
+                <h2>🎭 7. Intelligence Émotionnelle</h2>
+                
+                <h3>Les 5 composantes de l'intelligence émotionnelle</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>1. Conscience de soi</h4>
+                        <p>Reconnaître ses propres émotions et leurs impacts sur son comportement</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>2. Maîtrise de soi</h4>
+                        <p>Gérer ses émotions, rester calme sous pression, ne pas réagir impulsivement</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>3. Motivation</h4>
+                        <p>Maintenir un niveau d'engagement élevé même dans les situations difficiles</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>4. Empathie</h4>
+                        <p>Comprendre les émotions d'autrui, se mettre à la place du client</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>5. Compétences sociales</h4>
+                        <p>Communiquer efficacement, influencer positivement, gérer les conflits</p>
+                    </div>
+                </div>
+
+                <h3>Gérer ses propres émotions</h3>
+                
+                <div class="highlight-box">
+                    <h4>Techniques de gestion du stress</h4>
+                    <ul>
+                        <li><strong>Respiration profonde</strong> - Prendre 3 respirations lentes avant de répondre à un client difficile</li>
+                        <li><strong>Pause active</strong> - S'accorder des micro-pauses entre les interactions intenses</li>
+                        <li><strong>Reformulation mentale</strong> - "Ce n'est pas contre moi personnellement"</li>
+                        <li><strong>Débrief avec collègues</strong> - Partager les situations difficiles pour évacuer</li>
+                        <li><strong>Focalisation sur le positif</strong> - Se rappeler les réussites et remerciements</li>
+                    </ul>
+                </div>
+
+                <h3>Reconnaître les émotions du client</h3>
+                
+                <table>
+                    <tr>
+                        <th>Émotion détectée</th>
+                        <th>Signaux</th>
+                        <th>Réponse appropriée</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Frustration</strong></td>
+                        <td>Ton agacé, impatience, soupirs</td>
+                        <td>"Je comprends que ce soit frustrant, concentrons-nous sur la solution"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anxiété</strong></td>
+                        <td>Questions multiples, besoin de réassurance</td>
+                        <td>"Je vais m'occuper de ça, vos données sont en sécurité"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Colère</strong></td>
+                        <td>Ton élevé, accusations, langage dur</td>
+                        <td>Rester calme, écouter, reconnaître l'émotion sans jugement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Confusion</strong></td>
+                        <td>Questions répétitives, hésitations</td>
+                        <td>Ralentir, simplifier, vérifier la compréhension pas à pas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Satisfaction</strong></td>
+                        <td>Remerciements, ton positif</td>
+                        <td>Valoriser, "Avec plaisir, n'hésitez pas à me recontacter"</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 8 -->
+            <div class="section">
+                <h2>💼 8. Professionnalisme et Éthique</h2>
+                
+                <h3>Code de conduite professionnel</h3>
+                
+                <div class="highlight-box success">
+                    <h4>Les 10 commandements du technicien professionnel</h4>
+                    <ol>
+                        <li><strong>Ponctualité</strong> - Respecter les rendez-vous et délais</li>
+                        <li><strong>Confidentialité</strong> - Ne jamais divulguer d'informations clients</li>
+                        <li><strong>Honnêteté</strong> - Admettre ses limites, ne pas inventer de réponses</li>
+                        <li><strong>Respect</strong> - Traiter tous les clients avec égards, sans discrimination</li>
+                        <li><strong>Intégrité</strong> - Ne pas abuser de sa position d'accès aux systèmes</li>
+                        <li><strong>Responsabilité</strong> - Assumer ses erreurs, proposer des solutions</li>
+                        <li><strong>Compétence</strong> - Maintenir ses connaissances à jour</li>
+                        <li><strong>Neutralité</strong> - Ne pas imposer ses opinions personnelles</li>
+                        <li><strong>Discrétion</strong> - Ce qui est vu/entendu reste confidentiel</li>
+                        <li><strong>Courtoisie</strong> - Politesse en toutes circonstances</li>
+                    </ol>
+                </div>
+
+                <h3>Situations éthiques délicates</h3>
+                
+                <div class="example-box">
+                    <h4>⚖️ Dilemmes courants et résolutions</h4>
+                    
+                    <p><strong>Situation 1 :</strong> Un client vous demande de récupérer des emails supprimés de son ex-collègue</p>
+                    <p><strong>Réponse :</strong> "Je ne peux pas faire ça sans autorisation formelle de votre responsable et du service RH. C'est une question de protection des données."</p>
+                    
+                    <p><strong>Situation 2 :</strong> Vous découvrez qu'un utilisateur télécharge du contenu illégal</p>
+                    <p><strong>Réponse :</strong> Rapporter immédiatement à votre supérieur hiérarchique sans confronter directement l'utilisateur</p>
+                    
+                    <p><strong>Situation 3 :</strong> Un client vous offre un cadeau de valeur pour vous remercier</p>
+                    <p><strong>Réponse :</strong> "C'est très aimable mais je ne peux pas accepter, c'est contraire à notre politique. Un simple merci me suffit !"</p>
+                    
+                    <p><strong>Situation 4 :</strong> Vous vous rendez compte que vous avez fait une erreur qui a causé une perte de données</p>
+                    <p><strong>Réponse :</strong> Informer immédiatement, présenter des excuses, expliquer la cause, proposer solutions de récupération, documenter l'incident</p>
+                </div>
+
+                <h3>RGPD et protection des données</h3>
+                
+                <div class="highlight-box warning">
+                    <h4>🔒 Obligations légales</h4>
+                    <ul>
+                        <li>Ne jamais accéder aux données personnelles sans raison légitime</li>
+                        <li>Ne pas partager de données clients avec des tiers</li>
+                        <li>Assurer la sécurité des données lors des interventions</li>
+                        <li>Respecter le droit à l'oubli si demandé</li>
+                        <li>Signaler toute violation de données dans les 72h</li>
+                        <li>Ne pas transférer de données hors UE sans accord</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 9 -->
+            <div class="section">
+                <h2>🗣️ 9. Communication Cross-Culturelle</h2>
+                
+                <h3>Adapter sa communication selon les cultures</h3>
+                
+                <p>Dans un contexte international ou multiculturel, certains aspects de la communication varient selon les cultures.</p>
+
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Culture directe (France, Allemagne, Pays-Bas)</th>
+                        <th>Culture indirecte (Japon, Chine, Moyen-Orient)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication</strong></td>
+                        <td>Directe, explicite, peut sembler brusque</td>
+                        <td>Indirecte, implicite, évite confrontation directe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Refus</strong></td>
+                        <td>"Non" direct acceptable</td>
+                        <td>Formulations détournées ("C'est difficile", "On verra")</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Temps</strong></td>
+                        <td>Ponctualité stricte attendue</td>
+                        <td>Approche plus flexible du temps</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hiérarchie</strong></td>
+                        <td>Relations plutôt égalitaires</td>
+                        <td>Respect marqué de la hiérarchie</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <h4>Conseils universels</h4>
+                    <ul>
+                        <li>✓ Faire preuve de patience et d'ouverture d'esprit</li>
+                        <li>✓ Éviter les expressions idiomatiques difficiles à traduire</li>
+                        <li>✓ Parler lentement et clairement si barrière linguistique</li>
+                        <li>✓ Utiliser des supports visuels quand possible</li>
+                        <li>✓ Confirmer la compréhension mutuelle régulièrement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 10 -->
+            <div class="section">
+                <h2>📱 10. Cas Pratiques et Mises en Situation</h2>
+                
+                <div class="example-box">
+                    <h4>📌 Cas 1 : Le client agressif au téléphone</h4>
+                    <p><strong>Contexte :</strong> Un directeur commercial appelle, très énervé car son PC portable ne démarre plus et il a une présentation client dans 2h.</p>
+                    
+                    <div class="dialogue-box">
+                        <p><span class="client">Client :</span> "C'est inadmissible ! Mon PC est mort et j'ai un rendez-vous crucial dans 2h ! Vous vous rendez compte de ce que ça va me coûter ?!"</p>
+                        
+                        <p><span class="tech">Mauvaise réponse :</span> "Calmez-vous monsieur, ce n'est pas ma faute si votre PC est en panne..."</p>
+                        
+                        <p><span class="tech">Bonne réponse :</span> "Je comprends parfaitement l'urgence de la situation et votre frustration. Voici ce que je vous propose immédiatement : je vous prépare un PC de remplacement dans les 30 minutes avec vos fichiers essentiels. En parallèle, j'analyse votre PC. Cela vous convient ?"</p>
+                    </div>
+                    
+                    <p><strong>Analyse :</strong> ✓ Empathie, ✓ Solution immédiate, ✓ Plan d'action clair, ✓ Redonner du contrôle</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Cas 2 : L'utilisateur novice perdu</h4>
+                    <p><strong>Contexte :</strong> Une assistante de 60 ans n'arrive pas à joindre un fichier à un email. Elle vous appelle, stressée.</p>
+                    
+                    <div class="dialogue-box">
+                        <p><span class="client">Cliente :</span> "Je n'y arrive pas, je clique partout mais ça ne marche pas... Je ne suis vraiment pas douée avec ces machines..."</p>
+                        
+                        <p><span class="tech">Mauvaise réponse :</span> "C'est pourtant simple, vous cliquez sur le trombone et vous sélectionnez votre fichier, c'est tout."</p>
+                        
+                        <p><span class="tech">Bonne réponse :</span> "Ne vous inquiétez pas, je vais vous guider pas à pas, c'est tout à fait normal d'avoir besoin d'aide. Regardez en haut de votre email, vous voyez une petite icône qui ressemble à un trombone ? Parfait ! Maintenant cliquez dessus... Super ! Vous êtes où se trouve votre fichier ?"</p>
+                    </div>
+                    
+                    <p><strong>Analyse :</strong> ✓ Rassurance, ✓ Patience, ✓ Langage simple, ✓ Guidage pas à pas, ✓ Valorisation</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Cas 3 : La demande impossible</h4>
+                    <p><strong>Contexte :</strong> Un utilisateur vous demande de récupérer un fichier supprimé il y a 3 mois de la corbeille et non sauvegardé.</p>
+                    
+                    <div class="dialogue-box">
+                        <p><span class="client">Client :</span> "Il me faut absolument ce fichier, c'est vital pour le projet !"</p>
+                        
+                        <p><span class="tech">Mauvaise réponse :</span> "Désolé, c'est impossible, le fichier est perdu définitivement."</p>
+                        
+                        <p><span class="tech">Bonne réponse :</span> "Je comprends l'importance de ce fichier pour vous. Malheureusement, après 3 mois et vidage de la corbeille, la récupération est techniquement très compromise. Cependant, laissez-moi vérifier : avez-vous synchronisé ce dossier sur OneDrive ou envoyé le fichier par email ? Je peux aussi vérifier les sauvegardes serveur si le fichier était en réseau. En parallèle, avez-vous une version antérieure ou un brouillon ?"</p>
+                    </div>
+                    
+                    <p><strong>Analyse :</strong> ✓ Honnêteté, ✓ Empathie, ✓ Exploration alternatives, ✓ Ne pas abandonner immédiatement</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Cas 4 : L'expert qui conteste</h4>
+                    <p><strong>Contexte :</strong> Un développeur informatique vous explique que votre diagnostic est faux et que le problème vient d'ailleurs.</p>
+                    
+                    <div class="dialogue-box">
+                        <p><span class="client">Client :</span> "Non, vous vous trompez, ce n'est pas un problème de DNS, c'est clairement le firewall qui bloque."</p>
+                        
+                        <p><span class="tech">Mauvaise réponse :</span> "Non monsieur, je sais ce que je fais, c'est bien le DNS."</p>
+                        
+                        <p><span class="tech">Bonne réponse :</span> "Vous avez peut-être raison, vérifions ensemble. J'ai testé le DNS et obtenu une réponse correcte, mais effectivement le firewall pourrait aussi être en cause. Que diriez-vous qu'on teste en désactivant temporairement le firewall pour éliminer cette piste ? Comme ça on sera fixés."</p>
+                    </div>
+                    
+                    <p><strong>Analyse :</strong> ✓ Reconnaissance expertise, ✓ Approche collaborative, ✓ Proposition de test, ✓ Pas d'ego</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Cas 5 : Feedback négatif justifié</h4>
+                    <p><strong>Contexte :</strong> Un client se plaint car vous aviez promis une résolution sous 2h et cela fait 5h.</p>
+                    
+                    <div class="dialogue-box">
+                        <p><span class="client">Client :</span> "Vous m'aviez dit 2h maximum, ça fait 5h que j'attends et je n'ai aucune nouvelle !"</p>
+                        
+                        <p><span class="tech">Mauvaise réponse :</span> "Oui mais j'ai eu d'autres urgences plus importantes..."</p>
+                        
+                        <p><span class="tech">Bonne réponse :</span> "Vous avez tout à fait raison et je vous présente mes sincères excuses. J'aurais dû vous tenir informé. Le problème s'est révélé plus complexe que prévu, nécessitant l'intervention d'un spécialiste réseau. Je suis actuellement dessus et je m'engage à vous donner une résolution dans l'heure. Pour me faire pardonner ce retard, je vous accorde la priorité absolue sur mes interventions. Encore désolé pour ce désagrément."</p>
+                    </div>
+                    
+                    <p><strong>Analyse :</strong> ✓ Reconnaissance de l'erreur, ✓ Excuses sincères, ✓ Explication, ✓ Engagement clair, ✓ Geste de compensation</p>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h3>🎓 Quiz d'auto-évaluation</h3>
+                <ol>
+                    <li>Quels sont les 4 piliers de la communication efficace avec un client ?</li>
+                    <li>Expliquez la méthode DESC pour gérer les conflits</li>
+                    <li>Citez 3 types de personnalités clients et l'approche adaptée pour chacune</li>
+                    <li>Quelles sont les 5 erreurs à éviter absolument face à un client mécontent ?</li>
+                    <li>Qu'est-ce que le CSAT et quel est l'objectif type à atteindre ?</li>
+                    <li>Citez les 5 composantes de l'intelligence émotionnelle</li>
+                    <li>Quelle est la différence entre upselling et cross-selling ? Donnez un exemple</li>
+                    <li>Comment gérer un client qui devient agressif au téléphone ?</li>
+                    <li>Quelles sont vos obligations RGPD lors d'une intervention technique ?</li>
+                    <li>Pourquoi est-il important d'adapter son discours selon le profil du client ?</li>
+                </ol>
+            </div>
+
+            <!-- Outils et techniques -->
+            <div class="section">
+                <h2>🛠️ 11. Outils et Techniques Pratiques</h2>
+                
+                <h3>Phrases types à connaître</h3>
+                
+                <div class="highlight-box success">
+                    <h4>Pour gérer les situations courantes</h4>
+                    
+                    <p><strong>Accusé de réception :</strong></p>
+                    <ul>
+                        <li>"J'ai bien pris note de votre demande, je m'en occupe immédiatement"</li>
+                        <li>"Merci pour votre signalement, je vais investiguer et revenir vers vous sous..."</li>
+                    </ul>
+                    
+                    <p><strong>Demande de précision :</strong></p>
+                    <ul>
+                        <li>"Pour mieux vous aider, pourriez-vous me préciser..."</li>
+                        <li>"Si je comprends bien, vous dites que... C'est bien ça ?"</li>
+                    </ul>
+                    
+                    <p><strong>Annonce d'un délai :</strong></p>
+                    <ul>
+                        <li>"D'après mon diagnostic, la résolution devrait prendre environ X. Je vous tiens informé à mi-parcours"</li>
+                        <li>"C'est plus complexe que prévu, je vais avoir besoin de X temps supplémentaire"</li>
+                    </ul>
+                    
+                    <p><strong>Escalade nécessaire :</strong></p>
+                    <ul>
+                        <li>"Ce problème nécessite l'expertise de notre équipe spécialisée, je transfère votre demande en priorité"</li>
+                        <li>"Pour vous apporter la meilleure solution, je vais solliciter mon responsable technique"</li>
+                    </ul>
+                    
+                    <p><strong>Refus diplomatique :</strong></p>
+                    <ul>
+                        <li>"Je comprends votre demande, malheureusement notre politique ne nous permet pas de..., en revanche voici ce que je peux vous proposer..."</li>
+                        <li>"Pour des raisons de sécurité/RGPD, je ne peux pas effectuer cette action, mais je peux..."</li>
+                    </ul>
+                </div>
+
+                <h3>Checklist avant/après interaction</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>✓ Avant l'interaction</h4>
+                        <ul>
+                            <li>□ Consulter l'historique du client</li>
+                            <li>□ Préparer son environnement (calme)</li>
+                            <li>□ Avoir ses outils à portée</li>
+                            <li>□ État d'esprit positif</li>
+                        </ul>
+                    </div>
+                    <div class="key-point">
+                        <h4>✓ Pendant l'interaction</h4>
+                        <ul>
+                            <li>□ Écoute active</li>
+                            <li>□ Prendre des notes</li>
+                            <li>□ Reformuler</li>
+                            <li>□ Annoncer ses actions</li>
+                        </ul>
+                    </div>
+                    <div class="key-point">
+                        <h4>✓ Après l'interaction</h4>
+                        <ul>
+                            <li>□ Documenter dans le système</li>
+                            <li>□ Envoyer récapitulatif si pertinent</li>
+                            <li>□ Planifier suivi si nécessaire</li>
+                            <li>□ Analyser pour amélioration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ressources -->
+            <div class="section">
+                <h2>📚 Ressources Complémentaires</h2>
+                
+                <h3>Livres recommandés</h3>
+                <ul>
+                    <li><strong>"Comment se faire des amis"</strong> - Dale Carnegie (classique intemporel)</li>
+                    <li><strong>"Les mots sont des fenêtres"</strong> - Marshall Rosenberg (Communication Non Violente)</li>
+                    <li><strong>"L'intelligence émotionnelle"</strong> - Daniel Goleman</li>
+                    <li><strong>"Crucial Conversations"</strong> - Kerry Patterson</li>
+                </ul>
+
+                <h3>Formations certifiantes</h3>
+                <ul>
+                    <li><strong>HDI Customer Service Representative</strong> - Certification service client IT</li>
+                    <li><strong>ITIL Service Management</strong> - Module Service Operation</li>
+                    <li><strong>Formation CNV</strong> - Communication Non Violente</li>
+                    <li><strong>Gestion des conflits</strong> - Formations management relationnel</li>
+                </ul>
+
+              
+                

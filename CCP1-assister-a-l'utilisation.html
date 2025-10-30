@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assister à l’utilisation des ressources collaboratives - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Style identique au cours précédent --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Manrope', sans-serif; background: #F5F5F7; color: #1a1a1a; line-height: 1.7; }
+        nav { background: white; padding: 1.2rem 4rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo-container { display: flex; align-items: center; gap: 1rem; }
+        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #3B5BDB, #3DDAB4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 3px; text-transform: uppercase; }
+        .back-btn { padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #3B5BDB, #3DDAB4); color: white; border: none; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
+        .back-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3); }
+        .hero { background: linear-gradient(135deg, #3B5BDB, #3DDAB4); color: white; padding: 4rem 4rem 3rem; text-align: center; }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 1rem; font-weight: 700; }
+        .hero .badge { background: rgba(255,255,255,0.2); padding: 0.5rem 1.2rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; font-weight: 600; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 3rem 4rem; }
+        .course-content { background: white; border-radius: 30px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
+        .section { margin-bottom: 3rem; }
+        .section h2 { font-size: 1.8rem; color: #3B5BDB; margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 3px solid #3DDAB4; }
+        .section h3 { font-size: 1.3rem; color: #1a1a1a; margin-top: 2rem; margin-bottom: 1rem; font-weight: 600; }
+        .section p { margin-bottom: 1rem; color: #444; font-size: 1.05rem; }
+        .section ul, .section ol { margin-left: 2rem; margin-bottom: 1.5rem; }
+        .section li { margin-bottom: 0.8rem; color: #444; }
+        .highlight-box { background: #f0f7ff; border-left: 4px solid #3B5BDB; padding: 1.5rem; margin: 2rem 0; border-radius: 10px; }
+        .highlight-box.success { background: #e8f5e9; border-left-color: #3DDAB4; }
+        .highlight-box.warning { background: #fff3e0; border-left-color: #ff9800; }
+        .example-box { background: #f8f9fa; border: 2px solid #e0e0e0; padding: 1.5rem; border-radius: 15px; margin: 1.5rem 0; }
+        .example-box h4 { color: #3B5BDB; margin-bottom: 1rem; font-size: 1.1rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { padding: 1rem; text-align: left; border: 1px solid #e0e0e0; }
+        th { background: linear-gradient(135deg, #3B5BDB, #3DDAB4); color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .key-point { background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #3B5BDB; }
+        .key-point h4 { color: #3B5BDB; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .quiz-section { background: linear-gradient(135deg, #f0f7ff, #e8f5e9); padding: 2rem; border-radius: 20px; margin-top: 3rem; }
+        .quiz-section h3 { color: #3B5BDB; margin-bottom: 1.5rem; }
+        @media (max-width: 768px) { nav, .hero, .container { padding-left: 2rem; padding-right: 2rem; } .hero h1 { font-size: 2rem; } .course-content { padding: 2rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 1 - Assister ou Dépanner les Utilisateurs</div>
+        <h1>Assister à l’utilisation des ressources collaboratives</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <div class="section">
+                <h2>📋 Introduction</h2>
+                <p>L’assistance à l’utilisation des ressources collaboratives fait partie intégrante du rôle du technicien en support utilisateur. Elle consiste à aider les utilisateurs à exploiter efficacement les outils de communication et de travail en équipe, tout en garantissant la sécurité et la continuité de service.</p>
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Faciliter la collaboration et la productivité des équipes à travers la maîtrise des outils numériques partagés.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💬 1. Comprendre les ressources collaboratives</h2>
+                <p>Les outils collaboratifs permettent aux utilisateurs de partager des informations, de travailler ensemble en temps réel et de centraliser les échanges professionnels.</p>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Communication</h4>
+                        <p>Messagerie instantanée, visioconférence, notifications (ex : Teams, Slack, Zoom)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Partage de documents</h4>
+                        <p>Stockage et coédition de fichiers (ex : OneDrive, Google Drive, SharePoint)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Planification</h4>
+                        <p>Outils d’agenda et de gestion de tâches (ex : Outlook, Trello, Asana)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🧭 2. Accompagner les utilisateurs</h2>
+                <p>Le technicien doit être capable d’aider les utilisateurs dans la configuration, l’accès et l’usage optimal des outils collaboratifs.</p>
+                <ol>
+                    <li>Créer ou attribuer des comptes utilisateurs</li>
+                    <li>Gérer les droits d’accès et les autorisations</li>
+                    <li>Assister lors de la première connexion et des paramétrages initiaux</li>
+                    <li>Accompagner sur les fonctionnalités de base (visioconférence, partage, stockage)</li>
+                    <li>Former aux bonnes pratiques de collaboration sécurisée</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>💡 Exemple d’assistance</h4>
+                    <p><strong>Demande :</strong> Un utilisateur ne parvient pas à accéder à un dossier partagé sur Teams.</p>
+                    <p><strong>Action :</strong> Vérification de son appartenance au canal, des droits d’accès et de la synchronisation OneDrive.</p>
+                    <p><strong>Résultat :</strong> L’accès est rétabli et l’utilisateur reçoit un guide de bonnes pratiques Teams.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔐 3. Sécurité et bonnes pratiques</h2>
+                <ul>
+                    <li>Utiliser l’authentification multi-facteurs (MFA)</li>
+                    <li>Partager uniquement avec les personnes autorisées</li>
+                    <li>Ne pas télécharger de fichiers sensibles sur un poste personnel</li>
+                    <li>Définir des politiques de rétention et de sauvegarde</li>
+                    <li>Mettre à jour régulièrement les outils</li>
+                </ul>
+                <div class="highlight-box warning">
+                    <strong>⚠️ Attention :</strong> Un partage mal configuré peut exposer des données confidentielles à des tiers non autorisés.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🧰 4. Outils collaboratifs les plus utilisés</h2>
+                <table>
+                    <tr>
+                        <th>Outil</th>
+                        <th>Fonction principale</th>
+                        <th>Caractéristiques</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Microsoft Teams</strong></td>
+                        <td>Communication et partage</td>
+                        <td>Intégration Office 365, appels, canaux, stockage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Workspace</strong></td>
+                        <td>Travail collaboratif cloud</td>
+                        <td>Docs, Sheets, Meet, Drive, Gmail</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SharePoint</strong></td>
+                        <td>Intranet et gestion documentaire</td>
+                        <td>Sites collaboratifs, métadonnées, gestion des versions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Slack</strong></td>
+                        <td>Messagerie professionnelle</td>
+                        <td>Canaux thématiques, intégrations applicatives</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>📈 5. Indicateurs de suivi</h2>
+                <table>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Description</th>
+                        <th>Objectif</th>
+                    </tr>
+                    <tr>
+                        <td>Taux d’adoption</td>
+                        <td>Nombre d’utilisateurs actifs sur les outils</td>
+                        <td>> 80%</td>
+                    </tr>
+                    <tr>
+                        <td>Taux de satisfaction</td>
+                        <td>Évaluation des utilisateurs après assistance</td>
+                        <td>> 4/5</td>
+                    </tr>
+                    <tr>
+                        <td>Taux d’incidents résolus au premier contact</td>
+                        <td>Demandes closes sans escalade</td>
+                        <td>> 70%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>✅ 6. Bonnes pratiques d’assistance</h2>
+                <div class="highlight-box success">
+                    <h3>Communication</h3>
+                    <ul>
+                        <li>Écouter activement les besoins de l’utilisateur</li>
+                        <li>Expliquer simplement les étapes</li>
+                        <li>Fournir une documentation claire après l’intervention</li>
+                    </ul>
+                </div>
+                <div class="highlight-box success">
+                    <h3>Organisation</h3>
+                    <ul>
+                        <li>Maintenir à jour les guides d’utilisation</li>
+                        <li>Standardiser les configurations</li>
+                        <li>Documenter les problèmes récurrents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <h3>🎓 Quiz d’auto-évaluation</h3>
+                <ol>
+                    <li>Quelles sont les trois catégories principales d’outils collaboratifs ?</li>
+                    <li>Donnez un exemple de bonne pratique de sécurité dans Teams ou Google Drive.</li>
+                    <li>Que signifie MFA et pourquoi est-il essentiel ?</li>
+                    <li>Quelle est la différence entre SharePoint et OneDrive ?</li>
+                    <li>Comment mesurer le taux d’adoption des outils collaboratifs ?</li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h2>📚 Ressources complémentaires</h2>
+                <ul>
+                    <li><strong>Documentation Microsoft 365</strong> – learn.microsoft.com</li>
+                    <li><strong>Centre d’aide Google Workspace</strong> – support.google.com</li>
+                    <li><strong>ANSSI</strong> – Bonnes pratiques de sécurité numérique</li>
+                    <li><strong>Guide collaboratif CNIL</strong> – Protection des données en entreprise</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

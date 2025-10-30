@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traiter un incident dans un centre de services - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 1 - Assister ou Dépanner les Utilisateurs</div>
+        <h1>Traiter un incident dans un centre de services</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📋 Introduction</h2>
+                <p>Le traitement des incidents dans un centre de services est une compétence fondamentale pour tout technicien en assistance informatique. Cette activité consiste à recevoir, enregistrer, qualifier et résoudre les demandes d'assistance des utilisateurs dans le respect des procédures et des délais établis.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Assurer la continuité de service en résolvant rapidement et efficacement les problèmes rencontrés par les utilisateurs, tout en maintenant une communication claire et professionnelle.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>🎯 1. Le Centre de Services (Service Desk)</h2>
+                
+                <h3>Définition et rôle</h3>
+                <p>Le centre de services est le point de contact unique (SPOC - Single Point Of Contact) entre les utilisateurs et le service informatique. Il centralise toutes les demandes d'assistance et assure leur traitement selon les priorités définies.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Mission principale</h4>
+                        <p>Restaurer rapidement le service normal pour minimiser l'impact sur l'activité métier</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Disponibilité</h4>
+                        <p>Assurer un support continu selon les horaires définis (8h-18h, 24/7, etc.)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Traçabilité</h4>
+                        <p>Enregistrer et documenter tous les incidents dans un outil de ticketing</p>
+                    </div>
+                </div>
+
+                <h3>Les niveaux de support</h3>
+                <table>
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Description</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>N1 - Support de base</strong></td>
+                        <td>Résolution des incidents courants, réinitialisation de mots de passe, assistance logiciels standards</td>
+                        <td>Déblocage de compte, installation d'imprimante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>N2 - Support avancé</strong></td>
+                        <td>Problèmes techniques complexes nécessitant une expertise approfondie</td>
+                        <td>Configuration réseau, problèmes serveur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>N3 - Experts</strong></td>
+                        <td>Incidents critiques, développement, architecture</td>
+                        <td>Bugs applicatifs, incidents majeurs</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>📞 2. Réception et Qualification de l'Incident</h2>
+                
+                <h3>Les canaux de réception</h3>
+                <ul>
+                    <li><strong>Téléphone :</strong> Canal privilégié pour les urgences</li>
+                    <li><strong>Email :</strong> Pour les demandes moins urgentes avec pièces jointes</li>
+                    <li><strong>Portail self-service :</strong> Permet à l'utilisateur de créer son ticket</li>
+                    <li><strong>Chat/Messagerie instantanée :</strong> Pour un support rapide</li>
+                    <li><strong>Sur site :</strong> Intervention directe auprès de l'utilisateur</li>
+                </ul>
+
+                <h3>Étapes de qualification</h3>
+                <ol>
+                    <li><strong>Identification de l'utilisateur</strong> - Nom, service, coordonnées, localisation</li>
+                    <li><strong>Description du problème</strong> - Symptômes, message d'erreur, contexte</li>
+                    <li><strong>Catégorisation</strong> - Type d'incident (matériel, logiciel, réseau, accès...)</li>
+                    <li><strong>Priorisation</strong> - Urgence et impact sur l'activité</li>
+                    <li><strong>Affectation</strong> - Attribution au technicien ou à l'équipe compétente</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de qualification</h4>
+                    <p><strong>Utilisateur :</strong> Sophie Martin - Service Comptabilité - Bâtiment A, Bureau 205</p>
+                    <p><strong>Problème :</strong> "Je ne peux plus accéder à mon dossier partagé sur le serveur depuis ce matin"</p>
+                    <p><strong>Catégorie :</strong> Accès / Droits / Réseau</p>
+                    <p><strong>Priorité :</strong> P2 (Impact moyen - urgence moyenne)</p>
+                    <p><strong>Affectation :</strong> Équipe Infrastructure N2</p>
+                </div>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>⚡ 3. Matrice de Priorisation</h2>
+                
+                <p>La priorisation des incidents se base sur deux critères principaux :</p>
+                
+                <table>
+                    <tr>
+                        <th>Priorité</th>
+                        <th>Impact</th>
+                        <th>Urgence</th>
+                        <th>Délai de résolution</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>P1 - Critique</strong></td>
+                        <td>Très élevé</td>
+                        <td>Immédiate</td>
+                        <td>< 2 heures</td>
+                        <td>Serveur de production arrêté</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P2 - Haute</strong></td>
+                        <td>Élevé</td>
+                        <td>Rapide</td>
+                        <td>< 4 heures</td>
+                        <td>Imprimante principale HS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P3 - Moyenne</strong></td>
+                        <td>Moyen</td>
+                        <td>Normale</td>
+                        <td>< 1 jour</td>
+                        <td>Lenteur d'un poste</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P4 - Basse</strong></td>
+                        <td>Faible</td>
+                        <td>Planifiable</td>
+                        <td>< 5 jours</td>
+                        <td>Demande d'installation logiciel</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Attention :</strong> Un incident affectant un seul utilisateur peut être critique si cet utilisateur occupe un poste clé (Direction, Commercial en rendez-vous client, etc.)
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>🔧 4. Résolution et Suivi de l'Incident</h2>
+                
+                <h3>Processus de résolution</h3>
+                <ol>
+                    <li><strong>Diagnostic initial</strong> - Reproduire le problème, identifier la cause</li>
+                    <li><strong>Recherche de solution</strong> - Base de connaissances, documentation, incidents similaires</li>
+                    <li><strong>Application de la solution</strong> - Tester avant mise en production</li>
+                    <li><strong>Vérification</strong> - S'assurer que le problème est résolu</li>
+                    <li><strong>Documentation</strong> - Enrichir la base de connaissances</li>
+                    <li><strong>Clôture</strong> - Validation utilisateur et fermeture du ticket</li>
+                </ol>
+
+                <h3>Communication avec l'utilisateur</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Accusé de réception</h4>
+                        <p>Confirmer la prise en compte du ticket dans les 30 minutes</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Points réguliers</h4>
+                        <p>Tenir informé l'utilisateur de l'avancement</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Résolution</h4>
+                        <p>Expliquer la solution et demander validation</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de communication</h4>
+                    <p><em>"Bonjour Sophie, votre ticket #12345 concernant l'accès au dossier partagé a bien été enregistré. Un technicien va intervenir dans l'heure. Nous vous tiendrons informée de l'avancement. Cordialement, Service Support IT"</em></p>
+                </div>
+
+                <h3>Escalade</h3>
+                <p>Si l'incident ne peut être résolu au niveau N1, il doit être escaladé :</p>
+                <ul>
+                    <li><strong>Escalade fonctionnelle :</strong> Vers un niveau supérieur de compétence (N2, N3)</li>
+                    <li><strong>Escalade hiérarchique :</strong> Vers le management si délai dépassé ou incident critique</li>
+                </ul>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>💻 5. Outils de Gestion des Incidents</h2>
+                
+                <h3>Logiciels de ticketing courants</h3>
+                <ul>
+                    <li><strong>GLPI</strong> - Open source, très complet, gestion de parc intégrée</li>
+                    <li><strong>ServiceNow</strong> - Solution professionnelle, ITSM complet</li>
+                    <li><strong>Jira Service Management</strong> - Intégration avec l'écosystème Atlassian</li>
+                    <li><strong>Freshdesk</strong> - Cloud, interface intuitive</li>
+                    <li><strong>Zendesk</strong> - Orienté support client</li>
+                </ul>
+
+                <h3>Fonctionnalités essentielles</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Création de tickets</h4>
+                        <p>Multi-canal, auto-assignation, modèles</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>SLA automatisés</h4>
+                        <p>Alertes sur dépassement de délai</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Base de connaissances</h4>
+                        <p>Articles, FAQ, procédures</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Reporting</h4>
+                        <p>Tableaux de bord, statistiques, KPI</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 6 -->
+            <div class="section">
+                <h2>📊 6. Indicateurs de Performance (KPI)</h2>
+                
+                <table>
+                    <tr>
+                        <th>KPI</th>
+                        <th>Description</th>
+                        <th>Objectif type</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Temps de première réponse</strong></td>
+                        <td>Délai entre la création et la première réponse</td>
+                        <td>< 30 minutes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Temps de résolution moyen</strong></td>
+                        <td>Durée moyenne pour résoudre un incident</td>
+                        <td>< 4 heures</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taux de résolution N1</strong></td>
+                        <td>% d'incidents résolus sans escalade</td>
+                        <td>> 70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Satisfaction utilisateur</strong></td>
+                        <td>Note moyenne des utilisateurs</td>
+                        <td>> 4/5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Respect des SLA</strong></td>
+                        <td>% de tickets traités dans les délais</td>
+                        <td>> 95%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 7 -->
+            <div class="section">
+                <h2>✅ 7. Bonnes Pratiques</h2>
+                
+                <div class="highlight-box success">
+                    <h3>Communication</h3>
+                    <ul>
+                        <li>Adopter un langage clair et adapter son vocabulaire</li>
+                        <li>Être patient et à l'écoute</li>
+                        <li>Reformuler pour s'assurer de la bonne compréhension</li>
+                        <li>Rester courtois même en cas de tension</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Organisation</h3>
+                    <ul>
+                        <li>Traiter les tickets par ordre de priorité</li>
+                        <li>Documenter chaque action entreprise</li>
+                        <li>Mettre à jour régulièrement le statut des tickets</li>
+                        <li>Enrichir la base de connaissances avec les solutions trouvées</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Qualité de service</h3>
+                    <ul>
+                        <li>Viser la résolution au premier contact (FCR - First Call Resolution)</li>
+                        <li>Prendre le temps de former l'utilisateur pour éviter la récurrence</li>
+                        <li>Demander un retour d'expérience après résolution</li>
+                        <li>Proposer des améliorations basées sur les incidents récurrents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h3>🎓 Quiz d'auto-évaluation</h3>
+                <ol>
+                    <li>Quels sont les trois niveaux de support dans un centre de services ?</li>
+                    <li>Citez 4 informations essentielles à recueillir lors de la qualification d'un incident</li>
+                    <li>Qu'est-ce qu'un SLA et pourquoi est-il important ?</li>
+                    <li>Quelle est la différence entre l'impact et l'urgence d'un incident ?</li>
+                    <li>Donnez 3 exemples d'outils de ticketing couramment utilisés</li>
+                    <li>Quel est le taux de résolution N1 recommandé ?</li>
+                </ol>
+            </div>
+
+            <!-- Ressources -->
+            <div class="section">
+                <h2>📚 Ressources Complémentaires</h2>
+                <ul>
+                    <li><strong>ITIL v4 Foundation</strong> - Référentiel des bonnes pratiques ITSM</li>
+                    <li><strong>HDI Support Center Analyst</strong> - Certification support utilisateur</li>
+                    <li><strong>Documentation GLPI</strong> - glpi-project.org</li>
+                    <li><strong>Forums IT</strong> - Communautés d'entraide techniques</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

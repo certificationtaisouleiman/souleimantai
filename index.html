@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAI 2025 -Certification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .search-bar {
+            flex: 0 1 400px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.7rem 1.2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-bar input:focus {
+            border-color: #3B5BDB;
+            box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.1);
+        }
+
+        .tabs-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .tabs-container {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+
+        .tab {
+            padding: 0.9rem 1.8rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+            color: #3B5BDB;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 91, 219, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .content-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .content-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .competences-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .competence-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 18px;
+            border-left: 4px solid #3B5BDB;
+            transition: all 0.3s ease;
+        }
+
+        .competence-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .competence-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+        }
+
+        .competence-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: #3DDAB4;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .tabs-section {
+                padding: 0 2rem;
+            }
+
+            nav {
+                padding: 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-bar {
+                display: none;
+            }
+
+            .tabs {
+                gap: 0.5rem;
+            }
+
+            .tab {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="pascal.png" alt="TAI Avatar" class="logo-image">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher une compétence...">
+        </div>
+    </nav>
+
+    <section class="tabs-section">
+        <h2 class="section-title">Certification TAI 2025</h2>
+        
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" data-tab="bloc1">CCP 1
+-Assister ou Dépanner les Utilisateurs</button>
+                <button class="tab" data-tab="bloc2">CCP 2- Mettre en Service des Équipements Numériques</button>
+                <button class="tab" data-tab="bloc3">Infrastructure Réseau</button>
+                <button class="tab" data-tab="materiel">Matériel & Composants</button>
+                <button class="tab" data-tab="systemes">Systèmes d'Exploitation</button>
+                <button class="tab" data-tab="securite">Cybersécurité</button>
+                <button class="tab" data-tab="reseau">Réseaux & Active Directory</button>
+                <button class="tab" data-tab="cloud">Services Cloud</button>
+                <button class="tab" data-tab="transversal">Compétences Transversales</button>
+                <button class="tab" data-tab="boite-outils">La boîte à outils de Jojo</button>
+            </div>
+
+            <!-- Bloc 1: Support Utilisateur -->
+            <div class="tab-content active" id="bloc1">
+                <div class="content-header">
+                    <div class="content-icon">🎯</div>
+                    <div>
+                        <span class="info-badge">CCP 1</span>
+                        <h3>Assister ou Dépanner les Utilisateurs</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>
+  <a href="CCP1-incident-centre-services.html" style="text-decoration: none; color: inherit;">
+    Traiter un incident dans un centre de services
+  </a>
+</h4>
+
+
+                        <p>Gérer les demandes d'assistance, enregistrer les incidents, assurer leur résolution dans les délais impartis et maintenir le suivi du parc informatique.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>
+  <a href="CCP1-assister-a-l'utilisation.html" style="text-decoration: none; color: inherit;">
+    Assister à l'utilisation des ressources collaboratives
+  </a>
+</h4>
+
+
+                        <p>Accompagner les utilisateurs dans l'usage des outils bureautiques et collaboratifs, adapter le discours selon le niveau de compétence de l'interlocuteur.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>
+  <a href="CCP1- Diagnostiquer-et-résoudre-un-dysfonctionnement.html" style="text-decoration: none; color: inherit;">
+    Diagnostiquer et résoudre un dysfonctionnement
+  </a>
+</h4>
+
+
+                        <p>Identifier les causes d'un problème numérique, proposer et mettre en œuvre des solutions techniques appropriées, sur site ou à distance.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>
+  <a href="CCP1-Gestion-de-la-Relation-Client.html" style="text-decoration: none; color: inherit;">
+    Gestion de la relation client
+  </a>
+</h4>
+
+
+                        <p>Communiquer efficacement avec les clients, gérer les situations de conflit, et fournir un support technique dans un contexte commercial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloc 2: Équipements Numériques -->
+            <div class="tab-content" id="bloc2">
+                <div class="content-header">
+                    <div class="content-icon">💻</div>
+                    <div>
+                        <span class="info-badge">CCP 2</span>
+                        <h3>Mettre en Service des Équipements Numériques</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>
+  <a href="CCP2-Installer et déployer un poste utilisateur.html" style="text-decoration: none; color: inherit;">
+    Installer et déployer un poste utilisateur
+  </a>
+</h4>
+
+                        <p>Installer un système d'exploitation, déployer un master dans un poste client, configurer les applications et périphériques nécessaires.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>
+  <a href="CCP2-Intervenir-sur-les-composants-matériels.html" style="text-decoration: none; color: inherit;">
+    Intervenir sur les composants matériels
+  </a>
+</h4>
+
+                        <p>Diagnostiquer et remplacer les composants défectueux d'un ordinateur fixe ou mobile, optimiser les performances matérielles.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Configurer et personnaliser un équipement</h4>
+                        <p>Adapter le poste de travail aux besoins spécifiques de l'utilisateur, mettre à jour les logiciels et le système d'exploitation.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Contribuer à la sécurité des données</h4>
+                        <p>Mettre en place les sauvegardes, configurer les outils de sécurité, sensibiliser les utilisateurs aux bonnes pratiques de sécurité.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloc 3: Infrastructure -->
+            <div class="tab-content" id="bloc3">
+                <div class="content-header">
+                    <div class="content-icon">🔧</div>
+                    <div>
+                        <span class="info-badge">CCP 3</span>
+                        <h3>Intervenir sur les Éléments de l'Infrastructure</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Intervenir sur un réseau informatique</h4>
+                        <p>Installer et configurer les équipements réseau, diagnostiquer les problèmes de connectivité, assurer la maintenance du réseau local.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Intervenir sur un annuaire Active Directory</h4>
+                        <p>Gérer les comptes utilisateurs, les groupes et les droits d'accès, maintenir la structure de l'annuaire réseau d'entreprise.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Installer des services réseau</h4>
+                        <p>Configurer et déployer des services réseau pour TPE ou particuliers, assurer leur maintenance et leur disponibilité.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Infrastructure sécurisée</h4>
+                        <p>Déployer des solutions sur une infrastructure réseau sécurisée, appliquer les protocoles de sécurité et politiques de confidentialité.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matériel & Composants -->
+            <div class="tab-content" id="materiel">
+                <div class="content-header">
+                    <div class="content-icon">🖥️</div>
+                    <div>
+                        <h3>Architecture Matérielle & Composants</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Architecture des ordinateurs</h4>
+                        <p>Comprendre l'architecture matérielle des PC, identifier les composants (processeur, mémoire, carte mère, disques durs, cartes graphiques).</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Équipements mobiles</h4>
+                        <p>Intervenir sur smartphones, tablettes et ordinateurs portables, gérer les spécificités des équipements nomades.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Périphériques et connectique</h4>
+                        <p>Installer et configurer imprimantes, scanners, écrans et autres périphériques, gérer les différents types de connexions.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Habilitations électriques</h4>
+                        <p>Respecter les normes de sécurité électrique lors des interventions, obtenir les habilitations nécessaires.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Systèmes d'Exploitation -->
+            <div class="tab-content" id="systemes">
+                <div class="content-header">
+                    <div class="content-icon">⚙️</div>
+                    <div>
+                        <h3>Systèmes d'Exploitation</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Windows Client</h4>
+                        <p>Installer, configurer et maintenir les systèmes Windows 10/11, gérer les mises à jour et la personnalisation des environnements utilisateurs.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Windows Serveur</h4>
+                        <p>Administrer les serveurs Windows, gérer les services réseau, configurer les rôles et fonctionnalités serveur.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Linux</h4>
+                        <p>Maîtriser les distributions Linux courantes, utiliser la ligne de commande, gérer les services et les permissions.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Déploiement et clonage</h4>
+                        <p>Créer et déployer des images système, utiliser les outils de clonage pour automatiser l'installation de postes en masse.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cybersécurité -->
+            <div class="tab-content" id="securite">
+                <div class="content-header">
+                    <div class="content-icon">🔒</div>
+                    <div>
+                        <h3>Cybersécurité & Protection des Données</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>RGPD et conformité</h4>
+                        <p>Comprendre et appliquer les principes du RGPD, assurer la protection des données personnelles dans toutes les interventions.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Sécurité des systèmes d'information (ANSSI)</h4>
+                        <p>Appliquer les recommandations de l'ANSSI, identifier et prévenir les menaces informatiques, mettre en place des mesures de protection.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Antivirus et pare-feu</h4>
+                        <p>Installer et configurer les solutions de protection (antivirus, pare-feu, anti-malware), maintenir à jour les définitions de sécurité.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Sauvegardes et restauration</h4>
+                        <p>Planifier et réaliser des sauvegardes régulières, tester les procédures de restauration, limiter la perte de données.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Certifications cybersécurité</h4>
+                        <p>Préparation aux certifications CISCO CyberSecurity Essentials et autres certifications reconnues du secteur.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Réseaux -->
+            <div class="tab-content" id="reseau">
+                <div class="content-header">
+                    <div class="content-icon">🌐</div>
+                    <div>
+                        <h3>Réseaux & Active Directory</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Fondamentaux des réseaux</h4>
+                        <p>Comprendre les bases TCP/IP, modèle OSI, adressage IP, masques de sous-réseau, routage et protocoles réseau.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Équipements réseau</h4>
+                        <p>Configurer routeurs, switches, points d'accès Wi-Fi, gérer les VLANs et la qualité de service (QoS).</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Certification CISCO Networking Essentials</h4>
+                        <p>Préparer et obtenir la certification CISCO, maîtriser les concepts réseau selon les standards de l'industrie.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Active Directory</h4>
+                        <p>Administrer un domaine Active Directory, gérer les stratégies de groupe (GPO), contrôleurs de domaine et services associés.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Services réseau</h4>
+                        <p>Configurer DHCP, DNS, serveurs de fichiers, impression réseau et autres services d'infrastructure essentiels.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloud -->
+            <div class="tab-content" id="cloud">
+                <div class="content-header">
+                    <div class="content-icon">☁️</div>
+                    <div>
+                        <h3>Services Cloud & Solutions Hébergées</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Infrastructures cloud</h4>
+                        <p>Comprendre les architectures cloud (IaaS, PaaS, SaaS), intervenir sur des solutions hébergées dans le cloud.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Microsoft 365</h4>
+                        <p>Administrer les services Microsoft 365, gérer les comptes, boîtes mail Exchange Online, SharePoint et Teams.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Google Workspace</h4>
+                        <p>Déployer et gérer les services Google Cloud, assister les utilisateurs sur Gmail, Drive, Docs et applications collaboratives.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Solutions de sauvegarde cloud</h4>
+                        <p>Configurer et gérer les sauvegardes en ligne, assurer la résilience et la continuité d'activité via le cloud.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transversal -->
+            <div class="tab-content" id="transversal">
+                <div class="content-header">
+                    <div class="content-icon">🎓</div>
+                    <div>
+                        <h3>Compétences Transversales</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Veille technologique</h4>
+                        <p>Effectuer une veille informatique régulière, suivre les évolutions technologiques, anticiper les changements du secteur.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Anglais technique</h4>
+                        <p>Lire la documentation technique en anglais, comprendre les ressources internationales, communiquer dans un contexte professionnel.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Soft Skills</h4>
+                        <p>Développer les compétences comportementales : communication, travail en équipe, adaptabilité, gestion du stress et autonomie.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Développement durable & éco-citoyenneté</h4>
+                        <p>Intégrer les principes d'éco-responsabilité dans les pratiques informatiques, favoriser le recyclage et l'économie circulaire.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Bureautique (TOSA)</h4>
+                        <p>Maîtriser la suite Microsoft Office (Word, Excel, PowerPoint, Outlook), préparer et obtenir la certification TOSA.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Certification PIX</h4>
+                        <p>Développer et certifier les compétences numériques selon le référentiel PIX, attestation officielle des compétences digitales.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Méthodologie et organisation</h4>
+                        <p>Apprendre à structurer son travail, gérer les priorités, suivre les procédures, rédiger une documentation technique claire.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Accompagnement professionnel</h4>
+                        <p>Préparation au monde du travail, techniques de recherche d'emploi, construction du CV, préparation aux entretiens, gestion de stage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- La boîte à outils de Jojo -->
+            <div class="tab-content" id="boite-outils">
+                <div class="content-header">
+                    <div class="content-icon">🧰</div>
+                    <div>
+                        <span class="info-badge">CCP 5</span>
+                        <h3>La boîte à outils de Jojo</h3>
+                    </div>
+                </div>
+                <div class="competences-list">
+                    <div class="competence-item">
+                        <h4>Outils de diagnostic matériel</h4>
+                        <p>Logiciels et utilitaires pour tester et diagnostiquer les composants matériels : CPU-Z, HWiNFO, CrystalDiskInfo, MemTest86.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils de déploiement système</h4>
+                        <p>Solutions pour cloner et déployer des systèmes : Clonezilla, FOG Project, Windows Deployment Services (WDS), MDT.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils de support à distance</h4>
+                        <p>Logiciels d'assistance et de prise en main à distance : TeamViewer, AnyDesk, Remote Desktop, VNC, Chrome Remote Desktop.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils réseau</h4>
+                        <p>Utilitaires pour diagnostiquer et analyser les réseaux : Wireshark, PuTTY, Advanced IP Scanner, Angry IP Scanner, NetSpot.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils de sécurité</h4>
+                        <p>Solutions pour la sécurité et le nettoyage : Malwarebytes, AdwCleaner, CCleaner, Bitdefender Rescue CD, ESET Online Scanner.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils de récupération de données</h4>
+                        <p>Logiciels pour récupérer des fichiers perdus ou supprimés : Recuva, TestDisk, PhotoRec, EaseUS Data Recovery.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils de gestion de tickets</h4>
+                        <p>Plateformes de helpdesk et ticketing : GLPI, Spiceworks, osTicket, Freshdesk, Zendesk.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h4>Outils de documentation</h4>
+                        <p>Solutions pour créer et gérer la documentation technique : Notion, Confluence, Wiki.js, OneNote, Markdown.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const searchInput = document.querySelector('.search-bar input');
+        const competenceItems = document.querySelectorAll('.competence-item');
+
+        // Gestion des onglets
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                // Réinitialiser la recherche lors du changement d'onglet
+                searchInput.value = '';
+                competenceItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+            });
+        });
+
+        // Fonction de recherche
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                // Si la recherche est vide, afficher tous les éléments
+                competenceItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+
+            // Rechercher dans toutes les compétences
+            let foundResults = false;
+            
+            competenceItems.forEach(item => {
+                const title = item.querySelector('h4').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.style.backgroundColor = '#fff3cd';
+                    foundResults = true;
+                } else {
+                    item.style.display = 'none';
+                    item.style.backgroundColor = '#f8f9fa';
+                }
+            });
+
+            // Gérer l'affichage des onglets contenant des résultats
+            tabContents.forEach(content => {
+                const visibleItems = content.querySelectorAll('.competence-item[style*="display: block"]');
+                if (visibleItems.length === 0) {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+
+            // Afficher automatiquement le premier onglet avec des résultats
+            if (foundResults) {
+                tabs.forEach(tab => tab.classList.remove('active'));
+                tabContents.forEach(content => {
+                    if (content.style.display === 'block') {
+                        const visibleItems = content.querySelectorAll('.competence-item[style*="display: block"]');
+                        if (visibleItems.length > 0 && !content.classList.contains('active')) {
+                            content.classList.add('active');
+                            const tabId = content.id;
+                            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
+        // Réinitialiser les styles au focus sur la recherche
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value === '') {
+                competenceItems.forEach(item => {
+                    item.style.backgroundColor = '#f8f9fa';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

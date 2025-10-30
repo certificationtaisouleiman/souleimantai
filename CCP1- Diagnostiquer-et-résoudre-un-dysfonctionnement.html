@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostiquer et résoudre un dysfonctionnement - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.error {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .diagnostic-flowchart {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .method-step {
+            background: white;
+            border: 2px solid #3B5BDB;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .method-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 1 - Assister ou Dépanner les Utilisateurs
+</div>
+        <h1>Diagnostiquer et résoudre un dysfonctionnement</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📋 Introduction</h2>
+                <p>Le diagnostic et la résolution de dysfonctionnements constituent le cœur du métier de technicien en assistance informatique. Cette compétence exige une approche méthodique, des connaissances techniques solides et d'excellentes capacités d'analyse pour identifier rapidement la cause d'un problème et y apporter une solution efficace.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Identifier les causes d'un dysfonctionnement numérique, proposer et mettre en œuvre des solutions techniques appropriées, que ce soit sur site ou à distance, tout en minimisant l'impact sur l'activité de l'utilisateur.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>🎯 1. La Méthodologie de Diagnostic</h2>
+                
+                <h3>Approche systématique</h3>
+                <p>Un diagnostic efficace repose sur une méthode structurée qui permet de ne pas passer à côté d'éléments importants et d'éviter les suppositions hâtives.</p>
+
+                <div class="method-step" data-step="1">
+                    <h4>Écoute et Recueil d'informations</h4>
+                    <p>Poser les bonnes questions pour comprendre le contexte : Quand le problème est-il apparu ? Quelles actions ont été effectuées ? Le problème est-il permanent ou intermittent ?</p>
+                </div>
+
+                <div class="method-step" data-step="2">
+                    <h4>Reproduction du problème</h4>
+                    <p>Tenter de reproduire le dysfonctionnement pour confirmer les symptômes et observer le comportement exact du système.</p>
+                </div>
+
+                <div class="method-step" data-step="3">
+                    <h4>Isolation de la cause</h4>
+                    <p>Éliminer progressivement les causes possibles en testant chaque composant ou configuration (méthode par élimination).</p>
+                </div>
+
+                <div class="method-step" data-step="4">
+                    <h4>Recherche de solutions</h4>
+                    <p>Consulter la base de connaissances, les forums techniques, la documentation officielle ou contacter le support éditeur.</p>
+                </div>
+
+                <div class="method-step" data-step="5">
+                    <h4>Application de la solution</h4>
+                    <p>Mettre en œuvre la correction identifiée en prenant soin de sauvegarder l'état actuel si nécessaire.</p>
+                </div>
+
+                <div class="method-step" data-step="6">
+                    <h4>Vérification et validation</h4>
+                    <p>Tester que le problème est résolu et que la solution n'a pas créé de nouveaux dysfonctionnements.</p>
+                </div>
+
+                <div class="method-step" data-step="7">
+                    <h4>Documentation</h4>
+                    <p>Consigner la résolution dans la base de connaissances pour faciliter les interventions futures.</p>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong⚠️ Règle d'or :</strong> Ne jamais modifier plusieurs paramètres simultanément. Procéder par étapes pour identifier précisément ce qui résout le problème.
+                </div>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>🔍 2. Types de Dysfonctionnements et Diagnostic</h2>
+                
+                <h3>Problèmes Matériels</h3>
+                
+                <table>
+                    <tr>
+                        <th>Symptôme</th>
+                        <th>Causes possibles</th>
+                        <th>Actions de diagnostic</th>
+                    </tr>
+                    <tr>
+                        <td>PC ne démarre pas</td>
+                        <td>Alimentation, RAM, carte mère, CPU</td>
+                        <td>Vérifier les bips POST, tester l'alimentation, retirer/réinsérer la RAM</td>
+                    </tr>
+                    <tr>
+                        <td>Écran noir</td>
+                        <td>Carte graphique, câble, écran défectueux</td>
+                        <td>Tester avec un autre écran, vérifier les connexions, réinitialiser le BIOS</td>
+                    </tr>
+                    <tr>
+                        <td>Surchauffe</td>
+                        <td>Ventilateur HS, pâte thermique sèche, poussière</td>
+                        <td>Vérifier température (HWMonitor), nettoyer ventilateurs, changer pâte thermique</td>
+                    </tr>
+                    <tr>
+                        <td>Bruits anormaux</td>
+                        <td>Disque dur défaillant, ventilateur</td>
+                        <td>Identifier la source, vérifier SMART du disque, remplacer composant</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de diagnostic matériel</h4>
+                    <p><strong>Problème :</strong> Un PC émet 3 bips longs au démarrage et n'affiche rien à l'écran.</p>
+                    <p><strong>Diagnostic :</strong> Selon le code POST du fabricant, 3 bips longs indiquent généralement un problème de RAM.</p>
+                    <p><strong>Solution :</strong> Retirer les barrettes de RAM, nettoyer les contacts, réinsérer fermement. Si le problème persiste, tester avec une autre barrette.</p>
+                </div>
+
+                <h3>Problèmes Logiciels</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Application qui plante</h4>
+                        <p>Vérifier les mises à jour, réinstaller l'application, contrôler les logs d'erreur, tester en mode sans échec</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Lenteurs système</h4>
+                        <p>Analyser le Gestionnaire des tâches, vérifier les processus gourmands, rechercher malwares, défragmenter</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Erreurs au démarrage</h4>
+                        <p>Utiliser le mode sans échec, vérifier les fichiers système (sfc /scannow), restauration système</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Écran bleu (BSOD)</h4>
+                        <p>Noter le code d'erreur, analyser le fichier dump, mettre à jour les pilotes, tester la RAM</p>
+                    </div>
+                </div>
+
+                <h3>Problèmes Réseau</h3>
+
+                <table>
+                    <tr>
+                        <th>Symptôme</th>
+                        <th>Diagnostic</th>
+                        <th>Commandes utiles</th>
+                    </tr>
+                    <tr>
+                        <td>Pas de connexion Internet</td>
+                        <td>Vérifier câble, WiFi, IP, passerelle, DNS</td>
+                        <td>ipconfig, ping, tracert, nslookup</td>
+                    </tr>
+                    <tr>
+                        <td>Connexion lente</td>
+                        <td>Tester débit, vérifier utilisation bande passante</td>
+                        <td>speedtest, netstat, wireshark</td>
+                    </tr>
+                    <tr>
+                        <td>Impossible d'accéder à un serveur</td>
+                        <td>Tester connectivité, vérifier DNS, pare-feu</td>
+                        <td>ping [serveur], telnet [ip] [port]</td>
+                    </tr>
+                    <tr>
+                        <td>Déconnexions fréquentes</td>
+                        <td>Interférences WiFi, câble défectueux, pilote réseau</td>
+                        <td>Vérifier logs événements, mettre à jour pilotes</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>🛠️ 3. Outils de Diagnostic Essentiels</h2>
+                
+                <h3>Outils Windows intégrés</h3>
+                <ul>
+                    <li><strong>Gestionnaire des tâches (Task Manager)</strong> - Analyser performances CPU, RAM, disque, réseau</li>
+                    <li><strong>Observateur d'événements (Event Viewer)</strong> - Consulter les logs système et applications</li>
+                    <li><strong>Moniteur de ressources</strong> - Vue détaillée de l'utilisation des ressources</li>
+                    <li><strong>Vérificateur de fichiers système</strong> - sfc /scannow pour réparer les fichiers système</li>
+                    <li><strong>DISM</strong> - Réparer l'image Windows (DISM /Online /Cleanup-Image /RestoreHealth)</li>
+                    <li><strong>chkdsk</strong> - Vérifier et réparer les erreurs de disque</li>
+                    <li><strong>msconfig</strong> - Gérer le démarrage et les services</li>
+                </ul>
+
+                <h3>Outils de diagnostic matériel</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>CPU-Z</h4>
+                        <p>Informations détaillées sur le processeur, carte mère, RAM</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>HWiNFO / HWMonitor</h4>
+                        <p>Surveillance températures, tensions, vitesses ventilateurs</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>CrystalDiskInfo</h4>
+                        <p>État de santé des disques durs et SSD (SMART)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>MemTest86</h4>
+                        <p>Test approfondi de la mémoire RAM</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>FurMark</h4>
+                        <p>Stress test de la carte graphique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Prime95</h4>
+                        <p>Stress test du processeur</p>
+                    </div>
+                </ul>
+
+                <h3>Outils de diagnostic réseau</h3>
+                <ul>
+                    <li><strong>Wireshark</strong> - Capture et analyse de paquets réseau</li>
+                    <li><strong>Advanced IP Scanner</strong> - Scanner les équipements sur le réseau</li>
+                    <li><strong>PingPlotter</strong> - Diagnostiquer les problèmes de latence et perte de paquets</li>
+                    <li><strong>NetSpot</strong> - Analyser la couverture WiFi</li>
+                    <li><strong>Speedtest</strong> - Tester la bande passante Internet</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>💡 Commandes réseau Windows essentielles</h4>
+                    <ul>
+                        <li><code>ipconfig /all</code> - Afficher la configuration réseau complète</li>
+                        <li><code>ipconfig /release</code> et <code>ipconfig /renew</code> - Renouveler l'adresse IP</li>
+                        <li><code>ipconfig /flushdns</code> - Vider le cache DNS</li>
+                        <li><code>ping [adresse]</code> - Tester la connectivité</li>
+                        <li><code>tracert [adresse]</code> - Tracer le chemin réseau</li>
+                        <li><code>netstat -ano</code> - Afficher les connexions actives</li>
+                        <li><code>nslookup [domaine]</code> - Tester la résolution DNS</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>🔧 4. Techniques de Résolution</h2>
+                
+                <h3>Solutions logicielles courantes</h3>
+                
+                <table>
+                    <tr>
+                        <th>Problème</th>
+                        <th>Solution de premier niveau</th>
+                        <th>Si le problème persiste</th>
+                    </tr>
+                    <tr>
+                        <td>Application ne répond pas</td>
+                        <td>Fermer via Gestionnaire des tâches</td>
+                        <td>Désinstaller/réinstaller, vérifier compatibilité</td>
+                    </tr>
+                    <tr>
+                        <td>Windows lent au démarrage</td>
+                        <td>Désactiver programmes au démarrage</td>
+                        <td>Nettoyer disque, défragmenter, upgrade SSD</td>
+                    </tr>
+                    <tr>
+                        <td>Mise à jour bloquée</td>
+                        <td>Redémarrer Windows Update</td>
+                        <td>Outil de résolution MS, réinitialiser composants WU</td>
+                    </tr>
+                    <tr>
+                        <td>Profil utilisateur corrompu</td>
+                        <td>Créer nouveau profil temporaire</td>
+                        <td>Restaurer depuis sauvegarde, recréer profil</td>
+                    </tr>
+                </table>
+
+                <h3>Réparation système Windows</h3>
+                
+                <div class="diagnostic-flowchart">
+                    <h4>🔄 Ordre des actions de réparation</h4>
+                    <ol>
+                        <li><strong>Redémarrage simple</strong> - Résout 30% des problèmes</li>
+                        <li><strong>Mode sans échec</strong> - Identifier si problème lié à un pilote/logiciel</li>
+                        <li><strong>Désinstaller dernières mises à jour</strong> - Si problème récent</li>
+                        <li><strong>SFC /scannow</strong> - Réparer fichiers système</li>
+                        <li><strong>DISM</strong> - Réparer image Windows</li>
+                        <li><strong>Restauration système</strong> - Revenir à un point stable</li>
+                        <li><strong>Réinitialisation Windows</strong> - Dernier recours en conservant fichiers</li>
+                        <li><strong>Réinstallation complète</strong> - Solution ultime</li>
+                    </ol>
+                </div>
+
+                <h3>Résolution problèmes matériels</h3>
+                
+                <div class="highlight-box success">
+                    <h4>Diagnostic de composants</h4>
+                    <ul>
+                        <li><strong>RAM défectueuse :</strong> Tester avec MemTest86, remplacer barrette défectueuse</li>
+                        <li><strong>Disque dur défaillant :</strong> Vérifier SMART, cloner sur nouveau disque si possible</li>
+                        <li><strong>Alimentation faible :</strong> Tester avec multimètre ou remplacer par PSU de test</li>
+                        <li><strong>Surchauffe :</strong> Nettoyer, renouveler pâte thermique, vérifier ventilateurs</li>
+                        <li><strong>Carte mère HS :</strong> Rechercher condensateurs gonflés, tester composants un par un</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>🌐 5. Diagnostic et Résolution à Distance</h2>
+                
+                <h3>Outils de prise en main à distance</h3>
+                <ul>
+                    <li><strong>TeamViewer</strong> - Populaire, facile d'utilisation, multiplateforme</li>
+                    <li><strong>AnyDesk</strong> - Léger et rapide, bonne qualité d'affichage</li>
+                    <li><strong>Chrome Remote Desktop</strong> - Gratuit, basé sur navigateur</li>
+                    <li><strong>Windows Remote Desktop</strong> - Natif Windows Pro, nécessite configuration</li>
+                    <li><strong>VNC (RealVNC, TightVNC)</strong> - Open source, multiplateforme</li>
+                </ul>
+
+                <h3>Diagnostic à distance : particularités</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Communication renforcée</h4>
+                        <p>Expliquer clairement chaque action, rassurer l'utilisateur</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Limitations techniques</h4>
+                        <p>Impossible d'accéder au BIOS, difficile de diagnostiquer le matériel</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Bande passante</h4>
+                        <p>Adapter la qualité d'affichage selon connexion</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sécurité</h4>
+                        <p>Utiliser connexions chiffrées, valider l'identité de l'utilisateur</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Limites du support à distance :</strong> Les problèmes matériels (composant défectueux, câble déconnecté) et les pannes empêchant le démarrage de l'OS nécessitent une intervention sur site.
+                </div>
+            </div>
+
+            <!-- Partie 6 -->
+            <div class="section">
+                <h2>📚 6. Base de Connaissances et Ressources</h2>
+                
+                <h3>Constituer sa base de connaissances</h3>
+                <p>Une base de connaissances bien organisée est essentielle pour gagner en efficacité :</p>
+                
+                <ul>
+                    <li><strong>Documenter chaque résolution</strong> - Symptômes, cause, solution appliquée</li>
+                    <li><strong>Catégoriser par type</strong> - Matériel, logiciel, réseau, sécurité</li>
+                    <li><strong>Inclure des captures d'écran</strong> - Facilite la compréhension</li>
+                    <li><strong>Mettre à jour régulièrement</strong> - Supprimer solutions obsolètes</li>
+                    <li><strong>Rendre accessible</strong> - Wiki interne, Notion, Confluence, OneNote</li>
+                </ul>
+
+                <h3>Ressources en ligne</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Forums techniques</h4>
+                        <p>Reddit (r/techsupport), Comment Ça Marche, Tom's Hardware</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Documentation officielle</h4>
+                        <p>Microsoft Docs, support constructeurs (Dell, HP, Lenovo)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Bases de connaissances</h4>
+                        <p>KB Microsoft, bases éditeurs logiciels</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>YouTube / Vidéos</h4>
+                        <p>Tutoriels visuels pour réparations matérielles</p>
+                    </div>
+                </ul>
+
+                <div class="example-box">
+                    <h4>💡 Structure d'un article de KB efficace</h4>
+                    <ul>
+                        <li><strong>Titre clair :</strong> "Résoudre erreur 0x80070057 lors de mise à jour Windows"</li>
+                        <li><strong>Symptômes :</strong> Description précise du problème</li>
+                        <li><strong>Environnement :</strong> Version OS, logiciel concerné</li>
+                        <li><strong>Cause :</strong> Origine du dysfonctionnement</li>
+                        <li><strong>Solution :</strong> Étapes détaillées de résolution</li>
+                        <li><strong>Résultat attendu :</strong> État final après correction</li>
+                        <li><strong>Mots-clés :</strong> Pour faciliter la recherche</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 7 -->
+            <div class="section">
+                <h2>⚡ 7. Situations Critiques et Gestion de l'Urgence</h2>
+                
+                <h3>Priorisation des interventions</h3>
+                
+                <table>
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Type d'incident</th>
+                        <th>Temps de réponse</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><strong>P1 - Critique</strong></td>
+                        <td>Panne serveur, réseau down, perte de données</td>
+                        <td>Immédiat</td>
+                        <td>Intervention prioritaire, escalade immédiate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P2 - Urgent</strong></td>
+                        <td>Poste bloquant, application métier HS</td>
+                        <td>< 1 heure</td>
+                        <td>Dépannage rapide ou poste de remplacement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P3 - Normal</strong></td>
+                        <td>Problème individuel non bloquant</td>
+                        <td>< 4 heures</td>
+                        <td>Diagnostic et résolution standard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P4 - Faible</strong></td>
+                        <td>Question, optimisation, demande d'info</td>
+                        <td>< 24 heures</td>
+                        <td>Traitement selon disponibilité</td>
+                    </tr>
+                </table>
+
+                <h3>Gestion des pannes critiques</h3>
+                
+                <div class="highlight-box error">
+                    <h4>🚨 Protocole d'urgence</h4>
+                    <ol>
+                        <li><strong>Alerter :</strong> Prévenir immédiatement le responsable et les utilisateurs impactés</li>
+                        <li><strong>Isoler :</strong> Identifier le périmètre de la panne</li>
+                        <li><strong>Contourner :</strong> Mettre en place une solution temporaire si possible</li>
+                        <li><strong>Diagnostiquer :</strong> Identifier la cause racine</li>
+                        <li><strong>Résoudre :</strong> Appliquer la correction définitive</li>
+                        <li><strong>Communiquer :</strong> Informer de la résolution et des actions préventives</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de gestion de crise</h4>
+                    <p><strong>Situation :</strong> Tous les postes perdent l'accès au serveur de fichiers à 14h30.</p>
+                    <p><strong>Actions :</strong></p>
+                    <ol>
+                        <li>Alerter : Email aux utilisateurs "Incident en cours, équipe IT intervient"</li>
+                        <li>Diagnostic rapide : Ping serveur OK, test SMB échoue → Problème service fichiers</li>
+                        <li>Vérification : Service "Server" arrêté suite à une mise à jour</li>
+                        <li>Résolution : Redémarrage du service, vérification accès</li>
+                        <li>Communication : "Problème résolu à 14h55, cause identifiée, correctif appliqué"</li>
+                        <li>Post-mortem : Documenter incident, mettre en place surveillance service</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Partie 8 -->
+            <div class="section">
+                <h2>✅ 8. Bonnes Pratiques du Diagnostic</h2>
+                
+                <div class="highlight-box success">
+                    <h3>Approche méthodique</h3>
+                    <ul>
+                        <li><strong>Partir du simple vers le complexe</strong> - Vérifier câbles avant de réinstaller l'OS</li>
+                        <li><strong>Documenter chaque étape</strong> - Tracer ce qui a été fait pour ne pas répéter</li>
+                        <li><strong>Ne pas supposer</strong> - Valider chaque hypothèse par des tests</li>
+                        <li><strong>Utiliser les logs</strong> - Les journaux d'événements contiennent souvent la réponse</li>
+                        <li><strong>Créer un environnement de test</strong> - Ne jamais tester en production</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Communication</h3>
+                    <ul>
+                        <li><strong>Expliquer sans jargon</strong> - Adapter le vocabulaire à l'interlocuteur</li>
+                        <li><strong>Rassurer l'utilisateur</strong> - "Vos données sont en sécurité"</li>
+                        <li><strong>Fixer des attentes réalistes</strong> - Ne pas promettre une résolution immédiate si incertitude</li>
+                        <li><strong>Former plutôt que corriger</strong> - Expliquer comment éviter le problème</li>
+                        <li><strong>Demander feedback</strong> - "Le problème est-il complètement résolu ?"</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Efficacité opérationnelle</h3>
+                    <ul>
+                        <li><strong>Constituer une trousse à outils</strong> - Clé USB bootable, câbles, tournevis</li>
+                        <li><strong>Préparer des scripts</strong> - Automatiser tâches répétitives (nettoyage, diagnostic)</li>
+                        <li><strong>Maintenir sa veille</strong> - Suivre les nouvelles vulnérabilités et correctifs</li>
+                        <li><strong>Capitaliser sur l'expérience</strong> - Enrichir la KB après chaque résolution complexe</li>
+                        <li><strong>Connaître ses limites</strong> - Escalader quand nécessaire plutôt que perdre du temps</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 9 -->
+            <div class="section">
+                <h2>🎯 9. Cas Pratiques et Scénarios</h2>
+                
+                <div class="example-box">
+                    <h4>📌 Scénario 1 : "Mon PC est très lent depuis ce matin"</h4>
+                    <p><strong>Diagnostic :</strong></p>
+                    <ol>
+                        <li>Ouvrir Gestionnaire des tâches → CPU à 100%, processus "svchost.exe" très actif</li>
+                        <li>Vérifier services Windows Update → Mise à jour en cours en arrière-plan</li>
+                        <li>Attendre fin de mise à jour ou reporter selon urgence</li>
+                        <li>Si persiste : Vérifier malware avec Malwarebytes, nettoyer fichiers temp</li>
+                    </ol>
+                    <p><strong>Solution :</strong> Laisser la mise à jour se terminer, configurer les mises à jour en dehors des heures de travail</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Scénario 2 : "Je ne peux plus me connecter à ma session Windows"</h4>
+                    <p><strong>Diagnostic :</strong></p>
+                    <ol>
+                        <li>Vérifier capslock, pavé numérique</li>
+                        <li>Tester autre compte local → Si fonctionne : problème profil utilisateur</li>
+                        <li>Démarrer en mode sans échec</li>
+                        <li>Vérifier si profil corrompu dans Regedit (ProfileList)</li>
+                    </ol>
+                    <p><strong>Solution :</strong> Recréer profil utilisateur, restaurer données depuis ancien profil</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Scénario 3 : "L'imprimante n'imprime plus"</h4>
+                    <p><strong>Diagnostic :</strong></p>
+                    <ol>
+                        <li>Vérifier physique : câbles, papier, voyants LED</li>
+                        <li>Tester impression test depuis propriétés imprimante</li>
+                        <li>Vérifier file d'attente → Supprimer tâches bloquées</li>
+                        <li>Redémarrer service Spooler d'impression</li>
+                        <li>Réinstaller pilote si nécessaire</li>
+                    </ol>
+                    <p><strong>Solution :</strong> Redémarrage service Spooler résout 80% des problèmes d'impression</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Scénario 4 : "Écran bleu au démarrage (BSOD)"</h4>
+                    <p><strong>Diagnostic :</strong></p>
+                    <ol>
+                        <li>Noter le code d'erreur (ex: IRQL_NOT_LESS_OR_EQUAL)</li>
+                        <li>Démarrer en mode sans échec</li>
+                        <li>Analyser fichier dump avec BlueScreenView</li>
+                        <li>Identifier pilote/driver défectueux</li>
+                        <li>Mettre à jour ou désinstaller pilote incriminé</li>
+                        <li>Tester RAM avec MemTest86 si erreur mémoire</li>
+                    </ol>
+                    <p><strong>Solution :</strong> Mise à jour ou rollback du pilote problématique</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>📌 Scénario 5 : "Impossible d'accéder à Internet mais le réseau local fonctionne"</h4>
+                    <p><strong>Diagnostic :</strong></p>
+                    <ol>
+                        <li>Ping passerelle (routeur) → OK</li>
+                        <li>Ping 8.8.8.8 (Google DNS) → Échec</li>
+                        <li>Problème au niveau routeur ou FAI</li>
+                        <li>Redémarrer routeur/box</li>
+                        <li>Vérifier configuration DNS sur le poste</li>
+                        <li>Tester depuis autre équipement</li>
+                    </ol>
+                    <p><strong>Solution :</strong> Redémarrage équipement réseau ou contact FAI si panne générale</p>
+                </div>
+            </div>
+
+            <!-- Partie 10 -->
+            <div class="section">
+                <h2>🔐 10. Sécurité et Précautions</h2>
+                
+                <h3>Avant toute intervention</h3>
+                <div class="highlight-box warning">
+                    <ul>
+                        <li><strong>Sauvegarder les données</strong> - Toujours avant manipulation risquée</li>
+                        <li><strong>Noter la configuration actuelle</strong> - Pour pouvoir revenir en arrière</li>
+                        <li><strong>Vérifier les garanties</strong> - Ne pas ouvrir un équipement sous garantie</li>
+                        <li><strong>Débrancher électriquement</strong> - Éteindre et débrancher avant intervention matérielle</li>
+                        <li><strong>Se protéger des ESD</strong> - Bracelet antistatique pour manipulation composants</li>
+                    </ul>
+                </div>
+
+                <h3>Protection des données</h3>
+                <ul>
+                    <li><strong>Ne jamais accéder aux données personnelles</strong> sans autorisation explicite</li>
+                    <li><strong>Respecter la confidentialité</strong> - Ce qui est vu reste confidentiel</li>
+                    <li><strong>Sécuriser les sauvegardes</strong> - Chiffrer les copies de données sensibles</li>
+                    <li><strong>Nettoyer après intervention</strong> - Supprimer données temporaires créées</li>
+                </ul>
+
+                <h3>Cas particuliers sensibles</h3>
+                <div class="highlight-box error">
+                    <strong>⛔ Ne jamais :</strong>
+                    <ul>
+                        <li>Formater un disque sans validation écrite de l'utilisateur</li>
+                        <li>Modifier des paramètres de sécurité sans autorisation</li>
+                        <li>Installer des logiciels non approuvés</li>
+                        <li>Désactiver l'antivirus même temporairement sans accord</li>
+                        <li>Connecter équipements personnels au réseau entreprise</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h3>🎓 Quiz d'auto-évaluation</h3>
+                <ol>
+                    <li>Quelles sont les 7 étapes de la méthodologie de diagnostic ?</li>
+                    <li>Quel outil Windows permet de réparer les fichiers système corrompus ?</li>
+                    <li>Comment diagnostiquer un problème de RAM défectueuse ?</li>
+                    <li>Quelle commande permet de renouveler l'adresse IP sous Windows ?</li>
+                    <li>Que signifie un BSOD et comment l'analyser ?</li>
+                    <li>Citez 3 outils de diagnostic matériel et leur utilité</li>
+                    <li>Quelle est la différence entre SFC et DISM ?</li>
+                    <li>Comment procéder face à une panne critique affectant tout un service ?</li>
+                    <li>Pourquoi est-il important de documenter chaque résolution ?</li>
+                    <li>Quelles précautions prendre avant d'intervenir sur un PC sous garantie ?</li>
+                </ol>
+            </div>
+
+            <!-- Checklist -->
+            <div class="section">
+                <h2>📋 11. Checklist de Diagnostic Universel</h2>
+                
+                <div class="diagnostic-flowchart">
+                    <h4>✓ Checklist avant escalade</h4>
+                    <p>Avant de déclarer un problème non résolvable, vérifier :</p>
+                    <ul>
+                        <li>□ Le problème a été reproduit avec succès</li>
+                        <li>□ Un redémarrage a été effectué</li>
+                        <li>□ Les câbles et connexions physiques sont vérifiés</li>
+                        <li>□ Les mises à jour système sont à jour</li>
+                        <li>□ Les logs d'erreur ont été consultés</li>
+                        <li>□ Le mode sans échec a été testé (si applicable)</li>
+                        <li>□ La base de connaissances a été consultée</li>
+                        <li>□ Les forums/support éditeur ont été consultés</li>
+                        <li>□ Un test avec un autre compte utilisateur a été fait</li>
+                        <li>□ Les paramètres réseau ont été vérifiés (si lié réseau)</li>
+                        <li>□ Les droits d'accès ont été contrôlés</li>
+                        <li>□ Les conflits logiciels ont été recherchés</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ressources -->
+            <div class="section">
+                <h2>📚 Ressources Complémentaires</h2>
+                
+                <h3>Documentation et formations</h3>
+                <ul>
+                    <li><strong>CompTIA A+</strong> - Certification troubleshooting hardware et software</li>
+                    <li><strong>Microsoft Learn</strong> - Parcours "Troubleshooting Windows"</li>
+                    <li><strong>Professor Messer</strong> - Vidéos gratuites A+ troubleshooting</li>
+                    <li><strong>Sysinternals Suite</strong> - Outils avancés Microsoft (Process Explorer, Autoruns...)</li>
+                </ul>
+
+                <h3>Outils recommandés à télécharger</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Clé USB bootable</h4>
+                        <p>Hiren's BootCD PE, Ultimate Boot CD</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Pack de drivers</h4>
+                        <p>Snappy Driver Installer, Driver Booster</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Outils nettoyage</h4>
+                        <p>CCleaner, BleachBit, Disk Cleanup</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Anti-malware portable</h4>
+                        <p>Malwarebytes, AdwCleaner, ESET Online Scanner</p>
+                    </div>
+                </div>
+
+                <h3>Sites de référence</h3>
+                <ul>
+                    <li><strong>docs.microsoft.com</strong> - Documentation officielle Windows</li>
+                    <li><strong>answers.microsoft.com</strong> - Forum communautaire Microsoft</li>
+                    <li><strong>bleepingcomputer.com</strong> - Tutoriels et guides de résolution</li>
+                    <li><strong>howtogeek.com</strong> - Explications techniques accessibles</li>
+                    <li><strong>superuser.com</strong> - Q&A technique Stack Exchange</li>
+                </ul>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                <p>Le diagnostic et la résolution de dysfonctionnements est un art qui combine méthodologie rigoureuse, connaissances techniques et expérience pratique. Chaque problème résolu enrichit votre expertise et vous permet de devenir plus rapide et efficace.</p>
+                
+                <div class="highlight-box">
+                    <strong>Points clés à retenir :</strong>
+                    <ul>
+                        <li>✓ Toujours suivre une approche méthodique et structurée</li>
+                        <li>✓ Partir du simple vers le complexe</li>
+                        <li>✓ Documenter chaque résolution pour capitaliser</li>
+                        <li>✓ Communiquer clairement avec les utilisateurs</li>
+                        <li>✓ Savoir escalader quand nécessaire</li>
+                        <li>✓ Continuer à se former et pratiquer régulièrement</li>
+                    </ul>
+                </div>
+
+                <p><em>Un bon technicien ne connaît pas toutes les réponses, mais sait où les trouver et comment les appliquer méthodiquement.</em></p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
