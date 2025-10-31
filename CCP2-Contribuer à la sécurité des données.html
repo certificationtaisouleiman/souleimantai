@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribuer à la sécurité des données - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 2 - Mettre en Service des Équipements Numériques</div>
+        <h1>Contribuer à la sécurité des données</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🔐 Introduction</h2>
+                <p>La sécurité des données est un enjeu majeur dans un environnement Windows professionnel. Elle englobe la protection contre les pertes accidentelles, les attaques malveillantes, les accès non autorisés et les défaillances matérielles. Un technicien doit maîtriser les stratégies de sauvegarde, de chiffrement, de gestion des droits d'accès et de récupération des données.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Mettre en place et maintenir une politique de sécurité des données efficace sous Windows, garantissant la confidentialité, l'intégrité et la disponibilité des informations critiques de l'entreprise.
+                </div>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Confidentialité</h4>
+                        <p>Seules les personnes autorisées peuvent accéder aux données</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Intégrité</h4>
+                        <p>Les données ne sont pas modifiées ou altérées de manière non autorisée</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Disponibilité</h4>
+                        <p>Les données sont accessibles quand nécessaire</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Traçabilité</h4>
+                        <p>Les actions sur les données sont journalisées et auditables</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 1 : Sauvegardes -->
+            <div class="section">
+                <h2>💾 1. Stratégies de Sauvegarde Windows</h2>
+                
+                <h3>Règle du 3-2-1</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>3 Copies</h4>
+                        <p>Version originale + 2 sauvegardes</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>2 Supports différents</h4>
+                        <p>Disque dur interne + externe OU Cloud</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>1 Copie hors site</h4>
+                        <p>Protection contre incendie, vol, sinistre</p>
+                    </div>
+                </div>
+
+                <h3>Types de sauvegardes</h3>
+
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Avantages</th>
+                        <th>Inconvénients</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Complète (Full)</strong></td>
+                        <td>Copie intégrale de toutes les données</td>
+                        <td>Restauration simple et rapide</td>
+                        <td>Très longue, espace important</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Incrémentale</strong></td>
+                        <td>Seulement les fichiers modifiés depuis dernière sauvegarde</td>
+                        <td>Rapide, peu d'espace</td>
+                        <td>Restauration complexe (nécessite toutes les sauvegardes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Différentielle</strong></td>
+                        <td>Fichiers modifiés depuis dernière sauvegarde complète</td>
+                        <td>Restauration plus simple qu'incrémentale</td>
+                        <td>Taille augmente jusqu'à la prochaine complète</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Image système</strong></td>
+                        <td>Clone complet du disque (OS + données + applications)</td>
+                        <td>Récupération rapide du système complet</td>
+                        <td>Très volumineux, moins flexible</td>
+                    </tr>
+                </table>
+
+                <h3>Outils de sauvegarde Windows intégrés</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Historique des fichiers (File History)</h4>
+                            <p><strong>Fonction :</strong> Sauvegarde automatique des documents, images, vidéos, etc.</p>
+                            <p><strong>Configuration :</strong></p>
+                            <ol>
+                                <li>Paramètres → Mise à jour et sécurité → Sauvegarde</li>
+                                <li>Ajouter un lecteur (disque externe ou réseau)</li>
+                                <li>Activer "Sauvegarder automatiquement mes fichiers"</li>
+                                <li>Plus d'options → Fréquence (toutes les heures par défaut)</li>
+                                <li>Conserver les versions : Au choix (jusqu'à saturation / période)</li>
+                            </ol>
+                            <p><strong>Restauration :</strong> Clic droit sur fichier → Restaurer les versions précédentes</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Sauvegarde et restauration (Windows 7)</h4>
+                            <p><strong>Fonction :</strong> Image système complète (ancien outil toujours disponible)</p>
+                            <p><strong>Création image système :</strong></p>
+                            <ol>
+                                <li>Panneau de configuration → Sauvegarde et restauration (Windows 7)</li>
+                                <li>Créer une image système</li>
+                                <li>Sélectionner destination (disque externe, DVD, réseau)</li>
+                                <li>Choisir les lecteurs à inclure</li>
+                                <li>Lancer la sauvegarde</li>
+                            </ol>
+                            <p><strong>💡 Astuce :</strong> Créer également un disque de réparation système</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Points de restauration système</h4>
+                            <p><strong>Fonction :</strong> Sauvegarde automatique de l'état système (pas les données personnelles)</p>
+                            <p><strong>Configuration :</strong></p>
+                            <ol>
+                                <li>Panneau de configuration → Système → Protection du système</li>
+                                <li>Configurer → Activer la protection du système</li>
+                                <li>Définir l'espace disque alloué (5-10% recommandé)</li>
+                                <li>Créer un point de restauration manuel si besoin</li>
+                            </ol>
+                            <p><strong>Usage :</strong> Avant installation logiciel majeur, mise à jour pilotes critiques</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Solutions tierces professionnelles</h3>
+
+                <div class="example-box">
+                    <h4>🛠️ Logiciels de sauvegarde recommandés</h4>
+                    <table style="font-size: 0.95rem;">
+                        <tr>
+                            <th>Logiciel</th>
+                            <th>Type</th>
+                            <th>Points forts</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Veeam Agent</strong></td>
+                            <td>Gratuit / Payant</td>
+                            <td>Image système, restauration rapide, intégration cloud</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acronis True Image</strong></td>
+                            <td>Payant</td>
+                            <td>Interface intuitive, cloud intégré, clone disque</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Macrium Reflect</strong></td>
+                            <td>Gratuit / Payant</td>
+                            <td>Image système fiable, planification avancée</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EaseUS Todo Backup</strong></td>
+                            <td>Gratuit / Payant</td>
+                            <td>Simple d'utilisation, migration système</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Planification des sauvegardes</h3>
+
+                <div class="highlight-box success">
+                    <strong>📅 Stratégie de sauvegarde type PME :</strong>
+                    <ul>
+                        <li><strong>Quotidien :</strong> Sauvegarde incrémentale (documents modifiés)</li>
+                        <li><strong>Hebdomadaire :</strong> Sauvegarde différentielle (vendredi soir)</li>
+                        <li><strong>Mensuel :</strong> Sauvegarde complète + image système</li>
+                        <li><strong>Critique :</strong> Synchronisation cloud en temps réel (OneDrive, Google Drive)</li>
+                        <li><strong>Hors site :</strong> Copie mensuelle sur bandes ou disques stockés ailleurs</li>
+                    </ul>
+                </div>
+
+                <h3>Test de restauration</h3>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Règle d'or :</strong> Une sauvegarde non testée est une sauvegarde inutile !
+                    <ul>
+                        <li>Tester la restauration au moins 1 fois par trimestre</li>
+                        <li>Vérifier l'intégrité des fichiers restaurés</li>
+                        <li>Chronométrer le temps de restauration (RTO - Recovery Time Objective)</li>
+                        <li>Documenter la procédure de restauration</li>
+                        <li>Former les équipes à la restauration d'urgence</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 2 : Chiffrement -->
+            <div class="section">
+                <h2>🔒 2. Chiffrement des Données</h2>
+                
+                <h3>BitLocker - Chiffrement de disque</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Prérequis BitLocker</h4>
+                            <ul>
+                                <li><strong>Édition :</strong> Windows 10/11 Pro, Enterprise, Education</li>
+                                <li><strong>TPM :</strong> Trusted Platform Module 2.0 activé dans le BIOS</li>
+                                <li><strong>Partition :</strong> Partition système séparée (créée automatiquement)</li>
+                                <li><strong>UEFI :</strong> Mode UEFI avec Secure Boot activé (Windows 11)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Activation BitLocker sur C:</h4>
+                            <p><strong>Méthode GUI :</strong></p>
+                            <ol>
+                                <li>Panneau de configuration → Chiffrement de lecteur BitLocker</li>
+                                <li>Activer BitLocker sur le lecteur C:</li>
+                                <li>Méthode de déverrouillage :
+                                    <ul>
+                                        <li><strong>TPM seul :</strong> Transparent, automatique (recommandé postes fixes)</li>
+                                        <li><strong>TPM + PIN :</strong> Sécurité renforcée (recommandé laptops)</li>
+                                        <li><strong>Mot de passe :</strong> Si pas de TPM (rare)</li>
+                                    </ul>
+                                </li>
+                                <li>Sauvegarder la clé de récupération :
+                                    <ul>
+                                        <li>Compte Microsoft (synchronisation cloud)</li>
+                                        <li>Fichier (à stocker hors du PC chiffré !)</li>
+                                        <li>Impression papier (coffre-fort physique)</li>
+                                    </ul>
+                                </li>
+                                <li>Choisir mode chiffrement :
+                                    <ul>
+                                        <li><strong>Espace utilisé :</strong> Rapide, nouveaux PC</li>
+                                        <li><strong>Disque complet :</strong> Plus sûr, PC existants</li>
+                                    </ul>
+                                </li>
+                                <li>Mode chiffrement : XTS-AES (nouveau) ou AES-CBC (compatibilité)</li>
+                                <li>Lancer le chiffrement (durée : 20 min à plusieurs heures)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>BitLocker To Go (clés USB)</h4>
+                            <p><strong>Chiffrer une clé USB :</strong></p>
+                            <ol>
+                                <li>Insérer la clé USB</li>
+                                <li>Clic droit sur le lecteur → Activer BitLocker</li>
+                                <li>Définir un mot de passe fort</li>
+                                <li>Sauvegarder la clé de récupération</li>
+                                <li>Chiffrer (rapide, quelques minutes)</li>
+                            </ol>
+                            <p><strong>Utilisation :</strong> Double-clic sur la clé → Saisir mot de passe</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Gestion BitLocker en ligne de commande</h4>
+                            <pre>REM Vérifier statut BitLocker
+manage-bde -status
+
+REM Activer BitLocker avec TPM
+manage-bde -on C: -RecoveryPassword
+
+REM Sauvegarder clé dans fichier
+manage-bde -protectors -get C: > C:\BitLocker_Key.txt
+
+REM Désactiver temporairement (mise à jour BIOS)
+manage-bde -protectors -disable C:
+
+REM Réactiver
+manage-bde -protectors -enable C:</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>EFS - Encrypting File System</h3>
+
+                <div class="example-box">
+                    <h4>📁 Chiffrement sélectif avec EFS</h4>
+                    <p><strong>Avantages :</strong> Chiffrement au niveau fichier/dossier, transparent, lié au compte utilisateur</p>
+                    <p><strong>Inconvénients :</strong> Pas disponible Windows Home, récupération complexe si perte compte</p>
+                    
+                    <p><strong>Chiffrer un dossier :</strong></p>
+                    <ol>
+                        <li>Clic droit sur dossier → Propriétés → Avancé</li>
+                        <li>Cocher "Chiffrer le contenu pour sécuriser les données"</li>
+                        <li>Appliquer → Appliquer aux sous-dossiers</li>
+                        <li>Les fichiers apparaissent en vert dans l'explorateur</li>
+                    </ol>
+                    
+                    <p><strong>⚠️ IMPORTANT - Sauvegarder le certificat :</strong></p>
+                    <ol>
+                        <li>Win+R → certmgr.msc</li>
+                        <li>Personnel → Certificats</li>
+                        <li>Clic droit sur certificat EFS → Toutes les tâches → Exporter</li>
+                        <li>Oui, exporter la clé privée</li>
+                        <li>Format PFX avec mot de passe fort</li>
+                        <li>Sauvegarder le fichier .pfx en lieu sûr (pas sur le PC !)</li>
+                    </ol>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Avertissement EFS :</strong>
+                    <ul>
+                        <li>Perte du compte Windows = perte définitive des données EFS</li>
+                        <li>Réinstallation Windows = perte accès EFS (sauf import certificat)</li>
+                        <li>BitLocker protège le disque, EFS protège les fichiers → complémentaires</li>
+                        <li>EFS ne fonctionne pas sur disques FAT32, seulement NTFS</li>
+                    </ul>
+                </div>
+
+                <h3>Solutions tierces de chiffrement</h3>
+
+                <table>
+                    <tr>
+                        <th>Solution</th>
+                        <th>Type</th>
+                        <th>Usage recommandé</th>
+                    </tr>
+                    <tr>
+                        <td><strong>VeraCrypt</strong></td>
+                        <td>Open source, gratuit</td>
+                        <td>Conteneurs chiffrés, disques complets, multi-OS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7-Zip (AES-256)</strong></td>
+                        <td>Gratuit</td>
+                        <td>Archives chiffrées, partage fichiers sécurisés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AxCrypt</strong></td>
+                        <td>Freemium</td>
+                        <td>Chiffrement fichiers individuel, simple d'usage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Symantec Endpoint Encryption</strong></td>
+                        <td>Enterprise</td>
+                        <td>Grande entreprise, gestion centralisée</td>
+                    </tr>
+                </table>
+
+                <h3>Configuration des permissions</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Définir les permissions d'un dossier</h4>
+                            <ol>
+                                <li>Clic droit sur dossier → Propriétés → Sécurité</li>
+                                <li>Modifier → Ajouter (pour ajouter utilisateurs/groupes)</li>
+                                <li>Entrer le nom d'utilisateur → Vérifier les noms → OK</li>
+                                <li>Sélectionner l'utilisateur → Cocher les permissions</li>
+                                <li>Appliquer → OK</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Gestion de l'héritage</h4>
+                            <p><strong>Désactiver l'héritage :</strong></p>
+                            <ol>
+                                <li>Propriétés → Sécurité → Avancé</li>
+                                <li>Désactiver l'héritage</li>
+                                <li>Choisir :
+                                    <ul>
+                                        <li><strong>Convertir :</strong> Garde permissions actuelles mais indépendantes</li>
+                                        <li><strong>Supprimer :</strong> Efface toutes les permissions héritées (attention !)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p><strong>⚠️ Risque :</strong> Désactiver l'héritage peut bloquer l'accès administrateur</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Prendre possession (Take Ownership)</h4>
+                            <p><strong>Situation :</strong> Fichier/dossier inaccessible (ancien utilisateur, permissions bloquées)</p>
+                            <ol>
+                                <li>Clic droit → Propriétés → Sécurité → Avancé</li>
+                                <li>Propriétaire → Modifier</li>
+                                <li>Entrer "Administrateurs" ou votre compte → OK</li>
+                                <li>Cocher "Remplacer le propriétaire des sous-conteneurs" (pour dossiers)</li>
+                                <li>Appliquer → Redéfinir les permissions ensuite</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Audit des accès fichiers</h4>
+                            <p><strong>Tracer qui accède aux fichiers sensibles :</strong></p>
+                            <ol>
+                                <li>Propriétés → Sécurité → Avancé → Audit</li>
+                                <li>Ajouter → Sélectionner principal → Tout le monde</li>
+                                <li>Cocher actions à auditer :
+                                    <ul>
+                                        <li>Réussite : Actions réussies</li>
+                                        <li>Échec : Tentatives bloquées</li>
+                                    </ul>
+                                </li>
+                                <li>Consulter logs : Observateur d'événements → Journaux Windows → Sécurité</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Permissions de partage vs NTFS</h3>
+
+                <div class="example-box">
+                    <h4>🔀 Différence partage réseau / NTFS</h4>
+                    <table style="font-size: 0.95rem;">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Permissions de partage</th>
+                            <th>Permissions NTFS</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Portée</strong></td>
+                            <td>Uniquement accès réseau</td>
+                            <td>Local et réseau</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Granularité</strong></td>
+                            <td>3 niveaux (Lecture/Modification/Contrôle total)</td>
+                            <td>13 permissions détaillées</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Application</strong></td>
+                            <td>Au niveau du partage</td>
+                            <td>Fichiers et dossiers individuels</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cumul</strong></td>
+                            <td colspan="2">La plus restrictive entre partage et NTFS gagne</td>
+                        </tr>
+                    </table>
+                    <p><strong>💡 Bonne pratique :</strong> Partage = "Contrôle total" pour tout le monde, gestion fine via NTFS uniquement</p>
+                </div>
+
+                <h3>Commandes PowerShell pour permissions</h3>
+
+                <div class="example-box">
+                    <h4>⚡ Gestion permissions en ligne de commande</h4>
+                    <pre># Lister permissions d'un dossier
+Get-Acl "C:\Données" | Format-List
+
+# Ajouter permission Lecture pour utilisateur
+$acl = Get-Acl "C:\Données\Projet"
+$permission = "DOMAINE\utilisateur","Read","Allow"
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission
+$acl.SetAccessRule($accessRule)
+Set-Acl "C:\Données\Projet" $acl
+
+# Copier permissions d'un dossier à un autre
+$acl = Get-Acl "C:\Source"
+Set-Acl "C:\Destination" $acl
+
+# Prendre possession récursive
+takeown /F "C:\Dossier" /R /A
+icacls "C:\Dossier" /grant Administrateurs:F /T</pre>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Bonnes pratiques permissions :</strong>
+                    <ul>
+                        <li>Utiliser des groupes plutôt que des utilisateurs individuels</li>
+                        <li>Principe du moindre privilège (donner le minimum nécessaire)</li>
+                        <li>Éviter "Tout le monde : Contrôle total"</li>
+                        <li>Documenter les permissions sur dossiers sensibles</li>
+                        <li>Réviser les permissions trimestriellement</li>
+                        <li>Ne pas casser l'héritage sans raison valable</li>
+                        <li>Utiliser "Refuser" avec parcimonie (complexifie la gestion)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 4 : Protection malware -->
+            <div class="section">
+                <h2>🛡️ 4. Protection contre les Malwares</h2>
+                
+                <h3>Windows Defender - Configuration avancée</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Protection en temps réel optimale</h4>
+                            <p><strong>Accès :</strong> Sécurité Windows → Protection contre les virus et menaces → Gérer les paramètres</p>
+                            <ul>
+                                <li>✅ Protection en temps réel</li>
+                                <li>✅ Protection fournie par le cloud (détection menaces émergentes)</li>
+                                <li>✅ Envoi automatique d'échantillons</li>
+                                <li>✅ Protection contre les falsifications (empêche désactivation malware)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Accès contrôlé aux dossiers (Ransomware)</h4>
+                            <p><strong>Protection anti-ransomware :</strong></p>
+                            <ol>
+                                <li>Sécurité Windows → Protection contre virus et menaces</li>
+                                <li>Gérer la protection contre les ransomwares</li>
+                                <li>Activer l'accès contrôlé aux dossiers</li>
+                                <li>Dossiers protégés par défaut : Documents, Images, Vidéos, Bureau</li>
+                                <li>Ajouter dossiers personnalisés si nécessaire</li>
+                                <li>Autoriser applications légitimes (Photoshop, etc.)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Analyses planifiées</h4>
+                            <p><strong>Configurer scan automatique :</strong></p>
+                            <ol>
+                                <li>Planificateur de tâches (taskschd.msc)</li>
+                                <li>Bibliothèque → Microsoft → Windows → Windows Defender</li>
+                                <li>Double-clic sur "Windows Defender Scheduled Scan"</li>
+                                <li>Déclencheurs → Modifier → Définir horaire (ex: dimanche 2h)</li>
+                                <li>Conditions → Démarrer si inactif, connexion secteur</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Analyse hors ligne Defender</h4>
+                            <p><strong>Pour malwares résistants :</strong></p>
+                            <ol>
+                                <li>Sécurité Windows → Protection virus et menaces</li>
+                                <li>Options d'analyse → Analyse hors ligne Microsoft Defender</li>
+                                <li>Analyser maintenant → PC redémarre en environnement minimal</li>
+                                <li>Durée : 15-30 minutes</li>
+                            </ol>
+                            <p><strong>Usage :</strong> Rootkits, malwares au démarrage, infections tenaces</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Antivirus tiers professionnels</h3>
+
+                <table>
+                    <tr>
+                        <th>Solution</th>
+                        <th>Points forts</th>
+                        <th>Usage recommandé</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Bitdefender Endpoint</strong></td>
+                        <td>Excellente détection, faible impact perfs, gestion centralisée</td>
+                        <td>PME/Grande entreprise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kaspersky Endpoint</strong></td>
+                        <td>Protection multicouche, chiffrement intégré</td>
+                        <td>Environnements sensibles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ESET Endpoint</strong></td>
+                        <td>Léger, rapide, bonne détection</td>
+                        <td>Postes avec ressources limitées</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trend Micro Apex One</strong></td>
+                        <td>Intelligence artificielle, comportemental</td>
+                        <td>Grande entreprise, menaces avancées</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Règles antivirus :</strong>
+                    <ul>
+                        <li>Un seul antivirus actif à la fois (conflits, ralentissements)</li>
+                        <li>Windows Defender suffit pour 90% des usages (excellente protection gratuite)</li>
+                        <li>Toujours maintenir les définitions à jour</li>
+                        <li>Ne jamais désactiver l'antivirus "temporairement" (oubli fréquent)</li>
+                    </ul>
+                </div>
+
+                <h3>Outils de désinfection complémentaires</h3>
+
+                <div class="example-box">
+                    <h4>🔧 Scanners secondaires (scans ponctuels)</h4>
+                    <table style="font-size: 0.95rem;">
+                        <tr>
+                            <th>Outil</th>
+                            <th>Spécialité</th>
+                            <th>Usage</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Malwarebytes</strong></td>
+                            <td>Malwares, PUP, adwares</td>
+                            <td>Scan hebdomadaire ou si suspicion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AdwCleaner</strong></td>
+                            <td>Adwares, toolbars, hijackers</td>
+                            <td>Navigateurs compromis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HitmanPro</strong></td>
+                            <td>Seconde opinion cloud, rootkits</td>
+                            <td>Désinfection post-infection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ESET Online Scanner</strong></td>
+                            <td>Scan ponctuel sans installation</td>
+                            <td>Vérification externe</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Prévention - Bonnes pratiques</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Mises à jour</h4>
+                        <p>Windows Update, logiciels, pilotes à jour = 80% des vulnérabilités évitées</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Navigateurs</h4>
+                        <p>Bloqueurs pubs (uBlock Origin), HTTPS Everywhere, extensions vérifiées</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Emails</h4>
+                        <p>Méfiance pièces jointes, liens suspects, expéditeurs inconnus</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Téléchargements</h4>
+                        <p>Sites officiels uniquement, vérifier signatures numériques</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 5 : Récupération données -->
+            <div class="section">
+                <h2>♻️ 5. Récupération de Données</h2>
+                
+                <h3>Outils Windows intégrés</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Versions précédentes (Shadow Copy)</h4>
+                            <p><strong>Restaurer fichier/dossier supprimé :</strong></p>
+                            <ol>
+                                <li>Clic droit sur dossier parent → Propriétés</li>
+                                <li>Onglet "Versions précédentes"</li>
+                                <li>Sélectionner version datée → Ouvrir (prévisualiser) ou Restaurer</li>
+                                <li>Choisir restaurer à l'emplacement original ou ailleurs</li>
+                            </ol>
+                            <p><strong>Prérequis :</strong> Protection système activée (points de restauration) ou Historique des fichiers</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Windows File Recovery (gratuit Microsoft)</h4>
+                            <p><strong>Installation :</strong> Microsoft Store → "Windows File Recovery"</p>
+                            <p><strong>Utilisation ligne de commande :</strong></p>
+                            <pre># Récupération simple (fichiers récemment supprimés)
+winfr C: D: /n \Users\Jean\Documents\*.docx
+
+# Mode étendu (disque formaté, ancien fichier)
+winfr C: D: /x /y:DOCX,PDF,JPG
+
+# Récupérer dans dossier spécifique
+winfr C: E:\Recuperation /n \Users\*\Desktop\*</pre>
+                            <p><strong>⚠️ Important :</strong> Récupérer vers un disque différent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Logiciels tiers de récupération</h3>
+
+                <table>
+                    <tr>
+                        <th>Logiciel</th>
+                        <th>Type</th>
+                        <th>Avantages</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Recuva</strong></td>
+                        <td>Gratuit (CCleaner)</td>
+                        <td>Simple, interface graphique, efficace fichiers récents</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TestDisk / PhotoRec</strong></td>
+                        <td>Open source</td>
+                        <td>Puissant, récupère partitions, photos, gratuit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EaseUS Data Recovery</strong></td>
+                        <td>Freemium</td>
+                        <td>Interface intuitive, prévisualisation, bon taux récupération</td>
+                    </tr>
+                    <tr>
+                        <td><strong>R-Studio</strong></td>
+                        <td>Payant (professionnel)</td>
+                        <td>Très puissant, RAID, réseaux, fichiers complexes</td>
+                    </tr>
+                </table>
+
+                <h3>Récupération selon scénarios</h3>
+
+                <div class="example-box">
+                    <h4>📋 Procédures par situation</h4>
+                    
+                    <p><strong>Scénario 1 : Fichier supprimé récemment</strong></p>
+                    <ol>
+                        <li>Vérifier la Corbeille</li>
+                        <li>Versions précédentes du dossier parent</li>
+                        <li>Historique des fichiers (si activé)</li>
+                        <li>Windows File Recovery ou Recuva</li>
+                    </ol>
+                    
+                    <p><strong>Scénario 2 : Disque formaté accidentellement</strong></p>
+                    <ol>
+                        <li>❌ NE RIEN ÉCRIRE sur le disque !</li>
+                        <li>Déconnecter le disque si possible</li>
+                        <li>TestDisk pour récupérer la partition</li>
+                        <li>PhotoRec ou R-Studio pour fichiers individuels</li>
+                    </ol>
+                    
+                    <p><strong>Scénario 3 : Corruption système (écran bleu, boot impossible)</strong></p>
+                    <ol>
+                        <li>Démarrer sur USB Windows installation</li>
+                        <li>Réparer l'ordinateur → Invite de commandes</li>
+                        <li>Exécuter : sfc /scannow /offbootdir=C:\ /offwindir=C:\Windows</li>
+                        <li>Ou : DISM /Online /Cleanup-Image /RestoreHealth</li>
+                        <li>Si échec : copier données vers disque externe puis réinstaller</li>
+                    </ol>
+                    
+                    <p><strong>Scénario 4 : Ransomware (fichiers chiffrés)</strong></p>
+                    <ol>
+                        <li>🚨 Déconnecter immédiatement du réseau</li>
+                        <li>NE PAS redémarrer (peut détruire Shadow Copies)</li>
+                        <li>Identifier le ransomware (ID Ransomware, Crypto Sheriff)</li>
+                        <li>Chercher déchiffreur gratuit (No More Ransom Project)</li>
+                        <li>Si aucun déchiffreur : restaurer depuis sauvegarde externe</li>
+                        <li>❌ Ne jamais payer la rançon (finance criminels, pas de garantie)</li>
+                    </ol>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Règles d'or récupération :</strong>
+                    <ul>
+                        <li><strong>Arrêter immédiatement</strong> toute utilisation du disque affecté</li>
+                        <li>Ne JAMAIS récupérer vers le même disque (écrase données)</li>
+                        <li>Plus on attend, moins on récupère (fichiers écrasés progressivement)</li>
+                        <li>SSD : récupération plus difficile (TRIM efface immédiatement)</li>
+                        <li>Disque avec bruits suspects : éteindre, faire appel à professionnel (labo)</li>
+                        <li>La prévention (sauvegardes) coûte moins cher que la récupération</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 6 : Audit et conformité -->
+            <div class="section">
+                <h2>📊 6. Audit et Conformité</h2>
+                
+                <h3>Journalisation des événements</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Observateur d'événements (Event Viewer)</h4>
+                            <p><strong>Accès :</strong> eventvwr.msc</p>
+                            <p><strong>Journaux principaux :</strong></p>
+                            <ul>
+                                <li><strong>Sécurité :</strong> Connexions, échecs authentification, modifications permissions</li>
+                                <li><strong>Système :</strong> Services, pilotes, erreurs matérielles</li>
+                                <li><strong>Application :</strong> Logiciels, erreurs programmes</li>
+                                <li><strong>Installation :</strong> Mises à jour Windows, installations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Événements de sécurité critiques</h4>
+                            <table style="font-size: 0.9rem;">
+                                <tr>
+                                    <th>Event ID</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>4624</strong></td>
+                                    <td>Connexion réussie</td>
+                                    <td>Tracer activité utilisateur</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4625</strong></td>
+                                    <td>Échec de connexion</td>
+                                    <td>Détecter tentatives intrusion</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4634</strong></td>
+                                    <td>Déconnexion</td>
+                                    <td>Durée session</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4720</strong></td>
+                                    <td>Compte utilisateur créé</td>
+                                    <td>Surveiller nouveaux comptes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4732</strong></td>
+                                    <td>Membre ajouté groupe</td>
+                                    <td>Contrôler élévations privilèges</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Configuration audit avancé</h4>
+                            <p><strong>Activer audit détaillé :</strong></p>
+                            <ol>
+                                <li>gpedit.msc (Pro/Enterprise)</li>
+                                <li>Config ordinateur → Paramètres Windows → Paramètres sécurité</li>
+                                <li>Configuration audit avancée → Stratégies d'audit</li>
+                                <li>Activer selon besoins :
+                                    <ul>
+                                        <li>Connexion/Déconnexion compte</li>
+                                        <li>Accès objets (fichiers sensibles)</li>
+                                        <li>Modification stratégie</li>
+                                        <li>Utilisation privilèges</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Rapport d'audit de sécurité</h3>
+
+                <div class="example-box">
+                    <h4>📝 Génération rapport PowerShell</h4>
+                    <pre># Exporter événements sécurité dernières 24h
+Get-WinEvent -FilterHashtable @{
+    LogName='Security';
+    StartTime=(Get-Date).AddDays(-1)
+} | Export-Csv "C:\Audit\Security_$(Get-Date -f 'yyyy-MM-dd').csv"
+
+# Lister échecs connexion
+Get-WinEvent -FilterHashtable @{
+    LogName='Security';
+    ID=4625
+} | Select TimeCreated, Message | Format-Table
+
+# Rapport comptes administrateurs
+Get-LocalGroupMember -Group "Administrateurs" | 
+    Select Name, ObjectClass | Format-Table</pre>
+                </div>
+
+                <h3>Conformité RGPD - Bonnes pratiques</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Minimisation</h4>
+                        <p>Collecter uniquement données nécessaires, supprimer après usage</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Chiffrement</h4>
+                        <p>Données sensibles toujours chiffrées (BitLocker, EFS)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Accès limité</h4>
+                        <p>Principe moindre privilège, révision trimestrielle</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Traçabilité</h4>
+                        <p>Audit des accès, journalisation activée</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Checklist sécurité mensuelle :</strong>
+                    <ul>
+                        <li>☐ Vérifier sauvegardes et tester restauration</li>
+                        <li>☐ Réviser permissions dossiers sensibles</li>
+                        <li>☐ Analyser journaux sécurité (échecs connexion)</li>
+                        <li>☐ Vérifier comptes administrateurs actifs</li>
+                        <li>☐ Contrôler mises à jour Windows/logiciels</li>
+                        <li>☐ Scanner antivirus complet hors ligne</li>
+                        <li>☐ Nettoyer comptes utilisateurs inactifs</li>
+                        <li>☐ Documenter changements configuration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Synthèse finale -->
+            <div class="section">
+                <h2>🎯 Synthèse - Sécurité des Données</h2>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">💾</div>
+                        <div class="step-content">
+                            <h4>Sauvegarde = Priorité absolue</h4>
+                            <p>Règle 3-2-1, tests réguliers, automatisation, sauvegarde hors site obligatoire</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">🔐</div>
+                        <div class="step-content">
+                            <h4>Chiffrement systématique</h4>
+                            <p>BitLocker sur tous les PC portables, EFS pour dossiers sensibles, clés USB chiffrées</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">👥</div>
+                        <div class="step-content">
+                            <h4>Permissions NTFS rigoureuses</h4>
+                            <p>Moindre privilège, groupes, héritage maîtrisé, audit des accès</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">🛡️</div>
+                        <div class="step-content">
+                            <h4>Protection multicouche</h4>
+                            <p>Antivirus + pare-feu + mises à jour + contrôle accès dossiers anti-ransomware</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">♻️</div>
+                        <div class="step-content">
+                            <h4>Plan de récupération documenté</h4>
+                            <p>Procédures testées, outils prêts, temps de récupération défini (RTO/RPO)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">📊</div>
+                        <div class="step-content">
+                            <h4>Audit et conformité continus</h4>
+                            <p>Journalisation active, revues mensuelles, conformité RGPD, documentation à jour</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Message clé :</strong> La sécurité des données n'est pas un état mais un processus continu. Une entreprise perd en moyenne 3 jours de travail lors d'un incident sans sauvegarde, et 60% des PME victimes de cyberattaque ferment dans les 6 mois. L'investissement dans la sécurité est toujours inférieur au coût d'une perte de données.
+                </div>
+            </div>
+
+            <!-- Scénarios pratiques -->
+            <div class="section">
+                <h2>🔬 Cas Pratiques</h2>
+                
+                <div class="example-box">
+                    <h4>Scénario 1 : Configuration poste comptable</h4>
+                    <p><strong>Contexte :</strong> PC comptabilité avec données financières sensibles</p>
+                    <p><strong>Actions à mener :</strong></p>
+                    <ol>
+                        <li><strong>Chiffrement :</strong> Activer BitLocker sur C: avec TPM + PIN</li>
+                        <li><strong>Sauvegarde :</strong>
+                            <ul>
+                                <li>Historique fichiers vers NAS (quotidien automatique)</li>
+                                <li>Image système mensuelle vers disque externe</li>
+                                <li>Copie cloud chiffrée (OneDrive Business avec chiffrement)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Permissions :</strong>
+                            <ul>
+                                <li>Dossier C:\Comptabilité : Groupe "Comptables" = Modifier</li>
+                                <li>Autres utilisateurs : aucun accès</li>
+                                <li>Audit activé sur accès/modifications</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sécurité :</strong>
+                            <ul>
+                                <li>Compte utilisateur standard pour usage quotidien</li>
+                                <li>Compte admin séparé pour installations</li>
+                                <li>Windows Defender + contrôle accès dossiers</li>
+                                <li>Verrouillage auto après 5 min inactivité</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>Scénario 2 : Incident ransomware</h4>
+                    <p><strong>Situation :</strong> Fichiers chiffrés, demande rançon affichée</p>
+                    <p><strong>Procédure d'intervention :</strong></p>
+                    <ol>
+                        <li><strong>Isolation immédiate (30 secondes) :</strong>
+                            <ul>
+                                <li>Débrancher câble réseau</li>
+                                <li>Désactiver WiFi</li>
+                                <li>Ne PAS éteindre (perte RAM, indices forensiques)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Évaluation (5 minutes) :</strong>
+                            <ul>
+                                <li>Identifier le ransomware (extension fichiers, message rançon)</li>
+                                <li>Vérifier ID Ransomware / No More Ransom</li>
+                                <li>Évaluer étendue : PC seul ou réseau ?</li>
+                            </ul>
+                        </li>
+                        <li><strong>Communication (10 minutes) :</strong>
+                            <ul>
+                                <li>Alerter responsable IT, direction</li>
+                                <li>Ne PAS payer (financement criminalité, aucune garantie)</li>
+                                <li>Déclarer incident ANSSI si données sensibles</li>
+                            </ul>
+                        </li>
+                        <li><strong>Récupération (variables) :</strong>
+                            <ul>
+                                <li>Si déchiffreur existe : télécharger et exécuter</li>
+                                <li>Si pas de déchiffreur : restaurer depuis sauvegarde externe</li>
+                                <li>Formater et réinstaller Windows (désinfection complète)</li>
+                                <li>Changer TOUS les mots de passe</li>
+                            </ul>
+                        </li>
+                        <li><strong>Post-incident :</strong>
+                            <ul>
+                                <li>Analyser point d'entrée (email, vulnérabilité, RDP ouvert)</li>
+                                <li>Renforcer sécurité (MFA, segmentation réseau, formation)</li>
+                                <li>Documentation complète de l'incident</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>Scénario 3 : Départ employé</h4>
+                    <p><strong>Contexte :</strong> Employé quitte entreprise, accès dossiers partagés</p>
+                    <p><strong>Checklist de départ sécurisé :</strong></p>
+                    <ol>
+                        <li><strong>Sauvegarde données (J-7) :</strong>
+                            <ul>
+                                <li>Archiver dossiers personnels vers serveur</li>
+                                <li>Transférer responsabilités fichiers critiques</li>
+                                <li>Documenter emplacements données</li>
+                            </ul>
+                        </li>
+                        <li><strong>Révocation accès (Jour J) :</strong>
+                            <ul>
+                                <li>Désactiver compte Windows (ne pas supprimer immédiatement)</li>
+                                <li>Retirer de tous les groupes sauf "Utilisateurs"</li>
+                                <li>Révoquer accès VPN, cloud (Microsoft 365, Google Workspace)</li>
+                                <li>Changer mots de passe comptes partagés connus</li>
+                            </ul>
+                        </li>
+                        <li><strong>Récupération matériel (Jour J) :</strong>
+                            <ul>
+                                <li>Récupérer PC, téléphone, badges, clés</li>
+                                <li>Vérifier aucune copie données personnelles (clés USB)</li>
+                                <li>Effacer données téléphone pro si BYOD</li>
+                            </ul>
+                        </li>
+                        <li><strong>Audit post-départ (J+7) :</strong>
+                            <ul>
+                                <li>Vérifier journaux accès (connexions anormales ?)</li>
+                                <li>Réattribuer permissions fichiers exclusifs</li>
+                                <li>Supprimer compte après 30 jours (période légale)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Commandes utiles -->
+            <div class="section">
+                <h2>⚡ Commandes PowerShell Utiles</h2>
+                
+                <div class="example-box">
+                    <h4>Script de vérification sécurité globale</h4>
+                    <pre># === AUDIT SÉCURITÉ WINDOWS ===
+
+# 1. Vérifier BitLocker
+Write-Host "`n=== STATUT BITLOCKER ===" -ForegroundColor Cyan
+Get-BitLockerVolume | Select MountPoint, ProtectionStatus, EncryptionPercentage
+
+# 2. Vérifier Windows Defender
+Write-Host "`n=== WINDOWS DEFENDER ===" -ForegroundColor Cyan
+Get-MpComputerStatus | Select AntivirusEnabled, RealTimeProtectionEnabled, IoavProtectionEnabled
+
+# 3. Lister comptes administrateurs
+Write-Host "`n=== COMPTES ADMINISTRATEURS ===" -ForegroundColor Cyan
+Get-LocalGroupMember -Group "Administrateurs"
+
+# 4. Dernières connexions
+Write-Host "`n=== DERNIÈRES CONNEXIONS ===" -ForegroundColor Cyan
+Get-WinEvent -FilterHashtable @{LogName='Security';ID=4624} -MaxEvents 10 |
+    Select TimeCreated, @{n='User';e={$_.Properties[5].Value}}
+
+# 5. Échecs connexion (tentatives intrusion)
+Write-Host "`n=== ÉCHECS CONNEXION ===" -ForegroundColor Cyan
+Get-WinEvent -FilterHashtable @{LogName='Security';ID=4625} -MaxEvents 10 |
+    Select TimeCreated, @{n='User';e={$_.Properties[5].Value}}
+
+# 6. Services critiques
+Write-Host "`n=== SERVICES SÉCURITÉ ===" -ForegroundColor Cyan
+Get-Service -Name "WinDefend","wuauserv","MpsSvc" | Select Name, Status, StartType
+
+# 7. Mises à jour Windows
+Write-Host "`n=== DERNIÈRES MISES À JOUR ===" -ForegroundColor Cyan
+Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 5
+
+# 8. Partages réseau actifs
+Write-Host "`n=== PARTAGES RÉSEAU ===" -ForegroundColor Cyan
+Get-SmbShare | Where-Object {$_.Name -ne "ADMIN$" -and $_.Name -ne "C$" -and $_.Name -ne "IPC$"}
+
+# 9. Espace disque disponible
+Write-Host "`n=== ESPACE DISQUE ===" -ForegroundColor Cyan
+Get-PSDrive -PSProvider FileSystem | Select Name, 
+    @{n='UsedGB';e={[math]::Round($_.Used/1GB,2)}},
+    @{n='FreeGB';e={[math]::Round($_.Free/1GB,2)}},
+    @{n='TotalGB';e={[math]::Round(($_.Used+$_.Free)/1GB,2)}}
+
+Write-Host "`n=== AUDIT TERMINÉ ===" -ForegroundColor Green</pre>
+                </div>
+
+                <div class="example-box">
+                    <h4>Script sauvegarde automatique simple</h4>
+                    <pre># === SCRIPT SAUVEGARDE INCRÉMENTALE ===
+
+# Paramètres
+$Source = "C:\Données"
+$Destination = "E:\Sauvegardes\$(Get-Date -Format 'yyyy-MM-dd')"
+$LogFile = "E:\Sauvegardes\Logs\Backup_$(Get-Date -Format 'yyyy-MM-dd_HHmmss').log"
+
+# Créer dossier destination
+New-Item -ItemType Directory -Path $Destination -Force | Out-Null
+
+# Fonction logging
+function Write-Log {
+    param($Message)
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "$Timestamp - $Message" | Out-File -FilePath $LogFile -Append
+    Write-Host $Message
+}
+
+Write-Log "=== DÉBUT SAUVEGARDE ==="
+Write-Log "Source: $Source"
+Write-Log "Destination: $Destination"
+
+try {
+    # Copie avec robocopy (incrémentale)
+    $RobocopyArgs = @(
+        $Source,
+        $Destination,
+        "/MIR",          # Mirror (copie exacte)
+        "/R:3",          # 3 tentatives en cas d'échec
+        "/W:10",         # Attendre 10 sec entre tentatives
+        "/LOG+:$LogFile", # Append au log
+        "/NP",           # Pas de pourcentage (log propre)
+        "/XD", "`$RECYCLE.BIN", "System Volume Information" # Exclure
+    )
+    
+    $Result = Start-Process robocopy -ArgumentList $RobocopyArgs -Wait -PassThru
+    
+    if ($Result.ExitCode -le 7) {
+        Write-Log "✓ Sauvegarde réussie (Code: $($Result.ExitCode))"
+    } else {
+        Write-Log "✗ Erreur sauvegarde (Code: $($Result.ExitCode))"
+    }
+    
+} catch {
+    Write-Log "✗ ERREUR: $($_.Exception.Message)"
+}
+
+Write-Log "=== FIN SAUVEGARDE ==="
+
+# Nettoyer sauvegardes > 30 jours
+Write-Log "Nettoyage anciennes sauvegardes..."
+Get-ChildItem "E:\Sauvegardes" -Directory | 
+    Where-Object {$_.CreationTime -lt (Get-Date).AddDays(-30)} |
+    Remove-Item -Recurse -Force
+
+Write-Log "=== SCRIPT TERMINÉ ===""</pre>
+                    <p><strong>Planification :</strong> Planificateur de tâches → Quotidien 22h → Exécuter que si secteur</p>
+                </div>
+            </div>
+
+            <!-- Ressources complémentaires -->
+            <div class="section">
+                <h2>📚 Ressources et Documentation</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Documentation Microsoft</h4>
+                        <p>learn.microsoft.com - Guides officiels BitLocker, Defender, Permissions</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>ANSSI (France)</h4>
+                        <p>cyber.gouv.fr - Recommandations sécurité, guides bonnes pratiques</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>NIST Cybersecurity</h4>
+                        <p>Framework international sécurité, méthodologies éprouvées</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>CNIL (RGPD)</h4>
+                        <p>cnil.fr - Conformité protection données personnelles</p>
+                    </div>
+                </div>
+
+                <h3>Veille sécurité recommandée</h3>
+
+                <table>
+                    <tr>
+                        <th>Ressource</th>
+                        <th>Contenu</th>
+                        <th>Fréquence</th>
+                    </tr>
+                    <tr>
+                        <td><strong>CERT-FR</strong></td>
+                        <td>Alertes vulnérabilités, incidents majeurs</td>
+                        <td>Quotidien</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bleeping Computer</strong></td>
+                        <td>Actualité malwares, ransomwares, exploits</td>
+                        <td>Hebdomadaire</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Microsoft Security Blog</strong></td>
+                        <td>Mises à jour sécurité Windows, Defender</td>
+                        <td>Mensuel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MITRE ATT&CK</strong></td>
+                        <td>Base techniques attaques, défenses</td>
+                        <td>Référence</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h3>🎓 Questions de Révision</h3>
+                <ol style="line-height: 2;">
+                    <li>Quelle est la différence entre une sauvegarde incrémentale et différentielle ?</li>
+                    <li>Pourquoi BitLocker nécessite-t-il un TPM 2.0 ?</li>
+                    <li>Que se passe-t-il si on active une permission "Refuser" alors qu'une permission "Autoriser" existe ?</li>
+                    <li>Quelles sont les 3 premières actions en cas de détection ransomware ?</li>
+                    <li>Quelle est la différence entre permissions de partage et permissions NTFS ?</li>
+                    <li>Pourquoi ne faut-il jamais récupérer des données sur le même disque ?</li>
+                    <li>Comment sauvegarder un certificat EFS et pourquoi est-ce critique ?</li>
+                    <li>Quel Event ID Windows indique un échec de connexion ?</li>
+                    <li>Citez 3 bonnes pratiques conformes au RGPD pour la gestion des données.</li>
+                    <li>Pourquoi activer le contrôle d'accès aux dossiers dans Windows Defender ?</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+                
+                <h3>Principe des permissions Windows</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Héritage</h4>
+                        <p>Les sous-dossiers héritent des permissions du parent</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Cumul</h4>
+                        <p>Permissions multiples s'additionnent (la plus permissive gagne)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Refus prioritaire</h4>
+                        <p>Une permission "Refuser" annule toutes les autorisations</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Propriétaire</h4>
+                        <p>Le créateur du fichier a contrôle total par défaut</p>
+                    </div>
+                </div>
+
+                <h3>Types de permissions NTFS</h3>
+
+                <table>
+                    <tr>
+                        <th>Permission</th>
+                        <th>Actions autorisées</th>
+                        <th>Usage type</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Contrôle total</strong></td>
+                        <td>Toutes les actions + modifier permissions + prendre possession</td>
+                        <td>Administrateurs, propriétaires</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modifier</strong></td>
+                        <td>Lire, écrire, exécuter, supprimer</td>
+                        <td>Collaborateurs d'équipe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lecture et exécution</strong></td>
+                        <td>Lire fichiers, parcourir dossiers, exécuter programmes</td>
+                        <td>Utilisateurs standards, lecture seule</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lecture</strong></td>
+                        <td>Lire fichiers, voir propriétés</td>
+                        <td>Consultation uniquement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Écriture</strong></td>
+                        <td>Créer fichiers/dossiers, modifier données</td>
+                        <td>Dossiers de dépôt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Permissions spéciales</strong></td>
+                        <td>Combinaisons personnalisées (avancé)</td>
+                        <td>Besoins spécifiques</td>

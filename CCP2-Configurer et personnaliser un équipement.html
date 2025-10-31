@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurer et personnaliser un équipement - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 2 - Mettre en Service des Équipements Numériques</div>
+        <h1>Configurer et personnaliser un équipement Windows</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>⚙️ Introduction</h2>
+                <p>La configuration et la personnalisation d'un équipement Windows constituent une phase cruciale de la mise en service. Cette activité va bien au-delà du simple démarrage : elle englobe le paramétrage du BIOS/UEFI, la configuration système, l'optimisation des performances, la sécurisation de l'environnement et l'adaptation aux besoins spécifiques de l'utilisateur ou de l'entreprise.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Configurer de manière optimale et sécurisée un équipement Windows, en l'adaptant aux besoins utilisateurs et aux standards de l'entreprise, tout en garantissant performances, stabilité et conformité aux politiques de sécurité.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>🔧 1. Configuration du BIOS/UEFI</h2>
+                
+                <h3>Accès au BIOS/UEFI</h3>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Touches d'accès courantes</h4>
+                        <p>Del, F2, F10, F12, Esc selon le fabricant - appuyer au démarrage</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mode UEFI</h4>
+                        <p>Interface graphique moderne avec souris, standard actuel</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mode Legacy</h4>
+                        <p>Ancien système BIOS, interface texte, compatibilité anciens OS</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>CSM</h4>
+                        <p>Compatibility Support Module pour compatibilité UEFI/Legacy</p>
+                    </div>
+                </div>
+
+                <h3>Paramètres essentiels du BIOS/UEFI</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Boot Order (Ordre de démarrage)</h4>
+                            <p><strong>Configuration :</strong> Définir la priorité des périphériques de démarrage</p>
+                            <p><strong>Ordre typique :</strong> 1) SSD/HDD système, 2) USB (installation), 3) Réseau PXE (déploiement)</p>
+                            <p><strong>Windows 11 :</strong> Mode UEFI obligatoire, désactiver CSM/Legacy</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Secure Boot</h4>
+                            <p><strong>Fonction :</strong> Empêche le démarrage de logiciels non signés (protection contre malware)</p>
+                            <p><strong>Windows 11 :</strong> Obligatoire - doit être activé</p>
+                            <p><strong>Windows 10 :</strong> Recommandé mais optionnel</p>
+                            <p><strong>Emplacement :</strong> Généralement dans Security ou Boot</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>TPM (Trusted Platform Module)</h4>
+                            <p><strong>Fonction :</strong> Puce de sécurité pour chiffrement BitLocker et authentification</p>
+                            <p><strong>Windows 11 :</strong> TPM 2.0 obligatoire</p>
+                            <p><strong>Windows 10 :</strong> Requis pour BitLocker</p>
+                            <p><strong>Activation :</strong> Security → TPM Device → Enable</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Virtualisation (Intel VT-x / AMD-V)</h4>
+                            <p><strong>Fonction :</strong> Support des machines virtuelles Hyper-V, VMware, VirtualBox</p>
+                            <p><strong>Intel :</strong> Intel Virtualization Technology (VT-x) et VT-d</p>
+                            <p><strong>AMD :</strong> AMD-V (SVM Mode)</p>
+                            <p><strong>Usage :</strong> Windows Sandbox, WSL2, développement</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>XMP/EXPO (Profils mémoire)</h4>
+                            <p><strong>XMP :</strong> Extreme Memory Profile (Intel) - overclock RAM automatique</p>
+                            <p><strong>EXPO :</strong> Extended Profiles for Overclocking (AMD)</p>
+                            <p><strong>Effet :</strong> Active les fréquences annoncées de la RAM (ex: 3600MHz au lieu de 2133MHz par défaut)</p>
+                            <p><strong>Gains :</strong> +15 à 30% de performances selon applications</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Configuration SATA</h4>
+                            <p><strong>Mode AHCI :</strong> Advanced Host Controller Interface - mode moderne recommandé pour Windows</p>
+                            <p><strong>Avantages :</strong> NCQ, hot-swap, meilleures performances SSD</p>
+                            <p><strong>Mode IDE/Legacy :</strong> Ancien mode, compatibilité anciens OS uniquement</p>
+                            <p><strong>Mode RAID :</strong> Configuration RAID 0/1/5/10 (nécessite plusieurs disques)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Paramètres de sécurité BIOS</h3>
+
+                <table>
+                    <tr>
+                        <th>Paramètre</th>
+                        <th>Description</th>
+                        <th>Recommandation Entreprise</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Supervisor Password</strong></td>
+                        <td>Mot de passe pour accéder au BIOS/UEFI</td>
+                        <td>✅ Activé (empêche modifications non autorisées)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Password</strong></td>
+                        <td>Mot de passe au démarrage du PC (pré-Windows)</td>
+                        <td>Optionnel (Windows BitLocker préféré)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Secure Boot</strong></td>
+                        <td>Signature numérique des boot loaders</td>
+                        <td>✅ Activé (Windows 11 requis)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TPM 2.0</strong></td>
+                        <td>Module de plateforme sécurisée</td>
+                        <td>✅ Activé (Windows 11 requis, BitLocker)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Boot from USB</strong></td>
+                        <td>Autoriser démarrage sur clé USB</td>
+                        <td>❌ Désactivé (sécurité renforcée)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Boot (PXE)</strong></td>
+                        <td>Démarrage réseau pour déploiement</td>
+                        <td>Activé uniquement si déploiement massif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intel ME / AMD PSP</strong></td>
+                        <td>Management Engine - fonctionnalités admin</td>
+                        <td>Désactiver si non utilisé (sécurité)</td>
+                    </tr>
+                </table>
+
+                <h3>Optimisation des performances BIOS</h3>
+
+                <div class="example-box">
+                    <h4>💡 Paramètres de performance</h4>
+                    <ul>
+                        <li><strong>Fast Boot :</strong> Accélère le démarrage en sautant certains tests POST (gain 2-5 secondes)</li>
+                        <li><strong>C-States (C1, C3, C6) :</strong> États d'économie d'énergie CPU - désactiver pour performances maximales constantes</li>
+                        <li><strong>Intel Turbo Boost / AMD Precision Boost :</strong> Overclock automatique du CPU - toujours activer</li>
+                        <li><strong>Intel SpeedStep / AMD Cool'n'Quiet :</strong> Gestion dynamique fréquence - activer pour économie, désactiver pour perfs</li>
+                        <li><strong>Fan Control :</strong> Courbes de ventilation (Silent/Standard/Performance/Manuel)</li>
+                        <li><strong>Power Management :</strong> Maximum Performance vs Balanced vs Power Saver</li>
+                        <li><strong>Resizable BAR :</strong> Améliore perfs GPU (RTX 3000+/RX 6000+) - activer si compatible</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Sauvegarde paramètres :</strong> Avant toute modification BIOS, noter les valeurs par défaut ou utiliser la fonction "Save Profile". En cas de problème : "Load Optimized Defaults" ou Clear CMOS (jumper ou retrait pile CR2032 pendant 30 secondes).
+                </div>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>💻 2. Configuration Système Windows</h2>
+                
+                <h3>Premier démarrage (OOBE)</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Région et clavier</h4>
+                            <p>Sélection pays (France) et disposition clavier (AZERTY - Français)</p>
+                            <p>Ajouter dispositions alternatives si nécessaire (QWERTY US pour développement)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Connexion réseau</h4>
+                            <p><strong>Ethernet :</strong> Détection automatique recommandée</p>
+                            <p><strong>WiFi :</strong> Sélection réseau et saisie mot de passe</p>
+                            <p><strong>Astuce Windows 11 :</strong> Shift+F10 → <code>OOBE\BYPASSNRO</code> pour continuer sans réseau</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Type de compte</h4>
+                            <p><strong>Compte Microsoft :</strong> Synchronisation cloud (OneDrive, paramètres, Store)</p>
+                            <p><strong>Compte local :</strong> Hors ligne, confidentialité accrue</p>
+                            <p><strong>Entreprise :</strong> Compte local recommandé, jonction domaine ultérieure</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Paramètres de confidentialité</h4>
+                            <p>Télémétrie, localisation, diagnostic, publicités personnalisées</p>
+                            <p><strong>Entreprise :</strong> Désactiver au maximum (conformité RGPD)</p>
+                            <p><strong>Particulier :</strong> Choix selon préférences</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Configuration post-installation immédiate</h3>
+
+                <table>
+                    <tr>
+                        <th>Étape</th>
+                        <th>Action</th>
+                        <th>Chemin d'accès</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Activation Windows</strong></td>
+                        <td>Vérifier statut, saisir clé produit</td>
+                        <td>Paramètres → Système → Activation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Windows Update</strong></td>
+                        <td>Installer toutes mises à jour disponibles</td>
+                        <td>Paramètres → Windows Update → Rechercher</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pilotes</strong></td>
+                        <td>Chipset, GPU, réseau, audio (site fabricant)</td>
+                        <td>Gestionnaire de périphériques (devmgmt.msc)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nom du PC</strong></td>
+                        <td>Renommer selon convention (PC-SITE-001)</td>
+                        <td>Paramètres → Système → Informations système → Renommer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fuseau horaire</strong></td>
+                        <td>Définir zone horaire correcte</td>
+                        <td>Paramètres → Heure et langue → Date et heure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Options d'alimentation</strong></td>
+                        <td>Mode gestion énergie (Performance/Équilibré)</td>
+                        <td>Panneau de configuration → Options d'alimentation</td>
+                    </tr>
+                </table>
+
+                <h3>Configuration des comptes utilisateurs</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Création via Paramètres</h4>
+                            <p>Paramètres → Comptes → Famille et autres utilisateurs → Ajouter un utilisateur</p>
+                            <p><strong>Compte Microsoft :</strong> Entrer adresse email</p>
+                            <p><strong>Compte local :</strong> "Je ne dispose pas des informations de connexion" → "Ajouter utilisateur sans compte Microsoft"</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Types de comptes Windows</h4>
+                            <p><strong>Administrateur :</strong> Contrôle total système, installation logiciels, modifications avancées</p>
+                            <p><strong>Standard :</strong> Usage quotidien sécurisé, demande élévation UAC pour actions sensibles</p>
+                            <p><strong>Bonne pratique :</strong> 1 admin + 1 compte standard par utilisateur quotidien</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Gestion via Gestion de l'ordinateur</h4>
+                            <p>Clic droit "Ce PC" → Gérer → Utilisateurs et groupes locaux</p>
+                            <p><strong>Plus de contrôle :</strong> Politique mots de passe, expiration, groupes personnalisés</p>
+                            <p><strong>Groupes importants :</strong> Administrateurs, Utilisateurs, Utilisateurs avec pouvoir, Invités</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Commandes rapides (CMD/PowerShell admin)</h4>
+                            <p><strong>Créer utilisateur :</strong></p>
+                            <pre style="background: #2d2d2d; color: #f8f8f2; padding: 0.8rem; border-radius: 8px; overflow-x: auto;">net user johndoe P@ssw0rd! /add
+net localgroup Utilisateurs johndoe /add</pre>
+                            <p><strong>PowerShell :</strong></p>
+                            <pre style="background: #2d2d2d; color: #f8f8f2; padding: 0.8rem; border-radius: 8px; overflow-x: auto;">New-LocalUser -Name "johndoe" -Password (ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force)
+Add-LocalGroupMember -Group "Utilisateurs" -Member "johndoe"</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Configuration réseau Windows</h3>
+
+                <div class="example-box">
+                    <h4>🌐 Configuration IP statique</h4>
+                    <p><strong>Méthode GUI :</strong></p>
+                    <ol>
+                        <li>Panneau de configuration → Réseau et Internet → Centre Réseau et partage</li>
+                        <li>Modifier les paramètres de l'adaptateur</li>
+                        <li>Clic droit sur connexion → Propriétés</li>
+                        <li>Protocole Internet version 4 (TCP/IPv4) → Propriétés</li>
+                        <li>Utiliser l'adresse IP suivante :
+                            <ul>
+                                <li>Adresse IP : 192.168.1.100</li>
+                                <li>Masque : 255.255.255.0</li>
+                                <li>Passerelle : 192.168.1.1</li>
+                                <li>DNS préféré : 8.8.8.8 (Google)</li>
+                                <li>DNS auxiliaire : 1.1.1.1 (Cloudflare)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Méthode PowerShell (admin) :</strong></p>
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 0.8rem; border-radius: 8px; overflow-x: auto;">New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 192.168.1.100 -PrefixLength 24 -DefaultGateway 192.168.1.1
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 8.8.8.8,1.1.1.1</pre>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Bonnes pratiques réseau :</strong>
+                    <ul>
+                        <li><strong>DHCP :</strong> Postes de travail mobiles, simplicité gestion</li>
+                        <li><strong>IP statique :</strong> Serveurs, imprimantes réseau, équipements critiques</li>
+                        <li><strong>DNS :</strong> Primaire = DNS interne entreprise, Secondaire = public (8.8.8.8)</li>
+                        <li><strong>Profil réseau :</strong> Privé (confiance) ou Public (sécurité renforcée)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>🔒 3. Sécurisation de l'Équipement</h2>
+                
+                <h3>Stratégies de mots de passe</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Complexité minimale</h4>
+                        <p>12+ caractères, majuscules, minuscules, chiffres, symboles</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Unicité</h4>
+                        <p>Mot de passe différent par service/système</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Rotation régulière</h4>
+                        <p>Changement tous les 90 jours en entreprise</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Gestionnaire</h4>
+                        <p>KeePass, Bitwarden pour stockage sécurisé</p>
+                    </div>
+                </div>
+
+                <h3>Politique de sécurité Windows (gpedit.msc)</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accès Stratégie de groupe locale</h4>
+                            <p><strong>Commande :</strong> Win+R → <code>gpedit.msc</code> (Windows Pro/Enterprise uniquement)</p>
+                            <p><strong>Alternative Home :</strong> Utiliser secpol.msc ou paramètres utilisateur individuels</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Politique de mot de passe</h4>
+                            <p><strong>Chemin :</strong> Configuration ordinateur → Paramètres Windows → Paramètres de sécurité → Stratégies de compte → Stratégie de mot de passe</p>
+                            <ul>
+                                <li>Longueur minimale : 12 caractères</li>
+                                <li>Complexité requise : Activée</li>
+                                <li>Durée de vie maximale : 90 jours</li>
+                                <li>Durée de vie minimale : 1 jour</li>
+                                <li>Conserver historique : 5 mots de passe</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Politique de verrouillage</h4>
+                            <p><strong>Protection force brute :</strong></p>
+                            <ul>
+                                <li>Seuil de verrouillage : 5 tentatives</li>
+                                <li>Durée de verrouillage : 30 minutes</li>
+                                <li>Réinitialisation compteur : 30 minutes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Contrôle de compte utilisateur (UAC)</h4>
+                            <p><strong>Accès :</strong> Panneau de configuration → Comptes utilisateurs → Modifier les paramètres de contrôle</p>
+                            <p><strong>Niveau recommandé :</strong> Toujours m'avertir (niveau 3/4)</p>
+                            <p><strong>Fonction :</strong> Empêche modifications système sans consentement explicite</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Chiffrement des données</h3>
+
+                <table>
+                    <tr>
+                        <th>Solution</th>
+                        <th>Édition Windows</th>
+                        <th>Niveau</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>BitLocker</strong></td>
+                        <td>Pro, Enterprise, Education</td>
+                        <td>Disque complet (FDE)</td>
+                        <td>Protection vol/perte PC, chiffrement transparent</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BitLocker To Go</strong></td>
+                        <td>Pro, Enterprise, Education</td>
+                        <td>Clés USB, disques externes</td>
+                        <td>Protection supports amovibles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EFS</strong></td>
+                        <td>Pro, Enterprise (pas Home)</td>
+                        <td>Fichiers/dossiers</td>
+                        <td>Chiffrement sélectif, lié au compte utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>VeraCrypt</strong></td>
+                        <td>Toutes éditions</td>
+                        <td>Conteneurs/partitions/disques</td>
+                        <td>Alternative gratuite, multi-plateformes</td>
+                    </tr>
+                </table>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Activation BitLocker</h4>
+                            <p><strong>Prérequis :</strong> TPM 2.0 activé dans le BIOS</p>
+                            <p><strong>Étapes :</strong></p>
+                            <ol>
+                                <li>Panneau de configuration → Chiffrement de lecteur BitLocker</li>
+                                <li>Activer BitLocker sur le lecteur C:</li>
+                                <li>Choisir méthode déverrouillage (TPM seul ou TPM+PIN)</li>
+                                <li>Sauvegarder clé de récupération (Microsoft, fichier, impression)</li>
+                                <li>Chiffrer disque complet ou espace utilisé uniquement</li>
+                                <li>Lancer le chiffrement (durée selon taille/performance)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Chiffrement EFS</h4>
+                            <p><strong>Utilisation :</strong></p>
+                            <ol>
+                                <li>Clic droit sur fichier/dossier → Propriétés</li>
+                                <li>Avancé → Chiffrer le contenu pour sécuriser les données</li>
+                                <li>Appliquer aux sous-dossiers si nécessaire</li>
+                            </ol>
+                            <p><strong>Sauvegarde certificat :</strong> certmgr.msc → Personnel → Exporter le certificat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Configuration Windows Defender</h3>
+
+                <div class="example-box">
+                    <h4>🛡️ Windows Defender (antivirus intégré)</h4>
+                    <p><strong>Accès :</strong> Paramètres → Confidentialité et sécurité → Sécurité Windows</p>
+                    
+                    <p><strong>Configuration recommandée :</strong></p>
+                    <ul>
+                        <li><strong>Protection en temps réel :</strong> Activée</li>
+                        <li><strong>Protection cloud :</strong> Activée (détection menaces récentes)</li>
+                        <li><strong>Envoi automatique échantillons :</strong> Activé</li>
+                        <li><strong>Protection contre falsification :</strong> Activée (empêche désactivation malware)</li>
+                        <li><strong>Accès contrôlé aux dossiers :</strong> Activé (protection ransomware)</li>
+                    </ul>
+                    
+                    <p><strong>Analyse planifiée :</strong></p>
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 0.8rem; border-radius: 8px; overflow-x: auto;">Planificateur de tâches → Bibliothèque → Microsoft → Windows → Windows Defender
+Configurer analyse quotidienne ou hebdomadaire</pre>
+                    
+                    <p><strong>Exclusions :</strong> Ajouter exclusions pour logiciels légitimes générant faux positifs (développement, outils techniques)</p>
+                </div>
+
+                <h3>Configuration pare-feu Windows</h3>
+
+                <div class="example-box">
+                    <h4>🔥 Pare-feu Windows Defender</h4>
+                    <p><strong>Accès avancé :</strong> wf.msc (Pare-feu Windows Defender avec fonctions avancées de sécurité)</p>
+                    
+                    <p><strong>Profils réseau :</strong></p>
+                    <ul>
+                        <li><strong>Domaine :</strong> Réseau d'entreprise (Active Directory) - règles moins restrictives</li>
+                        <li><strong>Privé :</strong> Réseau domestique/travail de confiance - équilibré</li>
+                        <li><strong>Public :</strong> Réseaux non fiables (WiFi publics, hôtels) - très restrictif</li>
+                    </ul>
+                    
+                    <p><strong>Règles entrantes courantes :</strong></p>
+                    <ul>
+                        <li><strong>Bureau à distance (RDP) :</strong> Port 3389/TCP - activer si télétravail</li>
+                        <li><strong>Partage fichiers (SMB) :</strong> Ports 139, 445/TCP - réseau privé uniquement</li>
+                        <li><strong>Imprimantes réseau :</strong> Ports spécifiques selon protocole</li>
+                    </ul>
+                    
+                    <p><strong>Création règle manuelle :</strong></p>
+                    <ol>
+                        <li>wf.msc → Règles de trafic entrant/sortant</li>
+                        <li>Nouvelle règle → Type (Port, Programme, Prédéfini)</li>
+                        <li>Spécifier port ou chemin programme</li>
+                        <li>Action : Autoriser/Bloquer</li>
+                        <li>Profils : Cocher domaine/privé/public selon besoin</li>
+                        <li>Nom et description</li>
+                    </ol>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Sécurité critique :</strong>
+                    <ul>
+                        <li>Désactiver le compte Administrateur intégré (compte "Administrator")</li>
+                        <li>Désactiver les services inutiles (Print Spooler si pas d'imprimante)</li>
+                        <li>Désactiver SMBv1 (vulnérabilité WannaCry) : Fonctionnalités Windows → décocher SMB 1.0</li>
+                        <li>Activer les mises à jour automatiques Windows Update</li>
+                        <li>Ne jamais désactiver Windows Defender sans alternative pro (Bitdefender, Kaspersky)</li>
+                        <li>Activer Windows Sandbox pour tester fichiers suspects (Pro/Enterprise)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>⚡ 4. Optimisation des Performances</h2>
+                
+                <h3>Programmes au démarrage</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Gestionnaire des tâches</h4>
+                            <p><strong>Accès :</strong> Ctrl+Shift+Esc → Onglet "Démarrage"</p>
+                            <p><strong>Analyse :</strong> Colonne "Impact au démarrage" (Élevé/Moyen/Faible)</p>
+                            <p><strong>Action :</strong> Clic droit → Désactiver les applications non essentielles</p>
+                            <p><strong>Conserver :</strong> Antivirus, pilotes critiques (audio, touchpad laptop)</p>
+                            <p><strong>Désactiver :</strong> Messageries (Teams, Discord), updaters, utilitaires fabricants</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configuration système avancée</h4>
+                            <p><strong>Accès :</strong> msconfig → Onglet Démarrage (redirige vers Gestionnaire tâches)</p>
+                            <p><strong>Services :</strong> Onglet Services → Masquer services Microsoft → Désactiver non-essentiels</p>
+                            <p><strong>Attention :</strong> Ne jamais désactiver services Windows critiques</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Effets visuels et performances</h3>
+
+                <div class="example-box">
+                    <h4>🎨 Ajuster les effets visuels</h4>
+                    <p><strong>Accès :</strong> Panneau de configuration → Système → Paramètres système avancés → Performances → Paramètres</p>
+                    
+                    <p><strong>Options de configuration :</strong></p>
+                    <ul>
+                        <li><strong>Ajuster pour de meilleures performances :</strong> Désactive tout (interface austère)</li>
+                        <li><strong>Personnalisé (recommandé) :</strong></li>
+                        <ul>
+                            <li>✅ Conserver : Lissage des polices, Afficher miniatures, Afficher contenu fenêtre déplacement</li>
+                            <li>❌ Désactiver : Animations, Ombres, Transparence Aero, Aperçu taskbar</li>
+                        </ul>
+                        <li><strong>Gain :</strong> 5-10% performances sur configs modestes, libère RAM</li>
+                    </ul>
+                </div>
+
+                <h3>Gestion du stockage</h3>
+
+                <table>
+                    <tr>
+                        <th>Optimisation</th>
+                        <th>Type disque</th>
+                        <th>Fréquence</th>
+                        <th>Gain</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Défragmentation</strong></td>
+                        <td>HDD uniquement</td>
+                        <td>Mensuelle automatique</td>
+                        <td>+10-30% vitesse HDD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TRIM (SSD)</strong></td>
+                        <td>SSD uniquement</td>
+                        <td>Automatique (Windows)</td>
+                        <td>Maintien performances SSD</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nettoyage disque</strong></td>
+                        <td>Tous</td>
+                        <td>Mensuelle</td>
+                        <td>Libère 5-50 Go</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Assistant stockage</strong></td>
+                        <td>Tous</td>
+                        <td>Automatique</td>
+                        <td>Nettoyage continu</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>🧹 Nettoyage de disque</h4>
+                    <p><strong>Méthode 1 - Outil intégré :</strong></p>
+                    <ol>
+                        <li>Clic droit C: → Propriétés → Nettoyage de disque</li>
+                        <li>Nettoyer les fichiers système (bouton)</li>
+                        <li>Cocher : Fichiers temporaires, Corbeille, Fichiers Windows Update, Miniatures</li>
+                        <li>OK → Supprimer les fichiers</li>
+                    </ol>
+                    
+                    <p><strong>Méthode 2 - Assistant stockage :</strong></p>
+                    <p>Paramètres → Système → Stockage → Assistant stockage → Configurer</p>
+                    <ul>
+                        <li>Exécuter automatiquement : Tous les mois</li>
+                        <li>Supprimer fichiers temporaires : Activé</li>
+                        <li>Vider corbeille : Après 30 jours</li>
+                        <li>Supprimer fichiers Téléchargements : Jamais (optionnel)</li>
+                    </ul>
+                    
+                    <p><strong>Méthode 3 - PowerShell avancé :</strong></p>
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 0.8rem; border-radius: 8px; overflow-x: auto;">cleanmgr /sageset:1     # Définir options nettoyage
+cleanmgr /sagerun:1     # Exécuter nettoyage</pre>
+                </div>
+
+                <h3>Mémoire virtuelle (fichier d'échange)</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Configuration pagefile.sys</h4>
+                            <p><strong>Accès :</strong> Paramètres système avancés → Performances → Paramètres → Avancé → Mémoire virtuelle</p>
+                            <p><strong>Recommandations :</strong></p>
+                            <ul>
+                                <li><strong>RAM < 8 Go :</strong> Taille gérée automatiquement OU 1.5× RAM</li>
+                                <li><strong>RAM 8-16 Go :</strong> Taille fixe = Taille RAM</li>
+                                <li><strong>RAM ≥ 32 Go :</strong> 4-8 Go fixe ou désactiver (risqué)</li>
+                                <li><strong>SSD :</strong> Placer pagefile sur SSD système (performances)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Services Windows non essentiels</h3>
+
+                <div class="example-box">
+                    <h4>⚙️ Désactivation services inutilisés</h4>
+                    <p><strong>Accès :</strong> services.msc (Services)</p>
+                    <p><strong>Services désactivables (selon usage) :</strong></p>
+                    <table style="font-size: 0.95rem;">
+                        <tr>
+                            <th>Service</th>
+                            <th>Fonction</th>
+                            <th>Action si non utilisé</th>
+                        </tr>
+                        <tr>
+                            <td>Print Spooler</td>
+                            <td>Gestion impressions</td>
+                            <td>Désactiver si pas d'imprimante</td>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth Support Service</td>
+                            <td>Périphériques Bluetooth</td>
+                            <td>Désactiver si pas de Bluetooth</td>
+                        </tr>
+                        <tr>
+                            <td>Fax</td>
+                            <td>Service fax</td>
+                            <td>Désactiver (obsolète)</td>
+                        </tr>
+                        <tr>
+                            <td>Windows Search</td>
+                            <td>Indexation recherche</td>
+                            <td>Manuel (économie ressources)</td>
+                        </tr>
+                        <tr>
+                            <td>Superfetch/SysMain</td>
+                            <td>Préchargement applications</td>
+                            <td>Désactiver sur SSD</td>
+                        </tr>
+                        <tr>
+                            <td>Xbox Live</td>
+                            <td>Services gaming Xbox</td>
+                            <td>Désactiver si pas de jeux Xbox</td>
+                        </tr>
+                    </table>
+                    <p><strong>⚠️ Ne JAMAIS désactiver :</strong> Windows Update, Defender, Audio Windows, Services réseau critiques</p>
+                </div>
+
+                <h3>Monitoring des performances</h3>
+
+                <table>
+                    <tr>
+                        <th>Outil</th>
+                        <th>Accès</th>
+                        <th>Fonction</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Gestionnaire des tâches</strong></td>
+                        <td>Ctrl+Shift+Esc</td>
+                        <td>CPU, RAM, Disque, Réseau en temps réel, Processus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analyseur de performances</strong></td>
+                        <td>perfmon.msc</td>
+                        <td>Compteurs détaillés, graphiques, logs historiques</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Moniteur de ressources</strong></td>
+                        <td>resmon.exe</td>
+                        <td>Analyse fine CPU, Mémoire, Disque, Réseau par processus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Task Manager détails</strong></td>
+                        <td>Gestionnaire tâches → Détails</td>
+                        <td>PID, utilisation mémoire, priorité processus</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>🌐 5. Configuration Réseau Avancée</h2>
+                
+                <h3>Commandes réseau essentielles</h3>
+
+                <div class="example-box">
+                    <h4>💻 Diagnostic réseau Windows</h4>
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 1rem; border-radius: 8px; overflow-x: auto;">ipconfig /all                            # Configuration IP complète
+ipconfig /release                        # Libérer bail DHCP
+ipconfig /renew                          # Renouveler bail DHCP
+ipconfig /flushdns                       # Vider cache DNS
+ipconfig /displaydns                     # Afficher cache DNS
+
+ping 8.8.8.8                             # Test connectivité internet
+ping -t google.com                       # Ping continu (Ctrl+C pour arrêter)
+ping -n 10 192.168.1.1                   # 10 pings vers passerelle
+
+tracert google.com                       # Tracer route réseau (30 sauts max)
+pathping google.com                      # Traceroute + statistiques perte
+
+nslookup google.com                      # Requête DNS simple
+nslookup google.com 8.8.8.8              # Requête DNS serveur spécifique
+
+netstat -ano                             # Connexions actives + PID
+netstat -b                               # Connexions + programmes (admin)
+netstat -r                               # Table de routage
+
+arp -a                                   # Table ARP (IP ↔ MAC)
+
+route print                              # Table de routage détaillée
+route add 192.168.2.0 mask 255.255.255.0 192.168.1.254  # Ajouter route
+
+netsh int ip reset                       # Réinitialiser pile TCP/IP
+netsh winsock reset                      # Réinitialiser Winsock
+netsh int tcp show global                # Paramètres TCP globaux</pre>
+                </div>
+
+                <h3>Configuration profils réseau</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Réseau Public</h4>
+                        <p>WiFi publics, réseaux non fiables - découverte désactivée, pare-feu strict</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Réseau Privé</h4>
+                        <p>Domicile, travail - découverte active, partages autorisés</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Réseau Domaine</h4>
+                        <p>Active Directory - géré par stratégies de groupe</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Changer profil</h4>
+                        <p>Paramètres → Réseau → Propriétés connexion → Type réseau</p>
+                    </div>
+                </div>
+
+                <h3>Partage de fichiers et dossiers</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Activer découverte réseau</h4>
+                            <p>Panneau de configuration → Centre Réseau → Paramètres de partage avancés</p>
+                            <ul>
+                                <li>Activer découverte réseau</li>
+                                <li>Activer partage fichiers et imprimantes</li>
+                                <li>Désactiver partage protégé par mot de passe (réseau confiance) OU Activer (sécurité)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Partager un dossier</h4>
+                            <p>Clic droit dossier → Propriétés → Partage → Partage avancé</p>
+                            <ul>
+                                <li>Cocher "Partager ce dossier"</li>
+                                <li>Nom partage : \\NOMPC\NomPartage</li>
+                                <li>Autorisations → Ajouter utilisateurs/groupes</li>
+                                <li>Permissions : Lecture, Modification, Contrôle total</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Accéder partage réseau</h4>
+                            <p><strong>Explorateur :</strong> \\NOMPC\Partage OU \\192.168.1.100\Partage</p>
+                            <p><strong>Mapper lecteur réseau :</strong> Clic droit Ce PC → Connecter lecteur réseau → Z: \\serveur\partage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Configuration VPN</h3>
+
+                <div class="example-box">
+                    <h4>🔐 Configuration client VPN Windows</h4>
+                    <p><strong>VPN intégré Windows :</strong></p>
+                    <ol>
+                        <li>Paramètres → Réseau et Internet → VPN</li>
+                        <li>Ajouter une connexion VPN</li>
+                        <li>Fournisseur : Windows (intégré)</li>
+                        <li>Nom connexion, adresse serveur, type (IKEv2, L2TP/IPsec, PPTP)</li>
+                        <li>Identifiants (utilisateur/mot de passe ou certificat)</li>
+                        <li>Se connecter</li>
+                    </ol>
+                    
+                    <p><strong>Clients VPN tiers :</strong></p>
+                    <ul>
+                        <li><strong>OpenVPN :</strong> Open source, config .ovpn</li>
+                        <li><strong>WireGuard :</strong> Moderne, performant, simple</li>
+                        <li><strong>Cisco AnyConnect :</strong> Entreprise</li>
+                        <li><strong>FortiClient :</strong> Fortinet</li>
+                    </ul>
+                </div>
+
+               

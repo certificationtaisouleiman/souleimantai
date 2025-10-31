@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervenir sur un réseau informatique - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .command-box {
+            background: #1a1a1a;
+            color: #3DDAB4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .command-box code {
+            color: #3DDAB4;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 3
+-Intervenir sur les Éléments de l'Infrastructure</div>
+        <h1>Intervenir sur un réseau informatique</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📡 Introduction</h2>
+                <p>L'intervention sur un réseau informatique est une compétence essentielle du technicien en assistance informatique. Elle englobe l'installation et la configuration des équipements réseau, le diagnostic des problèmes de connectivité et la maintenance du réseau local.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Assurer la disponibilité, la performance et la sécurité du réseau local pour garantir la continuité des activités de l'entreprise.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>🔌 1. Les Équipements Réseau Essentiels</h2>
+                
+                <h3>Équipements de base</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Switch (Commutateur)</h4>
+                        <p>Connecte les équipements au sein d'un réseau local. Distribue les données uniquement vers le destinataire concerné.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Routeur</h4>
+                        <p>Interconnecte différents réseaux (LAN vers Internet). Gère l'adressage IP et le routage des paquets.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Point d'accès WiFi</h4>
+                        <p>Fournit une connexion sans fil au réseau local. Étend la couverture réseau dans les espaces de travail.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Firewall</h4>
+                        <p>Filtre le trafic réseau entrant et sortant. Protège contre les menaces externes.</p>
+                    </div>
+                </div>
+
+                <h3>Comparaison des équipements</h3>
+                <table>
+                    <tr>
+                        <th>Équipement</th>
+                        <th>Fonction principale</th>
+                        <th>Couche OSI</th>
+                        <th>Usage typique</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Hub</strong></td>
+                        <td>Diffusion à tous les ports</td>
+                        <td>Couche 1 (Physique)</td>
+                        <td>Obsolète, éviter</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Switch</strong></td>
+                        <td>Commutation intelligente</td>
+                        <td>Couche 2 (Liaison)</td>
+                        <td>Réseau local</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Routeur</strong></td>
+                        <td>Routage inter-réseaux</td>
+                        <td>Couche 3 (Réseau)</td>
+                        <td>Connexion Internet</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Point d'accès</strong></td>
+                        <td>Connexion sans fil</td>
+                        <td>Couche 2 (Liaison)</td>
+                        <td>WiFi entreprise</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>⚙️ 2. Installation et Configuration des Équipements</h2>
+                
+                <h3>Installation d'un switch réseau</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Positionnement physique</h4>
+                            <p>Installer dans une baie de brassage ou armoire réseau. Assurer une ventilation adéquate et un accès facile.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Raccordement électrique</h4>
+                            <p>Connecter à une source d'alimentation sécurisée (onduleur recommandé). Vérifier les LED de démarrage.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Connexion des câbles</h4>
+                            <p>Câbler les postes de travail et serveurs. Connecter l'uplink vers le routeur ou switch principal. Identifier et étiqueter chaque câble.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Configuration de base</h4>
+                            <p>Accéder à l'interface d'administration. Configurer adresse IP, nom, VLAN si nécessaire. Sécuriser l'accès avec mot de passe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Configuration basique d'un switch Cisco</h4>
+                    <div class="command-box">
+                        <code>
+# Accès au mode privilégié<br>
+enable<br><br>
+
+# Mode configuration<br>
+configure terminal<br><br>
+
+# Définir le nom du switch<br>
+hostname Switch-Bureau1<br><br>
+
+# Configurer une adresse IP de gestion<br>
+interface vlan 1<br>
+ip address 192.168.1.10 255.255.255.0<br>
+no shutdown<br><br>
+
+# Définir la passerelle par défaut<br>
+ip default-gateway 192.168.1.1<br><br>
+
+# Sécuriser l'accès console<br>
+line console 0<br>
+password cisco123<br>
+login<br><br>
+
+# Sauvegarder la configuration<br>
+exit<br>
+write memory
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Configuration d'un point d'accès WiFi</h3>
+                <ol>
+                    <li><strong>Connexion physique</strong> - Brancher le point d'accès au switch via câble Ethernet (PoE si disponible)</li>
+                    <li><strong>Accès interface web</strong> - Se connecter à l'adresse IP par défaut (ex: 192.168.1.1)</li>
+                    <li><strong>Configuration SSID</strong> - Définir le nom du réseau WiFi visible par les utilisateurs</li>
+                    <li><strong>Sécurité</strong> - Configurer WPA2/WPA3 avec un mot de passe robuste</li>
+                    <li><strong>Canal et puissance</strong> - Sélectionner un canal peu encombré, ajuster la puissance d'émission</li>
+                    <li><strong>VLAN</strong> - Associer le WiFi à un VLAN spécifique si nécessaire</li>
+                </ol>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Bonnes pratiques WiFi :</strong>
+                    <ul>
+                        <li>Utiliser WPA3 ou au minimum WPA2-PSK</li>
+                        <li>Désactiver WPS (faille de sécurité connue)</li>
+                        <li>Changer les identifiants par défaut</li>
+                        <li>Mettre à jour le firmware régulièrement</li>
+                        <li>Séparer réseau invité et réseau entreprise</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>🔍 3. Diagnostic des Problèmes de Connectivité</h2>
+                
+                <h3>Méthodologie de diagnostic</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Identifier le problème</h4>
+                            <p>Écouter l'utilisateur, poser des questions précises : Depuis quand ? Tous les utilisateurs ou un seul ? Internet ou réseau local ?</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Vérifier la couche physique</h4>
+                            <p>Câbles branchés ? LED allumées sur les équipements ? Câble endommagé ? WiFi activé ?</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Tester la connectivité réseau</h4>
+                            <p>Utiliser ping, ipconfig/ifconfig pour vérifier l'adresse IP, la passerelle, les DNS.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Isoler la source</h4>
+                            <p>Problème local (un poste) ou global (réseau) ? Matériel ou logiciel ? Réseau interne ou accès Internet ?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Commandes de diagnostic essentielles</h3>
+                <table>
+                    <tr>
+                        <th>Commande</th>
+                        <th>Objectif</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>ping</strong></td>
+                        <td>Tester la connectivité réseau</td>
+                        <td>ping 192.168.1.1<br>ping google.com</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ipconfig / ifconfig</strong></td>
+                        <td>Afficher la configuration IP</td>
+                        <td>ipconfig /all<br>ifconfig -a</td>
+                    </tr>
+                    <tr>
+                        <td><strong>tracert / traceroute</strong></td>
+                        <td>Tracer le chemin réseau</td>
+                        <td>tracert 8.8.8.8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>nslookup</strong></td>
+                        <td>Tester la résolution DNS</td>
+                        <td>nslookup google.com</td>
+                    </tr>
+                    <tr>
+                        <td><strong>arp -a</strong></td>
+                        <td>Afficher le cache ARP</td>
+                        <td>arp -a</td>
+                    </tr>
+                    <tr>
+                        <td><strong>netstat</strong></td>
+                        <td>Afficher les connexions actives</td>
+                        <td>netstat -an</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Séquence de test complète</h4>
+                    <div class="command-box">
+                        <code>
+# 1. Vérifier la configuration IP<br>
+ipconfig /all<br><br>
+
+# 2. Tester la boucle locale (carte réseau fonctionne)<br>
+ping 127.0.0.1<br><br>
+
+# 3. Tester l'adresse IP locale<br>
+ping 192.168.1.50<br><br>
+
+# 4. Tester la passerelle (routeur)<br>
+ping 192.168.1.1<br><br>
+
+# 5. Tester un serveur DNS externe<br>
+ping 8.8.8.8<br><br>
+
+# 6. Tester la résolution DNS<br>
+ping google.com<br><br>
+
+# 7. Tracer le chemin complet<br>
+tracert google.com
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Problèmes courants et solutions</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Pas d'adresse IP</h4>
+                        <p><strong>Symptôme :</strong> APIPA (169.254.x.x)<br><strong>Solution :</strong> Vérifier câble, switch, DHCP. Renouveler IP avec ipconfig /renew</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>DNS ne répond pas</h4>
+                        <p><strong>Symptôme :</strong> Ping IP OK, ping nom KO<br><strong>Solution :</strong> Vérifier config DNS, tester 8.8.8.8, vider cache DNS</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Conflit d'adresse IP</h4>
+                        <p><strong>Symptôme :</strong> Message d'erreur Windows<br><strong>Solution :</strong> Libérer IP (ipconfig /release), identifier l'autre machine, corriger</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Débit lent</h4>
+                        <p><strong>Symptôme :</strong> Connexion lente<br><strong>Solution :</strong> Tester débit, vérifier switch full-duplex, câble Cat5e/6, interférences WiFi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>🌐 4. Adressage IP et Configuration Réseau</h2>
+                
+                <h3>Concepts fondamentaux</h3>
+                <p>L'adressage IP est la base de toute communication réseau. Chaque équipement doit posséder une adresse IP unique dans son réseau.</p>
+
+                <table>
+                    <tr>
+                        <th>Élément</th>
+                        <th>Description</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Adresse IP</strong></td>
+                        <td>Identifiant unique du poste</td>
+                        <td>192.168.1.50</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Masque de sous-réseau</strong></td>
+                        <td>Définit la taille du réseau</td>
+                        <td>255.255.255.0 (/24)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Passerelle</strong></td>
+                        <td>Routeur vers l'extérieur</td>
+                        <td>192.168.1.1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DNS</strong></td>
+                        <td>Résolution de noms</td>
+                        <td>8.8.8.8 / 1.1.1.1</td>
+                    </tr>
+                </table>
+
+                <h3>Configuration IP : DHCP vs Statique</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>DHCP (Automatique)</h4>
+                        <p><strong>Avantages :</strong> Simple, pas de gestion manuelle, évite les conflits<br><strong>Usage :</strong> Postes utilisateurs, laptops</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>IP Statique</h4>
+                        <p><strong>Avantages :</strong> Fixe, prévisible, nécessaire pour serveurs<br><strong>Usage :</strong> Serveurs, imprimantes, équipements réseau</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Configuration IP statique sous Windows</h4>
+                    <div class="command-box">
+                        <code>
+# Via PowerShell<br>
+New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 192.168.1.50 -PrefixLength 24 -DefaultGateway 192.168.1.1<br><br>
+
+# Configurer les DNS<br>
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 8.8.8.8,1.1.1.1<br><br>
+
+# Vérifier la configuration<br>
+Get-NetIPAddress -InterfaceAlias "Ethernet"
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Plans d'adressage courants</h3>
+                <table>
+                    <tr>
+                        <th>Réseau privé</th>
+                        <th>Plage d'adresses</th>
+                        <th>Usage typique</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Classe A</strong></td>
+                        <td>10.0.0.0 - 10.255.255.255</td>
+                        <td>Grandes entreprises</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Classe B</strong></td>
+                        <td>172.16.0.0 - 172.31.255.255</td>
+                        <td>Entreprises moyennes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Classe C</strong></td>
+                        <td>192.168.0.0 - 192.168.255.255</td>
+                        <td>PME, domicile (192.168.1.0/24)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>🛡️ 5. Sécurité Réseau de Base</h2>
+                
+                <h3>Mesures de sécurité essentielles</h3>
+
+                <div class="highlight-box danger">
+                    <strong>🔐 Actions prioritaires :</strong>
+                    <ul>
+                        <li><strong>Changer les mots de passe par défaut</strong> - Sur tous les équipements réseau</li>
+                        <li><strong>Désactiver les services inutilisés</strong> - Telnet, SNMP v1/v2, HTTP (préférer HTTPS)</li>
+                        <li><strong>Mettre à jour les firmwares</strong> - Corriger les failles de sécurité connues</li>
+                        <li><strong>Segmenter le réseau</strong> - Utiliser des VLAN pour séparer les services</li>
+                        <li><strong>Activer les logs</strong> - Tracer les événements pour audit et diagnostic</li>
+                    </ul>
+                </div>
+
+                <h3>Configuration d'un VLAN simple</h3>
+                <p>Les VLAN permettent de segmenter logiquement un réseau physique pour améliorer sécurité et performances.</p>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de segmentation VLAN</h4>
+                    <ul>
+                        <li><strong>VLAN 10</strong> - Administration (serveurs, équipements réseau)</li>
+                        <li><strong>VLAN 20</strong> - Postes utilisateurs</li>
+                        <li><strong>VLAN 30</strong> - WiFi invités</li>
+                        <li><strong>VLAN 40</strong> - Imprimantes et périphériques</li>
+                    </ul>
+                </div>
+
+                <div class="command-box">
+                    <code
