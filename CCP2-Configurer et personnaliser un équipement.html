@@ -1178,5 +1178,143 @@ netsh int tcp show global                # Paramètres TCP globaux</pre>
                         <li><strong>FortiClient :</strong> Fortinet</li>
                     </ul>
                 </div>
+<!-- Partie 6 -->
+<div class="section">
+    <h2>🧰 6. Maintenance et Bilan Final</h2>
+
+    <h3>Maintenance préventive</h3>
+    <p>Une configuration réussie ne suffit pas : un équipement doit être entretenu régulièrement pour rester fiable et performant. 
+    La maintenance préventive permet d’anticiper les pannes, de prolonger la durée de vie du matériel et de garantir la sécurité du système.</p>
+
+    <div class="key-points">
+        <div class="key-point">
+            <h4>🗓️ Vérifications périodiques</h4>
+            <p>Mises à jour Windows, pilotes, firmware BIOS/UEFI, antivirus et logiciels métiers.</p>
+        </div>
+        <div class="key-point">
+            <h4>🧼 Nettoyage matériel</h4>
+            <p>Dépoussiérage interne, vérification câbles, connecteurs et température processeur.</p>
+        </div>
+        <div class="key-point">
+            <h4>📂 Sauvegardes régulières</h4>
+            <p>Automatiser les sauvegardes sur disque externe ou serveur (Robocopy, OneDrive, NAS).</p>
+        </div>
+        <div class="key-point">
+            <h4>🛡️ Surveillance sécurité</h4>
+            <p>Analyse antivirus planifiée, vérification journaux d’événements, contrôle comptes utilisateurs.</p>
+        </div>
+    </div>
+
+    <h3>Maintenance corrective</h3>
+    <p>Elle consiste à intervenir en cas de dysfonctionnement détecté : erreurs système, ralentissements, virus, etc. 
+    Un diagnostic précis est essentiel avant toute action.</p>
+
+    <div class="process-steps">
+        <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Identifier le problème</h4>
+                <p>Observer les symptômes (erreur, lenteur, crash) et consulter les journaux système (Observateur d’événements).</p>
+            </div>
+        </div>
+        <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Analyser la cause</h4>
+                <p>Tester matériel (RAM, disque, alimentation) et logiciels (processus, pilotes, services).</p>
+            </div>
+        </div>
+        <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Appliquer la solution</h4>
+                <p>Mettre à jour, réparer fichiers système (<code>sfc /scannow</code>, <code>DISM /Online /Cleanup-Image /RestoreHealth</code>), ou restaurer système.</p>
+            </div>
+        </div>
+        <div class="process-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Documenter l’intervention</h4>
+                <p>Noter le diagnostic, la cause, les actions menées et la solution appliquée (traçabilité).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <strong>💡 Astuce pro :</strong> créer une image système (Acronis, Macrium Reflect, Clonezilla) après configuration complète. 
+        En cas de panne, la restauration se fait en quelques minutes.
+    </div>
+
+    <h3>Outils de maintenance Windows</h3>
+
+    <table>
+        <tr>
+            <th>Outil</th>
+            <th>Commande / Accès</th>
+            <th>Fonction principale</th>
+        </tr>
+        <tr>
+            <td><strong>Vérificateur de fichiers système</strong></td>
+            <td><code>sfc /scannow</code></td>
+            <td>Répare les fichiers système corrompus</td>
+        </tr>
+        <tr>
+            <td><strong>DISM</strong></td>
+            <td><code>dism /Online /Cleanup-Image /RestoreHealth</code></td>
+            <td>Répare l’image Windows (WinSxS)</td>
+        </tr>
+        <tr>
+            <td><strong>CHKDSK</strong></td>
+            <td><code>chkdsk C: /f /r</code></td>
+            <td>Analyse et corrige les erreurs disque</td>
+        </tr>
+        <tr>
+            <td><strong>Observateur d’événements</strong></td>
+            <td><code>eventvwr.msc</code></td>
+            <td>Surveille erreurs système et sécurité</td>
+        </tr>
+        <tr>
+            <td><strong>Gestionnaire de périphériques</strong></td>
+            <td><code>devmgmt.msc</code></td>
+            <td>Diagnostique les pilotes et matériels défaillants</td>
+        </tr>
+    </table>
+
+    <div class="highlight-box warning">
+        <strong>⚠️ Bon réflexe :</strong> toujours créer un point de restauration avant toute modification système importante.
+    </div>
+</div>
+
+<!-- Conclusion -->
+<div class="section">
+    <h2>🏁 Conclusion</h2>
+    <p>Configurer et personnaliser un équipement Windows, c’est bien plus que suivre une procédure : 
+    c’est appliquer une démarche complète de <strong>préparation, optimisation et sécurisation</strong> d’un poste de travail. 
+    Chaque réglage du BIOS, chaque paramètre système ou réseau a un impact direct sur la fiabilité et la sécurité de l’environnement utilisateur.</p>
+
+    <p>En maîtrisant les étapes vues dans ce cours — de l’UEFI à la maintenance en passant par la sécurité et l’optimisation — 
+    le technicien garantit un poste <strong>performant, stable et conforme</strong> aux politiques de l’entreprise.</p>
+
+    <div class="highlight-box success">
+        <strong>✅ À retenir :</strong>
+        <ul>
+            <li>Un bon technicien anticipe les besoins et sécurise les configurations.</li>
+            <li>La performance passe par la rigueur et la documentation.</li>
+            <li>La maintenance régulière assure la longévité du matériel et la fiabilité du système.</li>
+        </ul>
+    </div>
+
+    <div class="quiz-section">
+        <h3>🧠 Mini-quiz de fin de module</h3>
+        <ol>
+            <li>Quelle différence entre BIOS Legacy et UEFI ?</li>
+            <li>Pourquoi activer le TPM 2.0 sur un poste Windows 11 ?</li>
+            <li>Quels sont les avantages du mode AHCI par rapport à IDE ?</li>
+            <li>Quelles sont les fonctions principales de BitLocker ?</li>
+            <li>Comment vérifier et réparer les fichiers système Windows ?</li>
+        </ol>
+    </div>
+</div>
+
 
                
