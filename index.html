@@ -262,19 +262,49 @@
     </nav>
 
     <section class="tabs-section">
-        <h2 class="section-title">Certification TAI 2025</h2>
+        <h2 style="
+  font-family: 'Manrope', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  background: linear-gradient(145deg, #111, #444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 3rem auto;
+  padding: 1.2rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  width: fit-content;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+">
+  Certification&nbsp;TAI&nbsp;2025
+</h2>
+
+<script>
+  const h2 = document.querySelector('h2');
+  h2.addEventListener('mouseover', () => {
+    h2.style.transform = 'translateY(-3px) scale(1.02)';
+    h2.style.boxShadow = '0 14px 45px rgba(0,0,0,0.18)';
+  });
+  h2.addEventListener('mouseout', () => {
+    h2.style.transform = 'translateY(0) scale(1)';
+    h2.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
+  });
+</script>
+
         
         <div class="tabs-container">
             <div class="tabs">
                 <button class="tab active" data-tab="bloc1">CCP 1</button>
                 <button class="tab" data-tab="bloc2">CCP 2</button>
                 <button class="tab" data-tab="bloc3">CCP 3
-
-                <button class="tab" data-tab="materiel">Hardware</button>
-                <button class="tab" data-tab="systemes">Systèmes d'Exploitation</button>
-                                <button class="tab" data-tab="reseau">Réseaux & Active Directory</button>
-                
-             <button class="tab" data-tab="boite-outils">La boîte à outils de Jojo</button>
+                <button class="tab" data-tab="materiel">HardWare</button>
+                <button class="tab" data-tab="systemes">OS</button>
+                                
+             <button class="tab" data-tab="boite-outils">Outils Jojo</button>
             </div>
 
             <!-- Bloc 1: Support Utilisateur -->
@@ -752,9 +782,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
