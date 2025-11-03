@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervenir sur un annuaire Active Directory - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .command-box {
+            background: #1a1a1a;
+            color: #3DDAB4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .command-box code {
+            color: #3DDAB4;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 3 - Intervenir sur les Éléments de l'Infrastructure</div>
+        <h1>Intervenir sur un annuaire Active Directory</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🔐 Introduction</h2>
+                <p>Active Directory (AD) est le service d'annuaire de Microsoft qui centralise la gestion des utilisateurs, groupes, ordinateurs et ressources d'un réseau Windows. L'intervention sur AD est une compétence clé pour administrer efficacement un domaine Windows.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Gérer les comptes utilisateurs, organiser les ressources, déployer des stratégies et sécuriser l'accès aux ressources de l'entreprise de manière centralisée.
+                </div>
+            </div>
+
+            <!-- Partie 1 -->
+            <div class="section">
+                <h2>👤 1. Gestion des Utilisateurs</h2>
+                
+                <h3>Créer un utilisateur</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Via Interface Graphique</h4>
+                        <p>Outils d'administration Windows → Utilisateurs et ordinateurs Active Directory → Clic droit sur l'OU → Nouveau → Utilisateur</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Via PowerShell</h4>
+                        <p>Méthode rapide et automatisable pour créer des comptes en masse ou via scripts.</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Création d'utilisateur en PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Créer un nouvel utilisateur<br>
+New-ADUser -Name "Jean Dupont" `<br>
+&nbsp;&nbsp;-GivenName "Jean" `<br>
+&nbsp;&nbsp;-Surname "Dupont" `<br>
+&nbsp;&nbsp;-SamAccountName "jdupont" `<br>
+&nbsp;&nbsp;-UserPrincipalName "jdupont@entreprise.local" `<br>
+&nbsp;&nbsp;-Path "OU=Utilisateurs,DC=entreprise,DC=local" `<br>
+&nbsp;&nbsp;-AccountPassword (ConvertTo-SecureString "P@ssw0rd123!" -AsPlainText -Force) `<br>
+&nbsp;&nbsp;-Enabled $true `<br>
+&nbsp;&nbsp;-ChangePasswordAtLogon $true
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Opérations courantes sur les utilisateurs</h3>
+                <table>
+                    <tr>
+                        <th>Opération</th>
+                        <th>Commande PowerShell</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Désactiver un compte</strong></td>
+                        <td>Disable-ADAccount -Identity jdupont</td>
+                        <td>Départ temporaire, suspension</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Réactiver un compte</strong></td>
+                        <td>Enable-ADAccount -Identity jdupont</td>
+                        <td>Retour d'un utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Réinitialiser mot de passe</strong></td>
+                        <td>Set-ADAccountPassword -Identity jdupont -Reset</td>
+                        <td>Mot de passe oublié</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Déplacer un utilisateur</strong></td>
+                        <td>Move-ADObject -Identity "CN=..." -TargetPath "OU=..."</td>
+                        <td>Changement de service</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supprimer un utilisateur</strong></td>
+                        <td>Remove-ADUser -Identity jdupont</td>
+                        <td>Départ définitif</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Modifier les propriétés d'un utilisateur</h4>
+                    <div class="command-box">
+                        <code>
+# Modifier le numéro de téléphone<br>
+Set-ADUser -Identity jdupont -OfficePhone "01.23.45.67.89"<br><br>
+
+# Modifier le service<br>
+Set-ADUser -Identity jdupont -Department "Comptabilité"<br><br>
+
+# Ajouter une description<br>
+Set-ADUser -Identity jdupont -Description "Responsable comptable"<br><br>
+
+# Définir une date d'expiration de compte<br>
+Set-ADAccountExpiration -Identity jdupont -DateTime "31/12/2025"
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Utiliser une convention de nommage cohérente (ex: prenom.nom)</li>
+                        <li>Forcer le changement de mot de passe à la première connexion</li>
+                        <li>Désactiver les comptes plutôt que les supprimer immédiatement</li>
+                        <li>Documenter les opérations importantes dans un journal</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 2 -->
+            <div class="section">
+                <h2>👥 2. Gestion des Groupes</h2>
+                
+                <h3>Types de groupes Active Directory</h3>
+
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Groupe de sécurité</strong></td>
+                        <td>Permet d'attribuer des permissions</td>
+                        <td>Accès aux ressources (dossiers, imprimantes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Groupe de distribution</strong></td>
+                        <td>Listes de diffusion e-mail uniquement</td>
+                        <td>Envoi d'emails groupés (Exchange)</td>
+                    </tr>
+                </table>
+
+                <h3>Portées des groupes</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Global</h4>
+                        <p>Membres du même domaine. Utilisé pour regrouper des utilisateurs d'un même domaine.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Domaine local</h4>
+                        <p>Assigne des permissions sur les ressources locales. Peut contenir des membres de n'importe quel domaine.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Universel</h4>
+                        <p>Membres de n'importe quel domaine de la forêt. Utilisé pour les grandes infrastructures multi-domaines.</p>
+                    </div>
+                </div>
+
+                <h3>Créer et gérer des groupes</h3>
+                <div class="example-box">
+                    <h4>💡 Création et gestion de groupes</h4>
+                    <div class="command-box">
+                        <code>
+# Créer un groupe de sécurité<br>
+New-ADGroup -Name "GRP_Comptabilite" `<br>
+&nbsp;&nbsp;-GroupScope Global `<br>
+&nbsp;&nbsp;-GroupCategory Security `<br>
+&nbsp;&nbsp;-Path "OU=Groupes,DC=entreprise,DC=local" `<br>
+&nbsp;&nbsp;-Description "Groupe pour le service comptabilité"<br><br>
+
+# Ajouter un membre au groupe<br>
+Add-ADGroupMember -Identity "GRP_Comptabilite" -Members jdupont<br><br>
+
+# Ajouter plusieurs membres<br>
+Add-ADGroupMember -Identity "GRP_Comptabilite" -Members jdupont,mdoe,asmith<br><br>
+
+# Retirer un membre<br>
+Remove-ADGroupMember -Identity "GRP_Comptabilite" -Members jdupont<br><br>
+
+# Lister les membres d'un groupe<br>
+Get-ADGroupMember -Identity "GRP_Comptabilite"
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Stratégie AGDLP :</strong>
+                    <p>Bonne pratique pour organiser les groupes et permissions :</p>
+                    <ul>
+                        <li><strong>A</strong>ccounts (Comptes) → Ajouter les utilisateurs</li>
+                        <li><strong>G</strong>lobal groups (Groupes globaux) → Regrouper par fonction/service</li>
+                        <li><strong>D</strong>omain Local groups (Groupes locaux de domaine) → Définir par ressource</li>
+                        <li><strong>P</strong>ermissions → Attribuer les droits aux groupes locaux</li>
+                    </ul>
+                </div>
+
+                <h3>Groupes spéciaux intégrés</h3>
+                <table>
+                    <tr>
+                        <th>Groupe</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Domain Admins</strong></td>
+                        <td>Administrateurs du domaine, droits complets</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Domain Users</strong></td>
+                        <td>Tous les utilisateurs du domaine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Domain Computers</strong></td>
+                        <td>Tous les ordinateurs joints au domaine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterprise Admins</strong></td>
+                        <td>Administrateurs de toute la forêt AD</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Partie 3 -->
+            <div class="section">
+                <h2>⚙️ 3. Stratégies de Groupe (GPO)</h2>
+                
+                <h3>Qu'est-ce qu'une GPO ?</h3>
+                <p>Les <strong>Group Policy Objects</strong> (Objets de stratégie de groupe) permettent de configurer et déployer automatiquement des paramètres sur les utilisateurs et ordinateurs du domaine. C'est l'outil central pour administrer un parc Windows.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Configuration ordinateur</h4>
+                        <p>S'applique aux machines (sécurité, logiciels, scripts de démarrage)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Configuration utilisateur</h4>
+                        <p>S'applique aux comptes (bureau, préférences, lecteurs mappés)</p>
+                    </div>
+                </div>
+
+                <h3>Créer et lier une GPO</h3>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Ouvrir la console de gestion</h4>
+                            <p>Exécuter <strong>gpmc.msc</strong> (Group Policy Management Console)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Créer la GPO</h4>
+                            <p>Clic droit sur l'OU cible → <strong>Créer un objet GPO dans ce domaine et le lier ici</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Nommer la GPO</h4>
+                            <p>Utiliser un nom descriptif (ex: "GPO_Securite_Postes_Comptabilite")</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Modifier la GPO</h4>
+                            <p>Clic droit → <strong>Modifier</strong> pour accéder à l'éditeur et configurer les paramètres</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Exemples de GPO courantes</h3>
+                <table>
+                    <tr>
+                        <th>Objectif</th>
+                        <th>Emplacement</th>
+                        <th>Paramètre</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Déployer un logiciel</strong></td>
+                        <td>Config ordinateur → Stratégies → Paramètres du logiciel</td>
+                        <td>Installation de logiciel (fichier .msi)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Définir un fond d'écran</strong></td>
+                        <td>Config utilisateur → Stratégies → Modèles admin → Bureau</td>
+                        <td>Papier peint du Bureau</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mapper des lecteurs réseau</strong></td>
+                        <td>Config utilisateur → Préférences → Paramètres Windows</td>
+                        <td>Mappages de lecteurs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stratégie de mot de passe</strong></td>
+                        <td>Config ordinateur → Stratégies → Paramètres de sécurité</td>
+                        <td>Stratégie de compte</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Désactiver l'USB</strong></td>
+                        <td>Config ordinateur → Stratégies → Modèles admin → Système</td>
+                        <td>Accès au stockage amovible</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Mapper un lecteur réseau via GPO</h4>
+                    <div class="command-box">
+                        <code>
+# Navigation dans l'éditeur GPO<br>
+Configuration utilisateur<br>
+└─ Préférences<br>
+&nbsp;&nbsp;&nbsp;└─ Paramètres Windows<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Mappages de lecteurs<br><br>
+
+# Clic droit → Nouveau → Lecteur mappé<br>
+Action : Créer<br>
+Emplacement : \\serveur\partage<br>
+Reconnecter : Activé<br>
+Lettre : P: (par exemple)<br>
+Étiquette : Partage Documents
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Commandes GPO essentielles</h3>
+                <div class="example-box">
+                    <h4>💡 Gestion des GPO en ligne de commande</h4>
+                    <div class="command-box">
+                        <code>
+# Forcer l'application immédiate des GPO<br>
+gpupdate /force<br><br>
+
+# Voir les GPO appliquées à l'utilisateur/ordinateur<br>
+gpresult /r<br><br>
+
+# Générer un rapport HTML détaillé<br>
+gpresult /h C:\rapport_gpo.html<br><br>
+
+# Afficher les GPO appliquées pour un utilisateur spécifique<br>
+gpresult /user jdupont /r
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Ordre d'application des GPO :</strong>
+                    <ol>
+                        <li><strong>Local</strong> - Stratégie locale de l'ordinateur</li>
+                        <li><strong>Site</strong> - GPO au niveau du site AD</li>
+                        <li><strong>Domaine</strong> - GPO au niveau du domaine</li>
+                        <li><strong>OU</strong> - GPO sur les unités d'organisation (priorité la plus haute)</li>
+                    </ol>
+                    <p>Les GPO des enfants remplacent celles des parents, sauf si "Appliqué" est activé.</p>
+                </div>
+            </div>
+
+            <!-- Partie 4 -->
+            <div class="section">
+                <h2>🎭 4. Rôles FSMO et Délégation</h2>
+                
+                <h3>Les 5 rôles FSMO (Flexible Single Master Operations)</h3>
+                <p>Certaines opérations AD ne peuvent être effectuées que par un seul contrôleur de domaine à la fois. Ces rôles critiques doivent être correctement répartis.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Niveau Forêt</h4>
+                        <p><strong>Contrôleur de schéma :</strong> Gère les modifications du schéma AD</p>
+                        <p><strong>Maître d'attribution de noms :</strong> Gère l'ajout/suppression de domaines</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Niveau Domaine</h4>
+                        <p><strong>Émulateur PDC :</strong> Sync horaire, authentification prioritaire, mots de passe</p>
+                        <p><strong>Maître RID :</strong> Distribue les pools d'identifiants uniques</p>
+                        <p><strong>Maître d'infrastructure :</strong> Maintient les références entre domaines</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Identifier les détenteurs de rôles FSMO</h4>
+                    <div class="command-box">
+                        <code>
+# Voir tous les rôles FSMO<br>
+netdom query fsmo<br><br>
+
+# Via PowerShell (plus détaillé)<br>
+Get-ADDomain | Select-Object PDCEmulator, RIDMaster, InfrastructureMaster<br>
+Get-ADForest | Select-Object SchemaMaster, DomainNamingMaster
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Délégation de contrôle</h3>
+                <p>La délégation permet d'accorder des droits administratifs limités sur une OU sans donner les privilèges d'administrateur du domaine. Parfait pour distribuer les tâches au support technique.</p>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Sélectionner l'OU</h4>
+                            <p>Dans "Utilisateurs et ordinateurs AD", clic droit sur l'OU → <strong>Déléguer le contrôle</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Choisir les utilisateurs/groupes</h4>
+                            <p>Sélectionner le groupe ou utilisateur qui recevra les droits (ex: GRP_Helpdesk)</p>
+<div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Choisir les utilisateurs/groupes</h4>
+                            <p>Sélectionner le groupe ou utilisateur qui recevra les droits (ex: GRP_Helpdesk)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Définir les tâches</h4>
+                            <p>Choisir les tâches courantes à déléguer ou créer une tâche personnalisée</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Valider</h4>
+                            <p>Vérifier le résumé et terminer l'assistant de délégation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Tâches courantes à déléguer</h4>
+                    <ul>
+                        <li>Réinitialiser les mots de passe et forcer le changement</li>
+                        <li>Créer, supprimer et gérer les comptes utilisateurs</li>
+                        <li>Modifier l'appartenance d'un groupe</li>
+                        <li>Gérer les stratégies de groupe</li>
+                        <li>Gérer les comptes ordinateurs</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Bonnes pratiques de délégation :</strong>
+                    <ul>
+                        <li>Déléguer à des groupes plutôt qu'à des utilisateurs individuels</li>
+                        <li>Appliquer le principe du moindre privilège</li>
+                        <li>Documenter toutes les délégations</li>
+                        <li>Réviser régulièrement les délégations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 5 -->
+            <div class="section">
+                <h2>🖥️ 5. Gestion des Ordinateurs</h2>
+                
+                <h3>Joindre un ordinateur au domaine</h3>
+                <p>L'intégration des postes de travail au domaine permet une gestion centralisée et l'application des GPO.</p>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Configurer le DNS</h4>
+                            <p>S'assurer que le poste utilise le serveur DNS du contrôleur de domaine</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Accéder aux propriétés système</h4>
+                            <p>Panneau de configuration → Système → Paramètres système avancés</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Joindre le domaine</h4>
+                            <p>Onglet "Nom de l'ordinateur" → Modifier → Domaine → Entrer le nom du domaine</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>S'authentifier</h4>
+                            <p>Saisir les identifiants d'un compte autorisé à joindre des ordinateurs au domaine</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Redémarrer</h4>
+                            <p>Redémarrer l'ordinateur pour finaliser l'intégration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Joindre un ordinateur via PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Joindre un ordinateur au domaine<br>
+Add-Computer -DomainName "entreprise.local" `<br>
+&nbsp;&nbsp;-Credential (Get-Credential) `<br>
+&nbsp;&nbsp;-Restart<br><br>
+
+# Joindre et placer dans une OU spécifique<br>
+Add-Computer -DomainName "entreprise.local" `<br>
+&nbsp;&nbsp;-OUPath "OU=Postes_Comptabilite,DC=entreprise,DC=local" `<br>
+&nbsp;&nbsp;-Credential (Get-Credential) `<br>
+&nbsp;&nbsp;-Restart
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Gestion des comptes ordinateurs</h3>
+                <table>
+                    <tr>
+                        <th>Opération</th>
+                        <th>Commande PowerShell</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Lister les ordinateurs</strong></td>
+                        <td>Get-ADComputer -Filter *</td>
+                        <td>Inventaire du parc</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Désactiver un ordinateur</strong></td>
+                        <td>Disable-ADAccount -Identity "PC-COMPTA-01"</td>
+                        <td>Ordinateur hors service</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Déplacer un ordinateur</strong></td>
+                        <td>Move-ADObject -Identity "CN=..." -TargetPath "OU=..."</td>
+                        <td>Réorganisation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supprimer un ordinateur</strong></td>
+                        <td>Remove-ADComputer -Identity "PC-COMPTA-01"</td>
+                        <td>Ordinateur retiré du parc</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Réinitialiser compte ordinateur</strong></td>
+                        <td>Reset-ComputerMachinePassword</td>
+                        <td>Problème de relation d'approbation</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box danger">
+                    <strong>🔒 Sécurité :</strong>
+                    <p>Par défaut, les utilisateurs authentifiés peuvent joindre jusqu'à 10 ordinateurs au domaine. Pour des raisons de sécurité, il est recommandé de :</p>
+                    <ul>
+                        <li>Limiter ce droit aux administrateurs uniquement</li>
+                        <li>Pré-créer les comptes ordinateurs dans l'AD</li>
+                        <li>Utiliser des noms standardisés pour les postes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 6 -->
+            <div class="section">
+                <h2>📁 6. Unités d'Organisation (OU)</h2>
+                
+                <h3>Qu'est-ce qu'une OU ?</h3>
+                <p>Les <strong>Unités d'Organisation</strong> sont des conteneurs qui permettent d'organiser hiérarchiquement les objets AD (utilisateurs, groupes, ordinateurs) et de leur appliquer des GPO spécifiques.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Organisation logique</h4>
+                        <p>Structure selon les départements, sites géographiques ou fonctions de l'entreprise</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Application de GPO</h4>
+                        <p>Chaque OU peut avoir ses propres stratégies de groupe</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Délégation ciblée</h4>
+                        <p>Permet de déléguer l'administration par service ou département</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Exemple de structure OU</h4>
+                    <div class="command-box">
+                        <code>
+entreprise.local<br>
+├── Utilisateurs<br>
+│   ├── Direction<br>
+│   ├── Comptabilité<br>
+│   ├── RH<br>
+│   ├── IT<br>
+│   └── Commercial<br>
+├── Ordinateurs<br>
+│   ├── Postes_Direction<br>
+│   ├── Postes_Comptabilite<br>
+│   ├── Postes_RH<br>
+│   ├── Postes_IT<br>
+│   └── Serveurs<br>
+├── Groupes<br>
+│   ├── Securite<br>
+│   └── Distribution<br>
+└── Service_Accounts
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Créer et gérer des OU</h3>
+                <div class="example-box">
+                    <h4>💡 Gestion des OU en PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Créer une OU<br>
+New-ADOrganizationalUnit -Name "Comptabilité" `<br>
+&nbsp;&nbsp;-Path "OU=Utilisateurs,DC=entreprise,DC=local" `<br>
+&nbsp;&nbsp;-ProtectedFromAccidentalDeletion $true<br><br>
+
+# Créer une structure complète<br>
+New-ADOrganizationalUnit -Name "Paris" -Path "DC=entreprise,DC=local"<br>
+New-ADOrganizationalUnit -Name "Utilisateurs" -Path "OU=Paris,DC=entreprise,DC=local"<br>
+New-ADOrganizationalUnit -Name "Ordinateurs" -Path "OU=Paris,DC=entreprise,DC=local"<br><br>
+
+# Supprimer une OU (retirer d'abord la protection)<br>
+Set-ADOrganizationalUnit -Identity "OU=Comptabilité,OU=Utilisateurs,DC=entreprise,DC=local" `<br>
+&nbsp;&nbsp;-ProtectedFromAccidentalDeletion $false<br>
+Remove-ADOrganizationalUnit -Identity "OU=Comptabilité,OU=Utilisateurs,DC=entreprise,DC=local"
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Bonnes pratiques pour les OU :</strong>
+                    <ul>
+                        <li>Créer une structure simple et évolutive</li>
+                        <li>Éviter les hiérarchies trop profondes (maximum 3-4 niveaux)</li>
+                        <li>Protéger les OU contre la suppression accidentelle</li>
+                        <li>Documenter l'objectif de chaque OU</li>
+                        <li>Organiser par fonction plutôt que par localisation (sauf infrastructures multi-sites)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 7 -->
+            <div class="section">
+                <h2>🔍 7. Requêtes et Recherches dans AD</h2>
+                
+                <h3>Recherches courantes</h3>
+                <p>Active Directory offre de puissantes capacités de recherche pour retrouver rapidement des objets.</p>
+
+                <div class="example-box">
+                    <h4>💡 Recherches avec PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Rechercher un utilisateur par nom<br>
+Get-ADUser -Filter "Name -like '*Dupont*'"<br><br>
+
+# Rechercher les utilisateurs d'un service<br>
+Get-ADUser -Filter "Department -eq 'Comptabilité'" -Properties Department<br><br>
+
+# Utilisateurs avec mot de passe expiré<br>
+Search-ADAccount -PasswordExpired<br><br>
+
+# Utilisateurs désactivés<br>
+Get-ADUser -Filter "Enabled -eq '$false'"<br><br>
+
+# Comptes inactifs depuis 90 jours<br>
+$date = (Get-Date).AddDays(-90)<br>
+Get-ADUser -Filter {LastLogonDate -lt $date} -Properties LastLogonDate<br><br>
+
+# Ordinateurs par système d'exploitation<br>
+Get-ADComputer -Filter * -Properties OperatingSystem | `<br>
+&nbsp;&nbsp;Group-Object OperatingSystem | `<br>
+&nbsp;&nbsp;Select-Object Name, Count<br><br>
+
+# Membres d'un groupe<br>
+Get-ADGroupMember -Identity "Domain Admins" -Recursive<br><br>
+
+# Groupes dont un utilisateur est membre<br>
+Get-ADUser -Identity jdupont -Properties MemberOf | `<br>
+&nbsp;&nbsp;Select-Object -ExpandProperty MemberOf
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Exporter des données</h3>
+                <div class="example-box">
+                    <h4>💡 Export vers CSV</h4>
+                    <div class="command-box">
+                        <code>
+# Exporter tous les utilisateurs avec détails<br>
+Get-ADUser -Filter * -Properties * | `<br>
+&nbsp;&nbsp;Select-Object Name, SamAccountName, EmailAddress, Department, Title | `<br>
+&nbsp;&nbsp;Export-Csv -Path "C:\Export\Utilisateurs.csv" -NoTypeInformation -Encoding UTF8<br><br>
+
+# Exporter les ordinateurs<br>
+Get-ADComputer -Filter * -Properties * | `<br>
+&nbsp;&nbsp;Select-Object Name, OperatingSystem, LastLogonDate, IPv4Address | `<br>
+&nbsp;&nbsp;Export-Csv -Path "C:\Export\Ordinateurs.csv" -NoTypeInformation -Encoding UTF8<br><br>
+
+# Exporter les groupes et leurs membres<br>
+$groupes = Get-ADGroup -Filter *<br>
+$resultats = foreach ($groupe in $groupes) {<br>
+&nbsp;&nbsp;$membres = Get-ADGroupMember -Identity $groupe | Select-Object -ExpandProperty Name<br>
+&nbsp;&nbsp;[PSCustomObject]@{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Groupe = $groupe.Name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Membres = $membres -join "; "<br>
+&nbsp;&nbsp;}<br>
+}<br>
+$resultats | Export-Csv -Path "C:\Export\Groupes.csv" -NoTypeInformation -Encoding UTF8
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 8 -->
+            <div class="section">
+                <h2>🛡️ 8. Sécurité et Bonnes Pratiques</h2>
+                
+                <h3>Stratégie de mot de passe</h3>
+                <p>Une politique stricte de mots de passe est essentielle pour la sécurité du domaine.</p>
+
+                <table>
+                    <tr>
+                        <th>Paramètre</th>
+                        <th>Recommandation</th>
+                        <th>Emplacement GPO</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Longueur minimale</strong></td>
+                        <td>12 caractères minimum</td>
+                        <td>Stratégie de compte → Stratégie de mot de passe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complexité</strong></td>
+                        <td>Activée (majuscules, minuscules, chiffres, symboles)</td>
+                        <td>Stratégie de compte → Stratégie de mot de passe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Durée de vie maximale</strong></td>
+                        <td>90 jours</td>
+                        <td>Stratégie de compte → Stratégie de mot de passe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Historique</strong></td>
+                        <td>Conserver 24 mots de passe</td>
+                        <td>Stratégie de compte → Stratégie de mot de passe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seuil de verrouillage</strong></td>
+                        <td>5 tentatives invalides</td>
+                        <td>Stratégie de compte → Stratégie de verrouillage</td>
+                    </tr>
+                </table>
+
+                <h3>Stratégies de sécurité essentielles</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Principe du moindre privilège</h4>
+                        <p>N'accorder que les droits strictement nécessaires. Éviter d'ajouter des utilisateurs aux "Domain Admins" sauf absolue nécessité.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Comptes de service</h4>
+                        <p>Utiliser des comptes dédiés pour les services, avec mots de passe complexes et non expirables.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Audit et logs</h4>
+                        <p>Activer l'audit des événements critiques (connexions, modifications AD, changements de permissions).</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sauvegardes régulières</h4>
+                        <p>Sauvegarder l'AD régulièrement (System State) et tester les restaurations.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>⛔ Erreurs courantes à éviter :</strong>
+                    <ul>
+                        <li>Utiliser le compte Administrateur pour les tâches quotidiennes</li>
+                        <li>Ne pas documenter les modifications apportées à l'AD</li>
+                        <li>Appliquer des GPO au niveau du domaine plutôt qu'aux OU</li>
+                        <li>Ne pas tester les GPO avant déploiement en production</li>
+                        <li>Ignorer les comptes inactifs et obsolètes</li>
+                        <li>Ne pas surveiller les logs d'événements du contrôleur de domaine</li>
+                    </ul>
+                </div>
+
+                <h3>Maintenance régulière</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Audit mensuel</h4>
+                            <p>Vérifier les comptes inactifs, les groupes vides, les GPO non liées</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Nettoyage trimestriel</h4>
+                            <p>Supprimer les comptes obsolètes, réorganiser les OU si nécessaire</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Revue semestrielle</h4>
+                            <p>Auditer les droits administratifs, réviser les délégations, vérifier les rôles FSMO</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Sauvegardes quotidiennes</h4>
+                            <p>Automatiser les sauvegardes du System State et tester régulièrement les restaurations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h2>📝 Questions de Révision</h2>
+                
+                <div class="section">
+                    <h3>Question 1</h3>
+                    <p><strong>Quelle commande PowerShell permet de forcer l'application immédiate des GPO sur un poste ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> <code>gpupdate /force</code>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 2</h3>
+                    <p><strong>Quel est le rôle FSMO responsable de la synchronisation horaire et de l'authentification prioritaire ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> L'émulateur PDC (Primary Domain Controller)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 3</h3>
+                    <p><strong>Quelle est la différence entre un groupe de sécurité et un groupe de distribution ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Un groupe de sécurité permet d'attribuer des permissions sur des ressources, tandis qu'un groupe de distribution sert uniquement pour les listes de diffusion e-mail (Exchange).
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 4</h3>
+                    <p><strong>Dans quel ordre sont appliquées les GPO ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Local → Site → Domaine → OU (les GPO des OU ont la priorité la plus haute)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 5</h3>
+                    <p><strong>Comment rechercher tous les utilisateurs dont le compte est désactivé ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> <code>Get-ADUser -Filter "Enabled -eq '$false'"</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                <p>La maîtrise d'Active Directory est une compétence fondamentale pour tout technicien d'assistance informatique. Ce cours vous a présenté les opérations essentielles :</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Gestion quotidienne</h4>
+                        <p>Création et modification d'utilisateurs, gestion des groupes, support aux utilisateurs</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Déploiement</h4>
+                        <p>Application de stratégies de groupe, intégration de postes au domaine</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Administration avancée</h4>
+                        <p>Délégation, gestion des OU, surveillance et maintenance</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sécurité</h4>
+                        <p>Application des bonnes pratiques, audit régulier, principe du moindre privilège</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>💡 Conseils pour progresser :</strong>
+                    <ul>
+                        <li>Pratiquez régulièrement dans un environnement de test</li>
+                        <li>Automatisez les tâches répétitives avec PowerShell</li>
+                        <li>Documentez vos interventions et créez vos propres procédures</li>
+                        <li>Restez informé des évolutions d'Active Directory et des nouvelles menaces de sécurité</li>
+                        <li>Consultez la documentation Microsoft officielle pour approfondir vos connaissances</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #3B5BDB;">
+                                    </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Formation TAI - Intervenir sur un annuaire Active Directory</p>
+        <p>CCP 3 - Intervenir sur les Éléments de l'Infrastructure</p>
+                        </div>
