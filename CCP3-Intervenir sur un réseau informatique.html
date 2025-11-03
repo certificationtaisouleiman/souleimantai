@@ -737,6 +737,320 @@ Get-NetIPAddress -InterfaceAlias "Ethernet"
                         <li><strong>VLAN 40</strong> - Imprimantes et périphériques</li>
                     </ul>
                 </div>
+<div class="command-box">
+                    <code>
+# Créer les VLANs<br>
+vlan 10<br>
+name Administration<br>
+vlan 20<br>
+name Utilisateurs<br>
+vlan 30<br>
+name WiFi-Invite<br>
+vlan 40<br>
+name Peripheriques<br><br>
+
+# Assigner un port au VLAN 20<br>
+interface fastethernet 0/5<br>
+switchport mode access<br>
+switchport access vlan 20<br><br>
+
+# Configurer un port trunk (connexion entre switchs)<br>
+interface gigabitethernet 0/1<br>
+switchport mode trunk<br>
+switchport trunk allowed vlan 10,20,30,40
+                    </code>
+                </div>
+
+                <h3>Filtrage par adresse MAC</h3>
+                <p>Le filtrage MAC permet de contrôler quels équipements peuvent se connecter au réseau, mais ce n'est pas une sécurité absolue (les adresses MAC peuvent être usurpées).</p>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Port Security :</strong> Limite le nombre d'adresses MAC par port et définit des actions en cas de violation (shutdown, restrict, protect).
+                </div>
+            </div>
+
+            <!-- Partie 6 -->
+            <div class="section">
+                <h2>🔧 6. Maintenance Préventive du Réseau</h2>
+                
+                <h3>Tâches de maintenance régulières</h3>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Quotidien</h4>
+                        <p>Vérifier les LED des équipements, surveiller les alertes, contrôler les logs d'erreurs</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Hebdomadaire</h4>
+                        <p>Analyser les performances réseau, vérifier l'espace disque des logs, tester les sauvegardes de config</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mensuel</h4>
+                        <p>Mettre à jour les firmwares, nettoyer physiquement les équipements, réviser la documentation</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Trimestriel</h4>
+                        <p>Auditer la sécurité, revoir le plan d'adressage, tester le plan de reprise</p>
+                    </div>
+                </div>
+
+                <h3>Documentation réseau essentielle</h3>
+                <ul>
+                    <li><strong>Schéma réseau</strong> - Topologie physique et logique avec tous les équipements</li>
+                    <li><strong>Plan d'adressage IP</strong> - Liste des adresses attribuées (DHCP et statiques)</li>
+                    <li><strong>Configurations des équipements</strong> - Sauvegardes des configs switch/routeur</li>
+                    <li><strong>Mots de passe</strong> - Stockés de manière sécurisée (gestionnaire de mots de passe)</li>
+                    <li><strong>Historique des interventions</strong> - Journal des modifications et incidents</li>
+                    <li><strong>Contrats de support</strong> - Garanties, SLA, contacts fournisseurs</li>
+                </ul>
+
+                <div class="highlight-box success">
+                    <strong>✅ Bonne pratique :</strong> Maintenir une documentation à jour est crucial. En cas d'urgence ou de départ d'un technicien, elle permet une intervention rapide et efficace.
+                </div>
+
+                <h3>Sauvegarde des configurations</h3>
+                <div class="example-box">
+                    <h4>💡 Sauvegarde config switch Cisco</h4>
+                    <div class="command-box">
+                        <code>
+# Sauvegarder la configuration en cours<br>
+copy running-config startup-config<br><br>
+
+# Exporter vers serveur TFTP<br>
+copy running-config tftp:<br>
+# Entrer l'adresse IP du serveur TFTP<br>
+# Entrer le nom du fichier de destination<br><br>
+
+# Restaurer depuis TFTP<br>
+copy tftp: running-config
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 7 -->
+            <div class="section">
+                <h2>📊 7. Supervision et Monitoring</h2>
+                
+                <h3>Outils de supervision</h3>
+                <table>
+                    <tr>
+                        <th>Outil</th>
+                        <th>Type</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>PRTG</strong></td>
+                        <td>Monitoring complet</td>
+                        <td>Supervision multi-protocoles (SNMP, WMI, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nagios</strong></td>
+                        <td>Open source</td>
+                        <td>Alertes et monitoring infrastructure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wireshark</strong></td>
+                        <td>Analyseur de paquets</td>
+                        <td>Diagnostic approfondi, capture de trafic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zabbix</strong></td>
+                        <td>Open source</td>
+                        <td>Monitoring entreprise avec dashboards</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SolarWinds</strong></td>
+                        <td>Suite professionnelle</td>
+                        <td>Gestion complète infrastructure réseau</td>
+                    </tr>
+                </table>
+
+                <h3>Métriques importantes à surveiller</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Disponibilité</h4>
+                        <p>Uptime des équipements, taux de disponibilité (objectif: 99,9%)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Performance</h4>
+                        <p>Bande passante utilisée, latence, taux de paquets perdus</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Erreurs</h4>
+                        <p>Collisions, CRC errors, ports en erreur</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Utilisation</h4>
+                        <p>CPU et mémoire des équipements, charge des liens</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🎯 Seuils d'alerte recommandés :</strong>
+                    <ul>
+                        <li>Bande passante > 80% : Alerte préventive</li>
+                        <li>Latence > 100ms : Investiguer la cause</li>
+                        <li>Perte de paquets > 1% : Problème réseau</li>
+                        <li>CPU switch > 80% : Risque de saturation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 8 : Cas pratiques -->
+            <div class="section">
+                <h2>🎓 8. Cas Pratiques et Scénarios</h2>
+                
+                <h3>Scénario 1 : Panne réseau généralisée</h3>
+                <div class="example-box">
+                    <h4>Situation</h4>
+                    <p>Tous les utilisateurs d'un étage signalent une perte de connexion réseau simultanée. Les postes ne peuvent plus accéder aux serveurs ni à Internet.</p>
+                    
+                    <h4>Démarche de résolution</h4>
+                    <ol>
+                        <li><strong>Identifier l'étendue</strong> - Un étage → probablement le switch de cet étage</li>
+                        <li><strong>Vérifier physiquement</strong> - Se rendre dans la baie de brassage, vérifier LED du switch</li>
+                        <li><strong>Tester l'alimentation</strong> - Switch éteint ? Vérifier onduleur, câble d'alimentation</li>
+                        <li><strong>Vérifier l'uplink</strong> - Le câble vers le switch principal est-il connecté ?</li>
+                        <li><strong>Redémarrer l'équipement</strong> - Si nécessaire, redémarrage à froid</li>
+                        <li><strong>Documenter</strong> - Noter l'incident, la cause, la résolution</li>
+                    </ol>
+                </div>
+
+                <h3>Scénario 2 : Lenteur réseau</h3>
+                <div class="example-box">
+                    <h4>Situation</h4>
+                    <p>Les utilisateurs se plaignent de lenteurs importantes lors de l'accès aux fichiers sur le serveur, particulièrement l'après-midi.</p>
+                    
+                    <h4>Démarche de résolution</h4>
+                    <ol>
+                        <li><strong>Mesurer le débit</strong> - Test de vitesse vers le serveur</li>
+                        <li><strong>Identifier le moment</strong> - Après-midi = utilisation intensive ?</li>
+                        <li><strong>Analyser le trafic</strong> - Utiliser Wireshark pour identifier le gros consommateur</li>
+                        <li><strong>Vérifier les ports</strong> - Duplex, vitesse de négociation (1Gbps ou 100Mbps ?)</li>
+                        <li><strong>Solutions possibles</strong> - QoS, upgrade switch, câblage Cat6, segmentation VLAN</li>
+                    </ol>
+                </div>
+
+                <h3>Scénario 3 : Problème WiFi</h3>
+                <div class="example-box">
+                    <h4>Situation</h4>
+                    <p>Des utilisateurs dans la salle de réunion ne parviennent pas à se connecter au WiFi. Le réseau apparaît mais l'authentification échoue.</p>
+                    
+                    <h4>Démarche de résolution</h4>
+                    <ol>
+                        <li><strong>Tester avec un appareil connu</strong> - Le problème est-il généralisé ?</li>
+                        <li><strong>Vérifier le point d'accès</strong> - LED, alimentation PoE, connexion au switch</li>
+                        <li><strong>Contrôler la configuration</strong> - SSID, mot de passe, mode de sécurité</li>
+                        <li><strong>Analyser les interférences</strong> - Application WiFi Analyzer, changer de canal</li>
+                        <li><strong>Vérifier DHCP</strong> - Le serveur DHCP attribue-t-il des adresses ?</li>
+                        <li><strong>Redémarrer le point d'accès</strong> - Si nécessaire</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Quiz de révision -->
+            <div class="quiz-section">
+                <h3>🎯 Quiz de Révision</h3>
+                
+                <div class="example-box">
+                    <h4>Question 1</h4>
+                    <p>Quelle est la différence principale entre un switch et un hub ?</p>
+                    <details>
+                        <summary><strong>Voir la réponse</strong></summary>
+                        <p>Un switch envoie les données uniquement au destinataire concerné (commutation intelligente), tandis qu'un hub diffuse à tous les ports (couche physique). Le switch travaille en couche 2, le hub en couche 1.</p>
+                    </details>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 2</h4>
+                    <p>Un utilisateur obtient une adresse IP 169.254.x.x. Que cela signifie-t-il ?</p>
+                    <details>
+                        <summary><strong>Voir la réponse</strong></summary>
+                        <p>C'est une adresse APIPA (Automatic Private IP Addressing). Elle indique que le poste n'a pas pu obtenir d'adresse IP du serveur DHCP. Il faut vérifier la connexion réseau, le câble, le switch et le serveur DHCP.</p>
+                    </details>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 3</h4>
+                    <p>Quelle commande permet de renouveler une adresse IP sous Windows ?</p>
+                    <details>
+                        <summary><strong>Voir la réponse</strong></summary>
+                        <p><code>ipconfig /release</code> suivie de <code>ipconfig /renew</code>. La première libère l'adresse actuelle, la seconde en demande une nouvelle au serveur DHCP.</p>
+                    </details>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 4</h4>
+                    <p>Pourquoi utiliser des VLANs dans un réseau d'entreprise ?</p>
+                    <details>
+                        <summary><strong>Voir la réponse</strong></summary>
+                        <p>Les VLANs permettent de : segmenter logiquement le réseau pour améliorer la sécurité, réduire les domaines de broadcast pour de meilleures performances, isoler différents services (administration, utilisateurs, invités), et faciliter la gestion du réseau.</p>
+                    </details>
+                </div>
+
+                <div class="example-box">
+                    <h4>Question 5</h4>
+                    <p>Quel protocole de sécurité WiFi devez-vous privilégier ?</p>
+                    <details>
+                        <summary><strong>Voir la réponse</strong></summary>
+                        <p>WPA3 est le plus sécurisé. Si non disponible, utiliser au minimum WPA2-PSK (AES). Éviter absolument WEP et WPA (obsolètes et vulnérables). Désactiver WPS qui présente des failles de sécurité.</p>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Synthèse finale -->
+            <div class="section">
+                <h2>📝 Synthèse et Points Clés</h2>
+                
+                <div class="highlight-box success">
+                    <strong>✅ Compétences acquises :</strong>
+                    <ul>
+                        <li>Installer et configurer les équipements réseau essentiels (switch, routeur, WiFi)</li>
+                        <li>Diagnostiquer méthodiquement les problèmes de connectivité</li>
+                        <li>Utiliser les commandes de diagnostic réseau (ping, ipconfig, tracert, etc.)</li>
+                        <li>Configurer l'adressage IP (DHCP et statique)</li>
+                        <li>Appliquer les mesures de sécurité de base (mots de passe, VLAN, WiFi sécurisé)</li>
+                        <li>Effectuer la maintenance préventive et documenter le réseau</li>
+                        <li>Utiliser les outils de supervision pour anticiper les problèmes</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🎯 Les 10 commandements du technicien réseau :</strong>
+                    <ol>
+                        <li>Toujours commencer par la couche physique (câbles, LED)</li>
+                        <li>Documenter chaque intervention et configuration</li>
+                        <li>Changer systématiquement les mots de passe par défaut</li>
+                        <li>Étiqueter tous les câbles et équipements</li>
+                        <li>Sauvegarder les configurations avant toute modification</li>
+                        <li>Tester avant de déclarer le problème résolu</li>
+                        <li>Maintenir un plan d'adressage IP à jour</li>
+                        <li>Appliquer les mises à jour de sécurité régulièrement</li>
+                        <li>Isoler et segmenter : un problème à la fois</li>
+                        <li>Communiquer clairement avec les utilisateurs</li>
+                    </ol>
+                </div>
+
+                <h3>Ressources complémentaires</h3>
+                <ul>
+                    <li><strong>Cisco Networking Academy</strong> - Cours CCNA pour approfondir</li>
+                    <li><strong>Packet Tracer</strong> - Simulateur réseau pour s'entraîner</li>
+                    <li><strong>Wireshark</strong> - Analyse de paquets (wireshark.org)</li>
+                    <li><strong>GNS3</strong> - Émulation d'environnements réseau complexes</li>
+                    <li><strong>RFC standards</strong> - Documentation officielle des protocoles (ietf.org)</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TAI - Technicien d'Assistance en Informatique | CCP3 - Intervenir sur un réseau informatique</p>
+        <p>Formation professionnelle - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
 
                 <div class="command-box">
                     <code
