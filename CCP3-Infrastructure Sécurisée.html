@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure sécurisée - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .command-box {
+            background: #1a1a1a;
+            color: #3DDAB4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .command-box code {
+            color: #3DDAB4;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 3 - Intervenir sur les Éléments de l'Infrastructure</div>
+        <h1>Infrastructure Sécurisée</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🛡️ Introduction</h2>
+                <p>La sécurité de l'infrastructure est un enjeu critique pour toute organisation. Elle englobe la protection des données, des accès, des communications et des systèmes contre les menaces internes et externes.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Déployer et maintenir une infrastructure réseau sécurisée en appliquant les protocoles de sécurité, les politiques de confidentialité et les bonnes pratiques de cybersécurité.
+                </div>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Confidentialité</h4>
+                        <p>Protection des données sensibles contre les accès non autorisés</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Intégrité</h4>
+                        <p>Garantir que les données ne sont pas modifiées de manière non autorisée</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Disponibilité</h4>
+                        <p>Assurer l'accès aux ressources pour les utilisateurs légitimes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 1 : Pare-feu -->
+            <div class="section">
+                <h2>🔥 1. Pare-feu Windows (Firewall)</h2>
+                
+                <h3>Rôle du pare-feu</h3>
+                <p>Le pare-feu Windows Defender filtre le trafic réseau entrant et sortant selon des règles définies, protégeant ainsi le système contre les connexions non autorisées.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Profils réseau</h4>
+                        <p><strong>Domaine :</strong> Réseau d'entreprise<br>
+                        <strong>Privé :</strong> Réseau domestique<br>
+                        <strong>Public :</strong> Réseaux non sécurisés</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Types de règles</h4>
+                        <p><strong>Entrantes :</strong> Trafic vers la machine<br>
+                        <strong>Sortantes :</strong> Trafic depuis la machine</p>
+                    </div>
+                </div>
+
+                <h3>Gestion du pare-feu</h3>
+                <div class="example-box">
+                    <h4>💡 Commandes PowerShell essentielles</h4>
+                    <div class="command-box">
+                        <code>
+# Vérifier l'état du pare-feu<br>
+Get-NetFirewallProfile | Select-Object Name, Enabled<br><br>
+
+# Activer le pare-feu pour tous les profils<br>
+Set-NetFirewallProfile -All -Enabled True<br><br>
+
+# Créer une règle entrante (autoriser HTTP)<br>
+New-NetFirewallRule -DisplayName "Autoriser HTTP" `<br>
+&nbsp;&nbsp;-Direction Inbound `<br>
+&nbsp;&nbsp;-Protocol TCP `<br>
+&nbsp;&nbsp;-LocalPort 80 `<br>
+&nbsp;&nbsp;-Action Allow<br><br>
+
+# Bloquer une application<br>
+New-NetFirewallRule -DisplayName "Bloquer Application" `<br>
+&nbsp;&nbsp;-Direction Outbound `<br>
+&nbsp;&nbsp;-Program "C:\Program Files\App\app.exe" `<br>
+&nbsp;&nbsp;-Action Block<br><br>
+
+# Lister toutes les règles actives<br>
+Get-NetFirewallRule | Where-Object {$_.Enabled -eq 'True'} | Select-Object DisplayName, Direction, Action
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Bonnes pratiques pare-feu :</strong>
+                    <ul>
+                        <li>Activer le pare-feu sur tous les profils réseau</li>
+                        <li>Bloquer par défaut, autoriser explicitement (principe de liste blanche)</li>
+                        <li>Documenter toutes les règles créées</li>
+                        <li>Limiter les règles sortantes pour les applications sensibles</li>
+                        <li>Réviser régulièrement les règles actives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 2 : VPN -->
+            <div class="section">
+                <h2>🔐 2. VPN (Virtual Private Network)</h2>
+                
+                <h3>Qu'est-ce qu'un VPN ?</h3>
+                <p>Un VPN crée un tunnel chiffré entre un client distant et le réseau d'entreprise, permettant un accès sécurisé aux ressources internes depuis l'extérieur.</p>
+
+                <table>
+                    <tr>
+                        <th>Protocole</th>
+                        <th>Sécurité</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>PPTP</strong></td>
+                        <td>Faible (obsolète)</td>
+                        <td>Non recommandé</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L2TP/IPsec</strong></td>
+                        <td>Moyenne à élevée</td>
+                        <td>Connexions standard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SSTP</strong></td>
+                        <td>Élevée (SSL/TLS)</td>
+                        <td>Windows uniquement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IKEv2</strong></td>
+                        <td>Très élevée</td>
+                        <td>Mobiles, reconnexion automatique</td>
+                    </tr>
+                </table>
+
+                <h3>Configuration d'un serveur VPN Windows</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Installer le rôle</h4>
+                            <p>Gestionnaire de serveur → Accès à distance → DirectAccess et VPN (RAS)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configurer le routage</h4>
+                            <p>Outils → Routage et accès distant → Configurer et activer</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Définir le pool d'adresses</h4>
+                            <p>Attribuer une plage d'IP aux clients VPN (ex: 192.168.10.100-150)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Configurer l'authentification</h4>
+                            <p>Utiliser l'authentification Windows (Active Directory)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Connexion VPN client</h4>
+                    <div class="command-box">
+                        <code>
+# Créer une connexion VPN via PowerShell<br>
+Add-VpnConnection -Name "VPN Entreprise" `<br>
+&nbsp;&nbsp;-ServerAddress "vpn.entreprise.com" `<br>
+&nbsp;&nbsp;-TunnelType L2tp `<br>
+&nbsp;&nbsp;-EncryptionLevel Required `<br>
+&nbsp;&nbsp;-AuthenticationMethod MSChapv2 `<br>
+&nbsp;&nbsp;-L2tpPsk "CléPartagéeSecurisée" `<br>
+&nbsp;&nbsp;-RememberCredential<br><br>
+
+# Se connecter au VPN<br>
+rasdial "VPN Entreprise" utilisateur motdepasse
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🔒 Sécurité VPN :</strong>
+                    <ul>
+                        <li>Utiliser uniquement des protocoles sécurisés (IKEv2, L2TP/IPsec)</li>
+                        <li>Activer l'authentification multi-facteurs (MFA)</li>
+                        <li>Limiter les droits des utilisateurs VPN</li>
+                        <li>Surveiller les connexions VPN actives</li>
+                        <li>Désactiver les protocoles obsolètes (PPTP)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 3 : Chiffrement -->
+            <div class="section">
+                <h2>🔒 3. Chiffrement des Données</h2>
+                
+                <h3>BitLocker - Chiffrement de disque</h3>
+                <p>BitLocker protège les données en chiffrant l'intégralité du disque dur. En cas de vol ou perte, les données restent inaccessibles sans la clé de déchiffrement.</p>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Vérifier les prérequis</h4>
+                            <p>TPM activé (module de plateforme sécurisée) ou clé USB de démarrage</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Activer BitLocker</h4>
+                            <p>Panneau de configuration → BitLocker → Activer BitLocker</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Sauvegarder la clé</h4>
+                            <p>Enregistrer la clé de récupération dans AD ou sur un support sécurisé</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Gestion BitLocker via PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Activer BitLocker sur le lecteur C:<br>
+Enable-BitLocker -MountPoint "C:" `<br>
+&nbsp;&nbsp;-EncryptionMethod XtsAes256 `<br>
+&nbsp;&nbsp;-TpmProtector<br><br>
+
+# Vérifier l'état du chiffrement<br>
+Get-BitLockerVolume<br><br>
+
+# Récupérer la clé de récupération<br>
+(Get-BitLockerVolume -MountPoint "C:").KeyProtector<br><br>
+
+# Suspendre BitLocker temporairement<br>
+Suspend-BitLocker -MountPoint "C:" -RebootCount 1
+                        </code>
+                    </div>
+                </div>
+
+                <h3>EFS - Chiffrement de fichiers</h3>
+                <p>L'<strong>Encrypting File System</strong> permet de chiffrer des fichiers ou dossiers individuels sur des volumes NTFS.</p>
+
+                <div class="example-box">
+                    <h4>💡 Utilisation d'EFS</h4>
+                    <p><strong>Interface :</strong> Clic droit sur fichier/dossier → Propriétés → Avancé → Chiffrer le contenu</p>
+                    <div class="command-box">
+                        <code>
+# Chiffrer un dossier<br>
+cipher /e C:\DonneesSensibles<br><br>
+
+# Déchiffrer un dossier<br>
+cipher /d C:\DonneesSensibles<br><br>
+
+# Voir les fichiers chiffrés<br>
+cipher /u /n
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Attention :</strong>
+                    <ul>
+                        <li>Sauvegarder les certificats de chiffrement EFS</li>
+                        <li>BitLocker ne protège que les disques au repos (éteints)</li>
+                        <li>Utiliser des mots de passe forts pour les clés de récupération</li>
+                        <li>Tester régulièrement les procédures de récupération</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 4 : Certificats SSL/TLS -->
+            <div class="section">
+                <h2>📜 4. Certificats SSL/TLS</h2>
+                
+                <h3>Principe des certificats</h3>
+                <p>Les certificats numériques authentifient l'identité d'un serveur et établissent une connexion chiffrée (HTTPS, LDAPS, etc.).</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Certificat auto-signé</h4>
+                        <p>Gratuit, pour tests ou réseaux internes. Non reconnu par les navigateurs.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Certificat d'AC interne</h4>
+                        <p>Émis par une autorité de certification d'entreprise (AD CS).</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Certificat public</h4>
+                        <p>Émis par une AC reconnue (Let's Encrypt, DigiCert). Nécessaire pour Internet.</p>
+                    </div>
+                </div>
+
+                <h3>Installer un certificat IIS</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Générer une demande CSR</h4>
+                            <p>Gestionnaire IIS → Certificats de serveur → Créer une demande de certificat</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Soumettre à l'AC</h4>
+                            <p>Envoyer le CSR à l'autorité de certification pour signature</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Installer le certificat</h4>
+                            <p>IIS → Terminer la demande de certificat → Importer le .cer/.pfx</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Lier au site web</h4>
+                            <p>Site → Liaisons → Ajouter HTTPS:443 → Sélectionner le certificat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Gestion des certificats PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Lister les certificats du magasin local<br>
+Get-ChildItem -Path Cert:\LocalMachine\My<br><br>
+
+# Exporter un certificat<br>
+$cert = Get-ChildItem -Path Cert:\LocalMachine\My | Where-Object {$_.Subject -like "*entreprise*"}<br>
+Export-Certificate -Cert $cert -FilePath "C:\Certificats\entreprise.cer"<br><br>
+
+# Importer un certificat<br>
+Import-Certificate -FilePath "C:\Certificats\ca-root.cer" `<br>
+&nbsp;&nbsp;-CertStoreLocation Cert:\LocalMachine\Root
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 5 : Politiques de sécurité -->
+            <div class="section">
+                <h2>📋 5. Politiques de Sécurité et Conformité</h2>
+                
+                <h3>Stratégies de sécurité locales</h3>
+                <p>Les politiques de sécurité définissent les règles d'authentification, d'audit et de droits utilisateurs.</p>
+
+                <table>
+                    <tr>
+                        <th>Politique</th>
+                        <th>Recommandation</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Complexité mot de passe</strong></td>
+                        <td>Activée, 12 caractères min</td>
+                        <td>Protection contre force brute</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Historique MDP</strong></td>
+                        <td>24 mots de passe</td>
+                        <td>Empêche la réutilisation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Verrouillage compte</strong></td>
+                        <td>5 tentatives, 30 min</td>
+                        <td>Contre attaques par dictionnaire</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Durée de session</strong></td>
+                        <td>12 heures max</td>
+                        <td>Limite sessions inactives</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audit des connexions</strong></td>
+                        <td>Activé (succès/échecs)</td>
+                        <td>Traçabilité et détection</td>
+                    </tr>
+                </table>
+
+                <h3>RGPD et confidentialité</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Minimisation des données</h4>
+                        <p>Collecter uniquement les données nécessaires et les conserver le temps requis</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Droits des utilisateurs</h4>
+                        <p>Droit d'accès, de rectification, d'effacement et de portabilité des données</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sécurité des données</h4>
+                        <p>Chiffrement, pseudonymisation, contrôle d'accès strict</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Notification des violations</h4>
+                        <p>Signaler les fuites de données sous 72h à la CNIL</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Obligations légales :</strong>
+                    <ul>
+                        <li>Tenir un registre des traitements de données personnelles</li>
+                        <li>Réaliser des analyses d'impact (PIA) pour traitements à risque</li>
+                        <li>Nommer un DPO (Délégué à la Protection des Données) si nécessaire</li>
+                        <li>Former les employés à la protection des données</li>
+                        <li>Mettre en place des procédures de gestion des incidents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 6 : Sécurité Active Directory -->
+            <div class="section">
+                <h2>🔑 6. Sécurisation d'Active Directory</h2>
+                
+                <h3>Comptes privilégiés</h3>
+                <p>Les comptes administrateurs sont des cibles privilégiées des attaquants. Leur protection est cruciale.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Comptes séparés</h4>
+                        <p>Utiliser un compte standard pour les tâches quotidiennes et un compte admin distinct</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>PAW (Privileged Access Workstation)</h4>
+                        <p>Poste de travail dédié et durci pour les tâches d'administration</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>LAPS (Local Admin Password Solution)</h4>
+                        <p>Rotation automatique des mots de passe administrateur local</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Auditer les comptes privilégiés</h4>
+                    <div class="command-box">
+                        <code>
+# Lister les membres du groupe Domain Admins<br>
+Get-ADGroupMember -Identity "Domain Admins" -Recursive<br><br>
+
+# Trouver les comptes avec droits élevés<br>
+Get-ADUser -Filter * -Properties AdminCount | `<br>
+&nbsp;&nbsp;Where-Object {$_.AdminCount -gt 0} | `<br>
+&nbsp;&nbsp;Select-Object Name, SamAccountName, Enabled<br><br>
+
+# Comptes inactifs avec privilèges<br>
+$date = (Get-Date).AddDays(-90)<br>
+Get-ADUser -Filter {AdminCount -gt 0 -and LastLogonDate -lt $date} `<br>
+&nbsp;&nbsp;-Properties LastLogonDate | `<br>
+&nbsp;&nbsp;Select-Object Name, LastLogonDate
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Durcissement AD</h3>
+                <div class="highlight-box success">
+                    <strong>✅ Mesures de durcissement :</strong>
+                    <ul>
+                        <li>Désactiver les protocoles faibles (SMBv1, NTLM v1)</li>
+                        <li>Activer LDAPS (LDAP sur SSL/TLS)</li>
+                        <li>Configurer la signature SMB</li>
+                        <li>Limiter les droits de création d'objets</li>
+                        <li>Auditer les modifications sensibles</li>
+                        <li>Implémenter des Tiers d'administration</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Désactiver SMBv1</h4>
+                    <div class="command-box">
+                        <code>
+# Vérifier l'état de SMBv1<br>
+Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol<br><br>
+
+# Désactiver SMBv1 (recommandé)<br>
+Disable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol -NoRestart<br><br>
+
+# Vérifier les versions SMB actives<br>
+Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol, EnableSMB2Protocol
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 7 : Surveillance et logs -->
+            <div class="section">
+                <h2>👁️ 7. Surveillance et Journalisation</h2>
+                
+                <h3>Événements critiques à surveiller</h3>
+                <table>
+                    <tr>
+                        <th>ID Événement</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><strong>4625</strong></td>
+                        <td>Échec de connexion</td>
+                        <td>Détecter les tentatives de force brute</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4720</strong></td>
+                        <td>Création de compte utilisateur</td>
+                        <td>Surveiller les comptes non autorisés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4728</strong></td>
+                        <td>Ajout à un groupe de sécurité</td>
+                        <td>Auditer les élévations de privilèges</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4740</strong></td>
+                        <td>Verrouillage de compte</td>
+                        <td>Identifier attaques ou problèmes utilisateur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4776</strong></td>
+                        <td>Tentative d'authentification</td>
+                        <td>Tracer les connexions NTLM</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Rechercher dans les logs</h4>
+                    <div class="command-box">
+                        <code>
+# Échecs de connexion des dernières 24h<br>
+Get-WinEvent -FilterHashtable @{<br>
+&nbsp;&nbsp;LogName='Security';<br>
+&nbsp;&nbsp;ID=4625;<br>
+&nbsp;&nbsp;StartTime=(Get-Date).AddDays(-1)<br>
+} | Select-Object TimeCreated, Message -First 20<br><br>
+
+# Comptes verrouillés<br>
+Get-WinEvent -FilterHashtable @{<br>
+&nbsp;&nbsp;LogName='Security';<br>
+&nbsp;&nbsp;ID=4740<br>
+} | Select-Object TimeCreated, Message<br><br>
+
+# Modifications de groupes privilégiés<br>
+Get-WinEvent -FilterHashtable @{<br>
+&nbsp;&nbsp;LogName='Security';<br>
+&nbsp;&nbsp;ID=4728,4732,4756<br>
+} | Where-Object {$_.Message -match "Domain Admins"}
+                        </code>
+                    </div>
+                </div>
+
+                <h3>SIEM et centralisation</h3>
+                <p>Un <strong>Security Information and Event Management</strong> centralise les logs de tous les équipements pour une analyse globale.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Collecte</h4>
+                        <p>Agrégation des logs depuis serveurs, pare-feu, équipements réseau</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Corrélation</h4>
+                        <p>Détection de patterns d'attaque sur plusieurs sources</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Alertes</h4>
+                        <p>Notification en temps réel des incidents de sécurité</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Solutions SIEM populaires :</strong>
+                    <ul>
+                        <li><strong>Splunk</strong> - Solution leader, puissante mais coûteuse</li>
+                        <li><strong>ELK Stack</strong> (Elasticsearch, Logstash, Kibana) - Open source</li>
+                        <li><strong>Graylog</strong> - Alternative open source simple</li>
+                        <li><strong>Microsoft Sentinel</strong> - SIEM cloud Azure</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 8 : Sauvegarde et récupération -->
+            <div class="section">
+                <h2>💾 8. Sauvegarde et Plan de Reprise</h2>
+                
+                <h3>Stratégie de sauvegarde 3-2-1</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>3 Copies</h4>
+                        <p>Avoir au minimum 3 copies de vos données (1 originale + 2 sauvegardes)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>2 Supports différents</h4>
+                        <p>Stocker sur 2 types de supports distincts (disque, bande, cloud)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>1 Copie hors site</h4>
+                        <p>Conserver au moins 1 copie dans un lieu distant (cloud, site secondaire)</p>
+                    </div>
+                </div>
+
+                <h3>Sauvegarde Windows Server</h3>
+                <div class="example-box">
+                    <h4>💡 Windows Server Backup</h4>
+                    <div class="command-box">
+                        <code>
+# Installer la fonctionnalité<br>
+Install-WindowsFeature -Name Windows-Server-Backup<br><br>
+
+# Créer une politique de sauvegarde complète<br>
+$policy = New-WBPolicy<br>
+$volume = Get-WBVolume -VolumePath "C:"<br>
+Add-WBVolume -Policy $policy -Volume $volume<br>
+$target = New-WBBackupTarget -VolumePath "E:"<br>
+Add-WBBackupTarget -Policy $policy -Target $target<br>
+Set-WBSchedule -Policy $policy -Schedule 02:00<br>
+Set-WBPolicy -Policy $policy<br><br>
+
+# Lancer une sauvegarde manuelle<br>
+Start-WBBackup -Policy $policy
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Plan de Reprise d'Activité (PRA)</h3>
+                <table>
+                    <tr>
+                        <th>Élément</th>
+                        <th>Objectif</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><strong>RTO</strong></td>
+                        <td>Recovery Time Objective</td>
+                        <td>Durée maximale d'interruption acceptable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RPO</strong></td>
+                        <td>Recovery Point Objective</td>
+                        <td>Perte de données maximale acceptable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PCA</strong></td>
+                        <td>Plan de Continuité d'Activité</td>
+                        <td>Maintien des activités en cas de sinistre</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Tests réguliers :</strong>
+                    <ul>
+                        <li>Tester les restaurations au moins trimestriellement</li>
+                        <li>Documenter les procédures de récupération</li>
+                        <li>Former l'équipe aux procédures d'urgence</li>
+                        <li>Vérifier l'intégrité des sauvegardes automatiquement</li>
+                        <li>Protéger les sauvegardes contre les ransomwares (immutabilité)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 9 : Antivirus et EDR -->
+            <div class="section">
+                <h2>🦠 9. Antivirus et Protection des Points de Terminaison</h2>
+                
+                <h3>Windows Defender</h3>
+                <p>Windows Defender offre une protection de base intégrée contre les malwares, ransomwares et menaces en temps réel.</p>
+
+                <div class="example-box">
+                    <h4>💡 Gestion de Windows Defender</h4>
+                    <div class="command-box">
+                        <code>
+# Vérifier l'état de la protection<br>
+Get-MpComputerStatus<br><br>
+
+# Mettre à jour les définitions<br>
+Update-MpSignature<br><br>
+
+# Lancer une analyse complète<br>
+Start-MpScan -ScanType FullScan<br><br>
+
+# Ajouter une exclusion (dossier)<br>
+Add-MpPreference -ExclusionPath "C:\Applications\Safe"<br><br>
+
+# Voir l'historique des menaces<br>
+Get-MpThreatDetection
+                        </code>
+                    </div>
+                </div>
+
+                <h3>EDR (Endpoint Detection and Response)</h3>
+                <p>Les solutions EDR vont au-delà de l'antivirus traditionnel en détectant les comportements suspects et en permettant une réponse rapide aux incidents.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Détection avancée</h4>
+                        <p>Analyse comportementale et machine learning pour détecter les menaces zero-day</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Investigation</h4>
+                        <p>Timeline des actions suspectes pour analyse forensique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Réponse automatisée</h4>
+                        <p>Isolation des postes, blocage de processus malveillants</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Solutions EDR courantes :</strong>
+                    <ul>
+                        <li><strong>Microsoft Defender for Endpoint</strong> - Intégré à l'écosystème Microsoft</li>
+                        <li><strong>CrowdStrike Falcon</strong> - Leader du marché</li>
+                        <li><strong>SentinelOne</strong> - IA et réponse autonome</li>
+                        <li><strong>Carbon Black</strong> (VMware) - Protection cloud-native</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h2>📝 Questions de Révision</h2>
+                
+                <div class="section">
+                    <h3>Question 1</h3>
+                    <p><strong>Quels sont les trois piliers de la sécurité informatique (triade CIA) ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Confidentialité (Confidentiality), Intégrité (Integrity) et Disponibilité (Availability)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 2</h3>
+                    <p><strong>Quel protocole VPN est recommandé pour les connexions mobiles avec reconnexion automatique ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> IKEv2 (Internet Key Exchange version 2)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 3</h3>
+                    <p><strong>Quelle est la différence entre BitLocker et EFS ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> BitLocker chiffre l'intégralité du disque, tandis qu'EFS chiffre des fichiers ou dossiers individuels. BitLocker protège au démarrage, EFS au niveau fichier.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 4</h3>
+                    <p><strong>Que signifie la règle de sauvegarde 3-2-1 ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> 3 copies des données, sur 2 supports différents, dont 1 copie hors site
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 5</h3>
+                    <p><strong>Quel ID d'événement Windows indique un échec de connexion ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Event ID 4625
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                <p>La sécurité de l'infrastructure est un processus continu qui nécessite vigilance, mise à jour régulière des connaissances et application rigoureuse des bonnes pratiques.</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Défense en profondeur</h4>
+                        <p>Multiplier les couches de sécurité (pare-feu, chiffrement, authentification, surveillance)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Principe du moindre privilège</h4>
+                        <p>N'accorder que les droits strictement nécessaires à chaque utilisateur et service</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Surveillance continue</h4>
+                        <p>Monitorer les logs, détecter les anomalies et réagir rapidement aux incidents</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Formation et sensibilisation</h4>
+                        <p>L'utilisateur est le maillon faible : former régulièrement aux bonnes pratiques</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>💡 Checklist de sécurité quotidienne :</strong>
+                    <ul>
+                        <li>✅ Vérifier les alertes de sécurité et les logs critiques</li>
+                        <li>✅ S'assurer que les sauvegardes se sont correctement exécutées</li>
+                        <li>✅ Appliquer les mises à jour de sécurité rapidement</li>
+                        <li>✅ Auditer régulièrement les comptes privilégiés</li>
+                        <li>✅ Tester les procédures de restauration</li>
+                        <li>✅ Maintenir une documentation à jour des configurations</li>
+                        <li>✅ Surveiller les tentatives d'accès non autorisées</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Rappels importants :</strong>
+                    <ul>
+                        <li>La sécurité n'est jamais acquise - rester vigilant</li>
+                        <li>Documenter tous les incidents et les mesures correctives</li>
+                        <li>Appliquer le RGPD pour toute donnée personnelle</li>
+                        <li>Ne jamais sous-estimer l'importance de la formation utilisateur</li>
+                        <li>Prévoir toujours un plan B (PRA/PCA)</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #3B5BDB;">
+                    <strong>Restez vigilants et sécurisés ! 🛡️</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Formation TAI - Infrastructure Sécurisée</p>
+        <p>CCP 3 - Intervenir sur les Éléments de l'Infrastructure</p>
+    </footer>
+
+</body>
+</html>

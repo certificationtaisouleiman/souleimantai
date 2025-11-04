@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installer des services réseau - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .command-box {
+            background: #1a1a1a;
+            color: #3DDAB4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .command-box code {
+            color: #3DDAB4;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">CCP 3 - Intervenir sur les Éléments de l'Infrastructure</div>
+        <h1>Installer des services réseau</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🌐 Introduction</h2>
+                <p>Les services réseau sont les fondations d'une infrastructure informatique. Ils permettent la communication, le partage de ressources, la résolution de noms et l'attribution d'adresses IP. Leur bonne configuration est essentielle au fonctionnement du réseau d'entreprise.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Installer et configurer les services réseau essentiels (DHCP, DNS, Serveur de fichiers) pour garantir le bon fonctionnement de l'infrastructure.
+                </div>
+            </div>
+
+            <!-- Partie 1 : DHCP -->
+            <div class="section">
+                <h2>🔄 1. Service DHCP</h2>
+                
+                <h3>Qu'est-ce que le DHCP ?</h3>
+                <p>Le <strong>Dynamic Host Configuration Protocol</strong> attribue automatiquement des adresses IP et des paramètres réseau aux clients. Cela évite la configuration manuelle de chaque poste.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Adressage automatique</h4>
+                        <p>Attribution dynamique d'adresses IP aux postes de travail</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Configuration centralisée</h4>
+                        <p>Gestion des paramètres réseau depuis un point unique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Réservations</h4>
+                        <p>Attribution d'IP fixes pour serveurs et imprimantes</p>
+                    </div>
+                </div>
+
+                <h3>Installation du rôle DHCP</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Gestionnaire de serveur</h4>
+                            <p>Ouvrir le Gestionnaire de serveur → Gérer → Ajouter des rôles et fonctionnalités</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Sélectionner DHCP</h4>
+                            <p>Cocher "Serveur DHCP" → Ajouter les fonctionnalités → Suivant</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Installation</h4>
+                            <p>Valider les paramètres et lancer l'installation</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Configuration post-installation</h4>
+                            <p>Compléter la configuration DHCP et autoriser le serveur dans AD</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Créer une étendue DHCP</h3>
+                <div class="example-box">
+                    <h4>💡 Configuration d'une étendue</h4>
+                    <div class="command-box">
+                        <code>
+# Via PowerShell<br>
+Add-DhcpServerv4Scope -Name "Réseau-Bureau" `<br>
+&nbsp;&nbsp;-StartRange 192.168.1.100 `<br>
+&nbsp;&nbsp;-EndRange 192.168.1.200 `<br>
+&nbsp;&nbsp;-SubnetMask 255.255.255.0 `<br>
+&nbsp;&nbsp;-State Active<br><br>
+
+# Configurer les options (passerelle, DNS)<br>
+Set-DhcpServerv4OptionValue -ScopeId 192.168.1.0 `<br>
+&nbsp;&nbsp;-Router 192.168.1.1 `<br>
+&nbsp;&nbsp;-DnsServer 192.168.1.10 `<br>
+&nbsp;&nbsp;-DnsDomain "entreprise.local"
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Réservations DHCP</h3>
+                <p>Attribuer une IP fixe à un appareil spécifique basé sur son adresse MAC.</p>
+
+                <div class="example-box">
+                    <h4>💡 Créer une réservation</h4>
+                    <div class="command-box">
+                        <code>
+# Réservation pour une imprimante<br>
+Add-DhcpServerv4Reservation -ScopeId 192.168.1.0 `<br>
+&nbsp;&nbsp;-IPAddress 192.168.1.50 `<br>
+&nbsp;&nbsp;-ClientId "00-15-5D-01-02-03" `<br>
+&nbsp;&nbsp;-Name "Imprimante-RH" `<br>
+&nbsp;&nbsp;-Description "Imprimante du service RH"
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Bonnes pratiques DHCP :</strong>
+                    <ul>
+                        <li>Éviter de distribuer toute la plage d'adresses (garder des IP libres pour les serveurs)</li>
+                        <li>Durée de bail adaptée : 8 jours pour bureaux, 1 jour pour visiteurs</li>
+                        <li>Activer la haute disponibilité avec un second serveur DHCP</li>
+                        <li>Documenter toutes les réservations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 2 : DNS -->
+            <div class="section">
+                <h2>📡 2. Service DNS</h2>
+                
+                <h3>Qu'est-ce que le DNS ?</h3>
+                <p>Le <strong>Domain Name System</strong> traduit les noms de domaine en adresses IP. C'est l'annuaire téléphonique d'Internet et du réseau local.</p>
+
+                <table>
+                    <tr>
+                        <th>Type d'enregistrement</th>
+                        <th>Usage</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>A (Address)</strong></td>
+                        <td>Nom → IPv4</td>
+                        <td>www.entreprise.local → 192.168.1.20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AAAA</strong></td>
+                        <td>Nom → IPv6</td>
+                        <td>serveur.local → 2001:db8::1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CNAME</strong></td>
+                        <td>Alias vers un autre nom</td>
+                        <td>intranet → serveur-web</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MX (Mail Exchange)</strong></td>
+                        <td>Serveur de messagerie</td>
+                        <td>mail.entreprise.local</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PTR (Pointer)</strong></td>
+                        <td>IP → Nom (résolution inverse)</td>
+                        <td>192.168.1.20 → www.entreprise.local</td>
+                    </tr>
+                </table>
+
+                <h3>Installation du rôle DNS</h3>
+                <div class="example-box">
+                    <h4>💡 Installation via PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Installer le rôle DNS<br>
+Install-WindowsFeature -Name DNS -IncludeManagementTools<br><br>
+
+# Créer une zone de recherche directe<br>
+Add-DnsServerPrimaryZone -Name "entreprise.local" `<br>
+&nbsp;&nbsp;-ReplicationScope "Domain" `<br>
+&nbsp;&nbsp;-DynamicUpdate "Secure"
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Gestion des enregistrements DNS</h3>
+                <div class="example-box">
+                    <h4>💡 Créer des enregistrements</h4>
+                    <div class="command-box">
+                        <code>
+# Enregistrement A (hôte)<br>
+Add-DnsServerResourceRecordA -Name "serveur-web" `<br>
+&nbsp;&nbsp;-ZoneName "entreprise.local" `<br>
+&nbsp;&nbsp;-IPv4Address "192.168.1.20"<br><br>
+
+# Enregistrement CNAME (alias)<br>
+Add-DnsServerResourceRecordCName -Name "intranet" `<br>
+&nbsp;&nbsp;-ZoneName "entreprise.local" `<br>
+&nbsp;&nbsp;-HostNameAlias "serveur-web.entreprise.local"<br><br>
+
+# Supprimer un enregistrement<br>
+Remove-DnsServerResourceRecord -Name "ancien-serveur" `<br>
+&nbsp;&nbsp;-ZoneName "entreprise.local" `<br>
+&nbsp;&nbsp;-RRType "A" -Force
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Redirecteurs DNS</h3>
+                <p>Les redirecteurs permettent de transmettre les requêtes DNS externes vers des serveurs DNS publics.</p>
+
+                <div class="example-box">
+                    <h4>💡 Configurer des redirecteurs</h4>
+                    <div class="command-box">
+                        <code>
+# Ajouter des redirecteurs (Google DNS et Cloudflare)<br>
+Add-DnsServerForwarder -IPAddress 8.8.8.8<br>
+Add-DnsServerForwarder -IPAddress 1.1.1.1<br><br>
+
+# Voir les redirecteurs configurés<br>
+Get-DnsServerForwarder
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Diagnostics DNS :</strong>
+                    <ul>
+                        <li><strong>nslookup</strong> : Tester la résolution de noms</li>
+                        <li><strong>ipconfig /flushdns</strong> : Vider le cache DNS client</li>
+                        <li><strong>Clear-DnsServerCache</strong> : Vider le cache DNS serveur</li>
+                        <li><strong>Resolve-DnsName</strong> : Résolution DNS en PowerShell</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 3 : Serveur de fichiers -->
+            <div class="section">
+                <h2>📁 3. Serveur de fichiers et partages</h2>
+                
+                <h3>Installation du rôle</h3>
+                <p>Le serveur de fichiers Windows permet de centraliser le stockage et de gérer les permissions d'accès.</p>
+
+                <div class="example-box">
+                    <h4>💡 Installer les services de fichiers</h4>
+                    <div class="command-box">
+                        <code>
+# Installer le rôle de serveur de fichiers<br>
+Install-WindowsFeature -Name FS-FileServer `<br>
+&nbsp;&nbsp;-IncludeManagementTools
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Créer un partage réseau</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Créer le dossier</h4>
+                            <p>Créer un dossier sur le serveur (ex: C:\Partages\Commun)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Partager le dossier</h4>
+                            <p>Clic droit → Propriétés → Partage → Partage avancé</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Définir les permissions</h4>
+                            <p>Configurer les permissions de partage et NTFS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Créer un partage via PowerShell</h4>
+                    <div class="command-box">
+                        <code>
+# Créer le dossier<br>
+New-Item -Path "C:\Partages\Commun" -ItemType Directory<br><br>
+
+# Créer le partage<br>
+New-SmbShare -Name "Commun" `<br>
+&nbsp;&nbsp;-Path "C:\Partages\Commun" `<br>
+&nbsp;&nbsp;-FullAccess "Tout le monde"<br><br>
+
+# Configurer les permissions NTFS<br>
+$acl = Get-Acl "C:\Partages\Commun"<br>
+$permission = "ENTREPRISE\GRP_Utilisateurs","Modify","Allow"<br>
+$accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission<br>
+$acl.SetAccessRule($accessRule)<br>
+Set-Acl "C:\Partages\Commun" $acl
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Types de permissions</h3>
+                <table>
+                    <tr>
+                        <th>Permission NTFS</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Contrôle total</strong></td>
+                        <td>Tous les droits</td>
+                        <td>Administrateurs uniquement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modification</strong></td>
+                        <td>Lire, écrire, supprimer</td>
+                        <td>Utilisateurs standards</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lecture et exécution</strong></td>
+                        <td>Consulter et ouvrir</td>
+                        <td>Consultation seulement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lecture</strong></td>
+                        <td>Voir le contenu</td>
+                        <td>Accès minimal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Écriture</strong></td>
+                        <td>Créer des fichiers</td>
+                        <td>Dépôt de fichiers</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Sécurité des partages :</strong>
+                    <ul>
+                        <li>Toujours définir les permissions NTFS ET de partage</li>
+                        <li>Principe du moindre privilège (accorder uniquement les droits nécessaires)</li>
+                        <li>Utiliser des groupes AD plutôt que des utilisateurs individuels</li>
+                        <li>Désactiver l'héritage si nécessaire pour des dossiers sensibles</li>
+                        <li>Auditer régulièrement les accès aux partages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 4 : Serveur d'impression -->
+            <div class="section">
+                <h2>🖨️ 4. Serveur d'impression</h2>
+                
+                <h3>Installation</h3>
+                <p>Centraliser la gestion des imprimantes facilite le déploiement et la maintenance.</p>
+
+                <div class="example-box">
+                    <h4>💡 Installer le rôle d'impression</h4>
+                    <div class="command-box">
+                        <code>
+# Installer le serveur d'impression<br>
+Install-WindowsFeature -Name Print-Server `<br>
+&nbsp;&nbsp;-IncludeManagementTools
+                        </code>
+                    </div>
+                </div>
+
+                <h3>Ajouter une imprimante réseau</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Via interface</h4>
+                        <p>Gestionnaire d'impression → Ajouter une imprimante → Sélectionner le port TCP/IP ou USB</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Déploiement GPO</h4>
+                        <p>Déployer les imprimantes automatiquement via stratégie de groupe</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Utiliser des noms descriptifs pour les imprimantes</li>
+                        <li>Créer des imprimantes partagées sur le serveur</li>
+                        <li>Déployer les pilotes via le serveur d'impression</li>
+                        <li>Configurer les quotas et la gestion des files d'attente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h2>📝 Questions de Révision</h2>
+                
+                <div class="section">
+                    <h3>Question 1</h3>
+                    <p><strong>Quelle est la différence entre les permissions de partage et les permissions NTFS ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Les permissions de partage s'appliquent lors de l'accès réseau, tandis que les permissions NTFS s'appliquent localement et à distance. Les restrictions les plus strictes prévalent.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 2</h3>
+                    <p><strong>Quel type d'enregistrement DNS permet de créer un alias ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> L'enregistrement CNAME (Canonical Name)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 3</h3>
+                    <p><strong>Comment forcer un client à renouveler son bail DHCP ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> <code>ipconfig /release</code> puis <code>ipconfig /renew</code>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 4</h3>
+                    <p><strong>Quelle commande permet de tester la résolution DNS ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> <code>nslookup</code> ou <code>Resolve-DnsName</code> en PowerShell
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                <p>Les services réseau constituent le socle de l'infrastructure IT. Leur maîtrise permet d'assurer la disponibilité et la performance du réseau d'entreprise.</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>DHCP</h4>
+                        <p>Automatisation de l'adressage IP et gestion centralisée des paramètres réseau</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>DNS</h4>
+                        <p>Résolution de noms et gestion des enregistrements pour l'infrastructure</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Serveur de fichiers</h4>
+                        <p>Centralisation du stockage avec gestion fine des permissions</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sécurité</h4>
+                        <p>Application du principe du moindre privilège sur tous les services</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>💡 Pour aller plus loin :</strong>
+                    <ul>
+                        <li>Pratiquez l'installation dans un environnement de test</li>
+                        <li>Documentez chaque configuration de service</li>
+                        <li>Mettez en place une surveillance des services critiques</li>
+                        <li>Testez les procédures de sauvegarde et restauration</li>
+                        <li>Automatisez les tâches répétitives avec PowerShell</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #3B5BDB;">
+                    <strong>Bonne maîtrise des services réseau ! 🚀</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Formation TAI - Installer des services réseau</p>
+        <p>CCP 3 - Intervenir sur les Éléments de l'Infrastructure</p>
+    </footer>
+
+</body>
+</html>
