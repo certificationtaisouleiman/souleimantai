@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimante et Scanner - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .printer-schema {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .printer-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .printer-device {
+            background: linear-gradient(145deg, #3a4a5c, #2c3a4a);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 3px solid #3DDAB4;
+        }
+
+        .printer-front {
+            background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            border: 2px solid #3B5BDB;
+        }
+
+        .printer-logo {
+            color: #3B5BDB;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .component-label {
+            background: rgba(59, 91, 219, 0.2);
+            border-left: 3px solid #3DDAB4;
+            padding: 0.8rem 1rem;
+            margin: 0.8rem 0;
+            border-radius: 5px;
+            color: white;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .component-label::before {
+            content: "●";
+            color: #3DDAB4;
+            font-size: 1.2rem;
+        }
+
+        .specs-panel {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(61, 218, 180, 0.3);
+        }
+
+        .spec-item {
+            background: rgba(59, 91, 219, 0.1);
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 8px;
+            border-left: 3px solid #3DDAB4;
+            color: white;
+        }
+
+        .spec-item h4 {
+            color: #3DDAB4;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-item p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+
+            .printer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">Parc TAI</div>
+        <h1>Imprimante et Scanner</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🖨️ Introduction</h2>
+                <p>La Brother DCP-L2530DW est une imprimante laser multifonction (impression, copie, numérisation) monochrome avec connectivité Wi-Fi. Compacte et fiable, elle est idéale pour un usage professionnel en petit bureau ou à domicile.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif :</strong> Effectuer la mise en service complète de l'imprimante, de l'installation physique à la première impression, en passant par la connexion réseau Wi-Fi.
+                </div>
+            </div>
+
+            <!-- Schéma imprimante -->
+            <div class="section">
+                <h2>🔧 Brother DCP-L2530DW - Présentation</h2>
+                
+                <div class="printer-schema">
+                    <div class="printer-container">
+                        <div class="printer-device">
+                            <div class="printer-front">
+                                <div class="printer-logo">BROTHER DCP-L2530DW</div>
+                                <div style="text-align: center; color: #3B5BDB; margin: 1.5rem 0; font-weight: 600;">VUE AVANT</div>
+                                <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Panneau de commande LCD</div>
+                                <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Chargeur automatique (ADF) - 35 feuilles</div>
+                                <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Bac de sortie papier</div>
+                                <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Bac d'alimentation - 250 feuilles</div>
+                                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(59, 91, 219, 0.3);">
+                                    <div style="text-align: center; color: #3B5BDB; margin-bottom: 1rem; font-weight: 600;">VUE ARRIÈRE</div>
+                                    <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Port USB 2.0</div>
+                                    <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Port Ethernet RJ45</div>
+                                    <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Connecteur d'alimentation</div>
+                                    <div class="component-label" style="background: rgba(59, 91, 219, 0.3); color: #1a1a1a;">Vitre du scanner A4</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="specs-panel">
+                            <div class="spec-item">
+                                <h4>🖨️ Impression</h4>
+                                <p>Laser monochrome (noir et blanc)</p>
+                                <p>30 pages/minute (A4)</p>
+                                <p>Résolution 2400 x 600 dpi</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>📄 Copie</h4>
+                                <p>Vitesse : 30 copies/minute</p>
+                                <p>Résolution jusqu'à 600 x 600 dpi</p>
+                                <p>Réduction/agrandissement : 25% - 400%</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>📷 Numérisation</h4>
+                                <p>Scanner couleur à plat</p>
+                                <p>Résolution optique : 600 x 2400 dpi</p>
+                                <p>Chargeur automatique 35 feuilles</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>🌐 Connectivité</h4>
+                                <p>Wi-Fi 802.11 b/g/n</p>
+                                <p>Ethernet 10/100 Base-TX</p>
+                                <p>USB 2.0</p>
+                                <p>Wi-Fi Direct</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>📄 Capacité papier</h4>
+                                <p>Bac principal : 250 feuilles</p>
+                                <p>Bac de sortie : 100 feuilles</p>
+                                <p>Format : A4, Letter, Legal</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>🖋️ Consommables</h4>
+                                <p>Toner TN-2420 (3000 pages)</p>
+                                <p>Tambour DR-2400 (12000 pages)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu de la boîte -->
+            <div class="section">
+                <h2>📦 Contenu de la Boîte</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Imprimante DCP-L2530DW</h4>
+                        <p>Unité principale avec tambour préinstallé</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Toner de démarrage</h4>
+                        <p>Cartouche toner (capacité réduite ~700 pages)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Câble d'alimentation</h4>
+                        <p>Cordon secteur adapté à votre région</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>CD d'installation</h4>
+                        <p>Pilotes et logiciels (ou téléchargement web)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Guide de démarrage</h4>
+                        <p>Manuel d'installation rapide</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Vérification :</strong> Inspectez tous les éléments et retirez tous les adhésifs de protection orange avant la mise en service.
+                </div>
+            </div>
+
+            <!-- Installation physique -->
+            <div class="section">
+                <h2>🔌 Installation Physique</h2>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Déballage et positionnement</h4>
+                            <p>Retirer l'imprimante du carton avec précaution</p>
+                            <p>Retirer tous les adhésifs et protections (orange/bleu)</p>
+                            <p>Placer l'imprimante sur une surface plane et stable</p>
+                            <p><em>Conseil : Laisser 10 cm d'espace libre autour pour la ventilation</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Installation du toner et tambour</h4>
+                            <p>Ouvrir le capot avant de l'imprimante</p>
+                            <p>Déballer l'ensemble tambour (tambour + toner de démarrage)</p>
+                            <p>Secouer doucement le toner de gauche à droite 5-6 fois</p>
+                            <p>Insérer l'ensemble tambour/toner dans l'imprimante jusqu'au clic</p>
+                            <p>Fermer le capot avant</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Chargement du papier</h4>
+                            <p>Retirer le bac à papier</p>
+                            <p>Ajuster les guides papier selon le format (A4)</p>
+                            <p>Charger jusqu'à 250 feuilles (ne pas dépasser le repère MAX)</p>
+                            <p>Réinsérer le bac dans l'imprimante fermement</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Branchement électrique</h4>
+                            <p>Connecter le câble d'alimentation à l'arrière de l'imprimante</p>
+                            <p>Brancher sur une prise secteur stable</p>
+                            <p>Appuyer sur le bouton d'alimentation ⚡</p>
+                            <p>Attendre 1-2 minutes que l'imprimante initialise</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Configuration initiale sur l'écran</h4>
+                            <p>Sélectionner la langue : <strong>Français</strong></p>
+                            <p>Confirmer le pays/région</p>
+                            <p>Valider le fuseau horaire</p>
+                            <p>L'imprimante imprime une page de test automatiquement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Important :</strong>
+                    <ul>
+                        <li>Ne pas oublier de retirer les protections orange du tambour</li>
+                        <li>Bien secouer le toner avant installation</li>
+                        <li>Ne jamais exposer le tambour à la lumière directe</li>
+                        <li>Vérifier que tous les capots sont bien fermés</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Configuration réseau Wi-Fi -->
+            <div class="section">
+                <h2>📡 Configuration Réseau Wi-Fi</h2>
+                
+                <h3>Méthode 1 : Configuration via le panneau de commande</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder au menu réseau</h4>
+                            <p>Sur l'écran LCD, appuyer sur <strong>Menu</strong></p>
+                            <p>Naviguer avec les flèches jusqu'à <strong>Réseau</strong></p>
+                            <p>Appuyer sur <strong>OK</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Sélectionner Wi-Fi</h4>
+                            <p>Choisir <strong>WLAN</strong> puis <strong>OK</strong></p>
+                            <p>Sélectionner <strong>Assistant config.</strong></p>
+                            <p>L'imprimante recherche les réseaux disponibles</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Connexion au réseau</h4>
+                            <p>Sélectionner votre SSID Wi-Fi dans la liste</p>
+                            <p>Appuyer sur <strong>OK</strong></p>
+                            <p>Saisir le mot de passe Wi-Fi avec les touches du panneau</p>
+                            <p><em>Astuce : Utiliser les flèches pour naviguer entre les caractères</em></p>
+                            <p>Valider avec <strong>OK</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Vérification de la connexion</h4>
+                            <p>L'écran affiche <strong>"Connecté"</strong> si la connexion réussit</p>
+                            <p>Imprimer le rapport réseau pour vérifier l'adresse IP</p>
+                            <p>Menu → Infos appareil → Imprimer config. réseau</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Méthode 2 : Configuration WPS (plus rapide)</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Activer WPS sur l'imprimante</h4>
+                            <p>Menu → Réseau → WLAN → WPS/AOSS</p>
+                            <p>L'écran affiche "Appuyer sur le bouton WPS du routeur"</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Activer WPS sur le routeur</h4>
+                            <p>Dans les 2 minutes : appuyer sur le bouton WPS du routeur/box</p>
+                            <p>Attendre que la connexion s'établisse (LED Wi-Fi fixe)</p>
+                            <p>L'écran affiche <strong>"Connecté"</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Connexion Wi-Fi réussie :</strong>
+                    <ul>
+                        <li>L'icône Wi-Fi sur l'écran LCD est pleine</li>
+                        <li>Le rapport réseau affiche une adresse IP (ex: 192.168.1.xxx)</li>
+                        <li>L'imprimante est visible sur le réseau</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Installation des pilotes -->
+            <div class="section">
+                <h2>💻 Installation des Pilotes sur PC</h2>
+                
+                <h3>Installation Windows</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Télécharger les pilotes</h4>
+                            <p>Aller sur : <strong>support.brother.com</strong></p>
+                            <p>Rechercher : <strong>DCP-L2530DW</strong></p>
+                            <p>Télécharger : <strong>"Pilote complet et logiciels"</strong> pour votre OS</p>
+                            <p><em>Alternative : Insérer le CD fourni (si disponible)</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Lancer l'installation</h4>
+                            <p>Exécuter le fichier téléchargé (.exe)</p>
+                            <p>Accepter les termes et conditions</p>
+                            <p>Choisir <strong>"Installation réseau"</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Détection de l'imprimante</h4>
+                            <p>L'assistant recherche automatiquement l'imprimante sur le réseau</p>
+                            <p>Sélectionner votre imprimante DCP-L2530DW dans la liste</p>
+                            <p>Cliquer sur <strong>Suivant</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Finaliser l'installation</h4>
+                            <p>Les pilotes s'installent automatiquement</p>
+                            <p>Installation des logiciels : ControlCenter, Status Monitor</p>
+                            <p>Cliquer sur <strong>Terminer</strong></p>
+                            <p>Une page de test s'imprime automatiquement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Logiciels installés :</strong>
+                    <ul>
+                        <li><strong>Pilote d'impression :</strong> Permet d'imprimer depuis toute application</li>
+                        <li><strong>ControlCenter :</strong> Interface pour scanner, copier, gérer l'imprimante</li>
+                        <li><strong>Status Monitor :</strong> Surveillance du niveau de toner et état de l'imprimante</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Première impression -->
+            <div class="section">
+                <h2>🖨️ Première Impression de Test</h2>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Test depuis le PC</h4>
+                            <p>Ouvrir un document Word ou PDF</p>
+                            <p>Fichier → Imprimer (ou Ctrl+P)</p>
+                            <p>Sélectionner <strong>Brother DCP-L2530DW</strong></p>
+                            <p>Cliquer sur <strong>Imprimer</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Vérifier le résultat</h4>
+                            <p>La page doit sortir propre, sans bavures</p>
+                            <p>Le texte doit être net et bien contrasté</p>
+                            <p>Aucune ligne blanche ou tache</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Test de copie</h4>
+                            <p>Placer un document sur la vitre du scanner</p>
+                            <p>Appuyer sur <strong>Copie</strong> sur le panneau</p>
+                            <p>Appuyer sur <strong>Démarrer</strong> (bouton noir)</p>
+                            <p>La copie s'imprime immédiatement</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Test de numérisation</h4>
+                            <p>Ouvrir <strong>ControlCenter</strong> sur le PC</p>
+                            <p>Placer un document sur la vitre</p>
+                            <p>Cliquer sur <strong>Numériser</strong> → <strong>Image</strong></p>
+                            <p>L'image numérisée s'ouvre automatiquement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Mise en service réussie si :</strong>
+                    <ul>
+                        <li>L'impression est de qualité (nette, sans défaut)</li>
+                        <li>La copie fonctionne correctement</li>
+                        <li>La numérisation produit des images claires</li>
+                        <li>Aucun message d'erreur sur l'écran LCD</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Configuration avancée -->
+            <div class="section">
+                <h2>⚙️ Configuration Avancée (Optionnel)</h2>
+                
+                <h3>Paramètres d'impression par défaut</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder aux préférences</h4>
+                            <p>Windows : Panneau de configuration → Périphériques et imprimantes</p>
+                            <p>Clic droit sur Brother DCP-L2530DW → <strong>Préférences d'impression</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Régler les paramètres</h4>
+                            <p><strong>Qualité :</strong> Normale (économie toner) ou Haute</p>
+                            <p><strong>Recto-verso :</strong> Activé pour économiser le papier</p>
+                            <p><strong>Échelle de gris :</strong> Améliore les niveaux de gris</p>
+                            <p><strong>Économie de toner :</strong> ON (réduit consommation de 15-20%)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Configuration adresse IP fixe (réseau professionnel)</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Via le panneau de commande</h4>
+                            <p>Menu → Réseau → WLAN → TCP/IP → Méthode BOOT</p>
+                            <p>Sélectionner <strong>Statique</strong></p>
+                            <p>Saisir : Adresse IP, Masque, Passerelle</p>
+                            <p>Valider et redémarrer l'imprimante</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Accès interface web de l'imprimante</h3>
+                <p>L'imprimante dispose d'une interface web pour la gestion à distance :</p>
+                <div class="highlight-box">
+                    <p><strong>1.</strong> Noter l'adresse IP de l'imprimante (rapport réseau)</p>
+                    <p><strong>2.</strong> Ouvrir un navigateur et saisir : <strong>http://[adresse-ip]</strong></p>
+                    <p><strong>3.</strong> Exemple : http://192.168.1.150</p>
+                    <p><strong>4.</strong> Connexion : login = <strong>admin</strong>, mot de passe = <strong>access</strong> (par défaut)</p>
+                    <p><strong>5.</strong> Depuis l'interface : surveiller niveau toner, compteurs, paramètres réseau</p>
+                </div>
+            </div>
+
+            <!-- Dépannage rapide -->
+            <div class="section">
+                <h2>🔧 Dépannage Rapide</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Problème : Pas d'impression</h4>
+                        <p>✓ Vérifier que l'imprimante est allumée</p>
+                        <p>✓ Vérifier la connexion réseau (Wi-Fi)</p>
+                        <p>✓ Vérifier qu'il y a du papier</p>
+                        <p>✓ Relancer l'impression</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Problème : Impression floue</h4>
+                        <p>✓ Nettoyer le tambour</p>
+                        <p>✓ Vérifier niveau de toner</p>
+                        <p>✓ Secouer le toner doucement</p>
+                        <p>✓ Imprimer page de test</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Problème : Bourrage papier</h4>
+                        <p>✓ Ouvrir tous les capots</p>
+                        <p>✓ Retirer délicatement le papier</p>
+                        <p>✓ Vérifier guides du bac à papier</p>
+                        <p>✓ Réaligner le papier</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Problème : Wi-Fi déconnecté</h4>
+                        <p>✓ Vérifier que le Wi-Fi est activé</p>
+                        <p>✓ Relancer l'assistant Wi-Fi</p>
+                        <p>✓ Redémarrer l'imprimante</p>
+                        <p>✓ Rapprocher du routeur</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Messages d'erreur courants :</strong>
+                    <ul>
+                        <li><strong>"Remplacer toner" :</strong> Installer une nouvelle cartouche toner TN-2420</li>
+                        <li><strong>"Remplacer tambour" :</strong> Le tambour DR-2400 doit être changé (après ~12000 pages)</li>
+                        <li><strong>"Bourrage papier" :</strong> Suivre les instructions à l'écran pour localiser et retirer le papier</li>
+                        <li><strong>"Pas de papier" :</strong> Recharger le bac à papier</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Maintenance -->
+            <div class="section">
+                <h2>🛠️ Maintenance de Base</h2>
+                
+                <h3>Entretien régulier</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Nettoyage extérieur (hebdomadaire)</h4>
+                            <p>Éteindre l'imprimante</p>
+                            <p>Nettoyer l'extérieur avec un chiffon doux légèrement humide</p>
+                            <p>Ne jamais utiliser de produits abrasifs ou solvants</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Nettoyage du scanner (mensuel)</h4>
+                            <p>Nettoyer la vitre avec un chiffon doux non pelucheux</p>
+                            <p>Utiliser un nettoyant pour vitres si nécessaire</p>
+                            <p>Nettoyer également sous le capot (vitre du chargeur ADF)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Nettoyage tambour (selon besoin)</h4>
+                            <p>Menu → Général → Remplacer pièce → Tambour</p>
+                            <p>Suivre les instructions à l'écran</p>
+                            <p>L'imprimante effectue un cycle de nettoyage automatique</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Remplacement consommables</h3>
+                <div class="highlight-box">
+                    <strong>Toner TN-2420 (environ tous les 3000 pages) :</strong>
+                    <p>1. Ouvrir le capot avant</p>
+                    <p>2. Retirer l'ensemble tambour/toner</p>
+                    <p>3. Appuyer sur le levier bleu et retirer l'ancien toner</p>
+                    <p>4. Insérer le nouveau toner jusqu'au clic</p>
+                    <p>5. Secouer doucement l'ensemble et réinsérer dans l'imprimante</p>
+                    <p>6. Réinitialiser le compteur : Menu → Général → Remplacer pièce → Toner</p>
+                </div>
+            </div>
+
+            <!-- Checklist de mise en service -->
+            <div class="section">
+                <h2>✅ Checklist de Mise en Service</h2>
+                
+                <div class="highlight-box success">
+                    <h3>Phase 1 : Préparation (5 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Vérifier le contenu de la boîte</li>
+                        <li>☐ Retirer tous les adhésifs de protection</li>
+                        <li>☐ Positionner l'imprimante correctement</li>
+                        <li>☐ Avoir le SSID et mot de passe Wi-Fi à disposition</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Phase 2 : Installation physique (10 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Installer tambour et toner</li>
+                        <li>☐ Charger le papier dans le bac (250 feuilles max)</li>
+                        <li>☐ Brancher l'alimentation</li>
+                        <li>☐ Allumer l'imprimante</li>
+                        <li>☐ Configurer langue et pays</li>
+                        <li>☐ Vérifier page de test automatique</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Phase 3 : Configuration réseau (10 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Connecter au Wi-Fi (Assistant ou WPS)</li>
+                        <li>☐ Vérifier connexion (icône Wi-Fi pleine)</li>
+                        <li>☐ Imprimer rapport réseau</li>
+                        <li>☐ Noter l'adresse IP obtenue</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Phase 4 : Installation pilotes (15 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Télécharger pilotes depuis support.brother.com</li>
+                        <li>☐ Installer pilotes sur le(s) PC</li>
+                        <li>☐ Vérifier détection réseau automatique</li>
+                        <li>☐ Installation ControlCenter et Status Monitor</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Phase 5 : Tests (10 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Test d'impression depuis PC</li>
+                        <li>☐ Test de copie (document sur vitre)</li>
+                        <li>☐ Test de numérisation (via ControlCenter)</li>
+                        <li>☐ Vérifier qualité d'impression</li>
+                        <li>☐ Aucun message d'erreur</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box warning">
+                    <h3>Phase 6 : Documentation (5 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Noter adresse IP de l'imprimante</li>
+                        <li>☐ Noter mot de passe interface web</li>
+                        <li>☐ Coller étiquette d'identification</li>
+                        <li>☐ Date de mise en service notée</li>
+                        <li>☐ Référence consommables notée (TN-2420)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bonnes pratiques -->
+            <div class="section">
+                <h2>💡 Bonnes Pratiques</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Économie de consommables</h4>
+                        <p>• Activer mode "Économie de toner"</p>
+                        <p>• Utiliser recto-verso par défaut</p>
+                        <p>• Imprimer en qualité normale (non haute qualité)</p>
+                        <p>• Prévisualiser avant d'imprimer</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Qualité d'impression</h4>
+                        <p>• Utiliser du papier 80g/m² de qualité</p>
+                        <p>• Nettoyer régulièrement la vitre scanner</p>
+                        <p>• Secouer le toner si impression pâle</p>
+                        <p>• Imprimer une page de test mensuelle</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Durée de vie</h4>
+                        <p>• Ne pas exposer à la poussière</p>
+                        <p>• Éviter les environnements humides</p>
+                        <p>• Laisser l'espace de ventilation libre</p>
+                        <p>• Éteindre si inutilisée longtemps</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sécurité réseau</h4>
+                        <p>• Changer mot de passe interface web</p>
+                        <p>• Utiliser IP fixe en environnement pro</p>
+                        <p>• Désactiver protocoles non utilisés</p>
+                        <p>• Mettre à jour firmware régulièrement</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                
+                <p>La Brother DCP-L2530DW est une imprimante laser fiable et facile à mettre en service. En suivant cette procédure, vous devriez avoir une imprimante pleinement opérationnelle en 45-60 minutes maximum.</p>
+
+                <div class="highlight-box success">
+                    <strong>✅ Points clés de la mise en service :</strong>
+                    <ul>
+                        <li><strong>Installation simple :</strong> Déballage et mise en route en 10 minutes</li>
+                        <li><strong>Connexion Wi-Fi :</strong> Assistant intégré ou WPS pour connexion rapide</li>
+                        <li><strong>Multifonction :</strong> Impression, copie, numérisation en un seul appareil</li>
+                        <li><strong>Performance :</strong> 30 pages/minute, bac 250 feuilles</li>
+                        <li><strong>Économique :</strong> Laser monochrome avec mode économie de toner</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>📞 Support et ressources :</strong>
+                    <p><strong>Site officiel :</strong> support.brother.com</p>
+                    <p><strong>Téléchargement pilotes :</strong> Rechercher "DCP-L2530DW"</p>
+                    <p><strong>Manuels :</strong> PDF disponibles sur le site Brother</p>
+                    <p><strong>Garantie :</strong> 3 ans constructeur (conserver facture)</p>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: #3B5BDB;">
+                    <strong>Votre imprimante Brother DCP-L2530DW est maintenant prête à l'emploi !</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>TAI 2025 - Formation Technique</strong></p>
+        <p>Imprimante Brother DCP-L2530DW | Mise en Service | © 2025</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Ce document est destiné à un usage pédagogique dans le cadre de la formation TAI 2025
+        </p>
+    </footer>
+
+</body>
+
+</html>
