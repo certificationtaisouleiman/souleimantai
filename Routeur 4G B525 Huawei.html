@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routeur 4G Huawei B525 - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .router-schema {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .router-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .router-device {
+            background: linear-gradient(145deg, #3a4a5c, #2c3a4a);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 3px solid #3DDAB4;
+        }
+
+        .router-front {
+            background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            border: 2px solid #3B5BDB;
+        }
+
+        .router-logo {
+            color: #3DDAB4;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .component-label {
+            background: rgba(59, 91, 219, 0.2);
+            border-left: 3px solid #3DDAB4;
+            padding: 0.8rem 1rem;
+            margin: 0.8rem 0;
+            border-radius: 5px;
+            color: white;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .component-label::before {
+            content: "●";
+            color: #3DDAB4;
+            font-size: 1.2rem;
+        }
+
+        .specs-panel {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(61, 218, 180, 0.3);
+        }
+
+        .spec-item {
+            background: rgba(59, 91, 219, 0.1);
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 8px;
+            border-left: 3px solid #3DDAB4;
+            color: white;
+        }
+
+        .spec-item h4 {
+            color: #3DDAB4;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-item p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .signal-icon {
+            text-align: center;
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: #3DDAB4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+
+            .router-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">Parc TAI</div>
+        <h1>Routeur 4G Huawei B525</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📡 Introduction</h2>
+                <p>Le routeur 4G Huawei B525 est une solution de connectivité professionnelle permettant de fournir un accès Internet haut débit via le réseau mobile 4G LTE. Il est idéal pour les sites distants, les connexions de secours ou les installations temporaires.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Maîtriser l'installation, la configuration et la mise en service du routeur 4G Huawei B525 pour assurer une connectivité réseau fiable et performante.
+                </div>
+            </div>
+
+            <!-- Schéma Huawei B525 -->
+            <div class="section">
+                <h2>🔧 Huawei B525 - Présentation Technique</h2>
+                
+                <div class="router-schema">
+                    <div class="router-container">
+                        <div class="router-device">
+                            <div class="router-front">
+                                <div class="router-logo">HUAWEI B525</div>
+                                <div class="signal-icon">📶</div>
+                                <div style="text-align: center; color: #3DDAB4; margin-bottom: 1.5rem; font-weight: 600;">PANNEAU AVANT</div>
+                                <div class="component-label">LED Alimentation (Power)</div>
+                                <div class="component-label">LED Mode (2.4G / 5G)</div>
+                                <div class="component-label">LED Signal 4G (1-5 barres)</div>
+                                <div class="component-label">LED Service (Internet)</div>
+                                <div class="component-label">LED Wi-Fi</div>
+                                <div class="component-label">LED Téléphone (optionnel)</div>
+                                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(61, 218, 180, 0.3);">
+                                    <div style="text-align: center; color: #3DDAB4; margin-bottom: 1rem; font-weight: 600;">PANNEAU ARRIÈRE</div>
+                                    <div class="component-label">4x ports LAN Gigabit Ethernet</div>
+                                    <div class="component-label">1x port WAN/LAN (configurable)</div>
+                                    <div class="component-label">2x connecteurs antenne externe</div>
+                                    <div class="component-label">1x port RJ11 téléphone</div>
+                                    <div class="component-label">Port alimentation DC 12V</div>
+                                    <div class="component-label">Bouton WPS</div>
+                                    <div class="component-label">Bouton Reset</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="specs-panel">
+                            <div class="spec-item">
+                                <h4>📶 Connectivité 4G</h4>
+                                <p>LTE Cat6 jusqu'à 300 Mbps (download)</p>
+                                <p>Jusqu'à 50 Mbps (upload)</p>
+                                <p>Support bandes: B1/B3/B7/B8/B20/B32/B38</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>📡 Wi-Fi</h4>
+                                <p>Dual Band: 2.4 GHz + 5 GHz</p>
+                                <p>802.11 a/b/g/n/ac</p>
+                                <p>Jusqu'à 64 appareils connectés</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>🔌 Ports Ethernet</h4>
+                                <p>4x LAN Gigabit (10/100/1000 Mbps)</p>
+                                <p>1x WAN/LAN configurable</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>📞 Téléphonie</h4>
+                                <p>1x port RJ11 pour téléphone fixe</p>
+                                <p>VoLTE (Voice over LTE)</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>📋 Carte SIM</h4>
+                                <p>Slot pour carte SIM standard</p>
+                                <p>Compatible tous opérateurs</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>⚡ Alimentation</h4>
+                                <p>Adaptateur 12V/1.5A inclus</p>
+                                <p>Consommation: max 18W</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Déballage et contenu -->
+            <div class="section">
+                <h2>📦 Contenu de la Boîte</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Routeur B525</h4>
+                        <p>Unité principale avec antennes internes</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Adaptateur secteur</h4>
+                        <p>12V/1.5A avec câble d'alimentation</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Câble Ethernet</h4>
+                        <p>Câble RJ45 Cat5e (généralement 1.5m)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Guide rapide</h4>
+                        <p>Manuel de démarrage rapide multilingue</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Vérification :</strong> Inspectez tous les éléments et vérifiez l'absence de dommages. Conservez l'emballage pendant la période de garantie.
+                </div>
+            </div>
+
+            <!-- Installation de la carte SIM -->
+            <div class="section">
+                <h2>📱 Installation de la Carte SIM</h2>
+                
+                <h3>Prérequis</h3>
+                <p>Avant l'installation, assurez-vous d'avoir :</p>
+                <ul>
+                    <li>Une carte SIM 4G activée (format standard ou adaptateur)</li>
+                    <li>Le code PIN de la carte SIM (si activé)</li>
+                    <li>Un forfait data adapté à vos besoins</li>
+                </ul>
+
+                <h3>Procédure d'installation</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Localiser le slot SIM</h4>
+                            <p>Le slot SIM se trouve sous le routeur</p>
+                            <p>Retourner l'appareil avec précaution</p>
+                            <p><em>Note : Le routeur doit être éteint et débranché</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Ouvrir le compartiment</h4>
+                            <p>Retirer le cache du compartiment SIM</p>
+                            <p>Faire glisser ou déclipser selon le modèle</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Insérer la carte SIM</h4>
+                            <p>Orienter la carte avec le coin coupé vers l'intérieur</p>
+                            <p>Les contacts dorés doivent être orientés vers le bas</p>
+                            <p>Pousser fermement jusqu'au clic de verrouillage</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Fermer le compartiment</h4>
+                            <p>Remettre le cache en place</p>
+                            <p>Vérifier que le cache est bien fixé</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Attention :</strong>
+                    <ul>
+                        <li>Ne jamais insérer ou retirer la carte SIM lorsque le routeur est allumé</li>
+                        <li>Utiliser une carte SIM au bon format (standard) ou avec adaptateur</li>
+                        <li>Ne pas forcer lors de l'insertion</li>
+                        <li>Noter le code PIN quelque part en sécurité</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mise en service physique -->
+            <div class="section">
+                <h2>🔌 Mise en Service Physique</h2>
+                
+                <h3>Installation et branchements</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Positionnement du routeur</h4>
+                            <p>Choisir un emplacement en hauteur, dégagé</p>
+                            <p>Éloigner des objets métalliques et appareils électriques</p>
+                            <p>Privilégier une zone où le signal 4G est bon</p>
+                            <p><em>Astuce : Près d'une fenêtre améliore souvent la réception</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Connecter l'alimentation</h4>
+                            <p>Brancher l'adaptateur DC sur le port alimentation du routeur</p>
+                            <p>Brancher l'adaptateur sur une prise secteur stable</p>
+                            <p><em>Conseil : Utiliser un parasurtenseur pour protéger l'équipement</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Connexion Ethernet (optionnel)</h4>
+                            <p>Connecter un ordinateur au port LAN 1 avec le câble Ethernet</p>
+                            <p>Cette connexion facilite la configuration initiale</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Démarrage</h4>
+                            <p>Le routeur démarre automatiquement</p>
+                            <p>Attendre 1-2 minutes que tous les voyants se stabilisent</p>
+                            <p>Observer les LEDs pour vérifier l'état du système</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Interprétation des LED</h3>
+                <table>
+                    <tr>
+                        <th>LED</th>
+                        <th>État</th>
+                        <th>Signification</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Power</strong></td>
+                        <td>Verte fixe</td>
+                        <td>✅ Routeur allumé et fonctionnel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Signal 4G</strong></td>
+                        <td>1-5 barres vertes</td>
+                        <td>✅ Force du signal mobile (5 = excellent)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Signal 4G</strong></td>
+                        <td>Clignotante</td>
+                        <td>⏳ Recherche de réseau en cours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Service</strong></td>
+                        <td>Verte fixe</td>
+                        <td>✅ Connexion Internet active</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wi-Fi</strong></td>
+                        <td>Verte fixe</td>
+                        <td>✅ Wi-Fi activé et prêt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wi-Fi</strong></td>
+                        <td>Clignotante</td>
+                        <td>⏳ Transfert de données Wi-Fi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mode</strong></td>
+                        <td>Verte</td>
+                        <td>2.4 GHz actif</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mode</strong></td>
+                        <td>Bleue</td>
+                        <td>5 GHz actif</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Problèmes courants au démarrage :</strong>
+                    <ul>
+                        <li><strong>Pas de LED Power :</strong> Vérifier l'alimentation et la prise</li>
+                        <li><strong>LED Signal clignote longtemps :</strong> Déplacer le routeur vers une zone avec meilleur signal</li>
+                        <li><strong>Pas de LED Service :</strong> Vérifier que la carte SIM est activée et le forfait data actif</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Configuration initiale -->
+            <div class="section">
+                <h2>⚙️ Configuration Initiale</h2>
+                
+                <h3>Accès à l'interface web</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Connexion au routeur</h4>
+                            <p><strong>Via Wi-Fi :</strong> Connectez-vous au réseau Wi-Fi du routeur</p>
+                            <p>SSID par défaut : indiqué sur l'étiquette sous le routeur (ex: HUAWEI-B525-XXXX)</p>
+                            <p>Mot de passe Wi-Fi : également sur l'étiquette</p>
+                            <p><strong>Via Ethernet :</strong> Si déjà connecté par câble, passer à l'étape suivante</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Ouvrir l'interface web</h4>
+                            <p>Ouvrir un navigateur web (Chrome, Firefox, Edge)</p>
+                            <p>Saisir l'adresse : <strong>http://192.168.8.1</strong></p>
+                            <p>Appuyer sur Entrée</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Première connexion</h4>
+                            <p>Nom d'utilisateur : <strong>admin</strong></p>
+                            <p>Mot de passe : indiqué sur l'étiquette (généralement sous "Web UI Password")</p>
+                            <p>Cliquer sur "Connexion" ou "Login"</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Assistant de configuration</h4>
+                            <p>Au premier accès, l'assistant de configuration démarre automatiquement</p>
+                            <p>Sélectionner la langue : <strong>Français</strong></p>
+                            <p>Cliquer sur "Démarrer" ou "Suivant"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Astuce :</strong> Si l'adresse 192.168.8.1 ne fonctionne pas, essayez 192.168.1.1 ou vérifiez l'adresse IP obtenue par votre ordinateur (ipconfig sur Windows, ifconfig sur Linux/Mac).
+                </div>
+            </div>
+
+            <!-- Configuration du code PIN -->
+            <div class="section">
+                <h2>🔐 Configuration du Code PIN</h2>
+                
+                <h3>Gestion du PIN SIM</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder aux paramètres PIN</h4>
+                            <p>Dans l'interface web, aller dans <strong>Paramètres</strong></p>
+                            <p>Sélectionner <strong>Gestion du code PIN</strong> ou <strong>SIM Settings</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Saisir le code PIN</h4>
+                            <p>Entrer le code PIN de votre carte SIM (généralement 0000 ou 1234 par défaut)</p>
+                            <p
+<div class="step-content">
+                            <h4>Saisir le code PIN</h4>
+                            <p>Entrer le code PIN de votre carte SIM (généralement 0000 ou 1234 par défaut)</p>
+                            <p>Valider la saisie</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Options de gestion</h4>
+                            <p><strong>Option 1 :</strong> Désactiver le PIN (recommandé pour routeur fixe)</p>
+                            <p><strong>Option 2 :</strong> Modifier le code PIN pour plus de sécurité</p>
+                            <p><strong>Option 3 :</strong> Activer la mémorisation du PIN (connexion automatique)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Important :</strong>
+                    <ul>
+                        <li>Après 3 tentatives PIN incorrectes, la carte SIM est bloquée</li>
+                        <li>Il faut alors utiliser le code PUK fourni par l'opérateur</li>
+                        <li>Conservez toujours le code PUK en lieu sûr</li>
+                        <li>Pour un routeur fixe, désactiver le PIN simplifie les redémarrages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Configuration réseau Wi-Fi -->
+            <div class="section">
+                <h2>📡 Configuration du Réseau Wi-Fi</h2>
+                
+                <h3>Paramètres Wi-Fi de base</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder aux paramètres Wi-Fi</h4>
+                            <p>Menu : <strong>Paramètres</strong> → <strong>Wi-Fi</strong> → <strong>Paramètres de base</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Modifier le SSID</h4>
+                            <p>Changer le nom du réseau (SSID) pour quelque chose d'identifiable</p>
+                            <p>Exemple : <strong>TAI-Bureau-4G</strong> ou <strong>Entreprise-Mobile</strong></p>
+                            <p>Cocher "Masquer le SSID" si besoin de discrétion (non recommandé en entreprise)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Configurer la sécurité</h4>
+                            <p>Type de sécurité : <strong>WPA2-PSK</strong> (ou WPA3 si disponible)</p>
+                            <p>Algorithme de cryptage : <strong>AES</strong></p>
+                            <p>Mot de passe Wi-Fi : minimum 8 caractères, complexe</p>
+                            <p><em>Conseil : Utilisez majuscules, minuscules, chiffres et symboles</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Configuration dual-band</h4>
+                            <p><strong>2.4 GHz :</strong> Meilleure portée, compatible tous appareils</p>
+                            <p><strong>5 GHz :</strong> Plus rapide, moins d'interférences, portée réduite</p>
+                            <p>Astuce : Activer les deux bandes avec des SSID différents ou identiques selon besoin</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Paramètres avancés</h4>
+                            <p>Canal Wi-Fi : <strong>Auto</strong> (ou manuel si interférences)</p>
+                            <p>Largeur de canal : <strong>20/40 MHz</strong> pour 2.4 GHz, <strong>80 MHz</strong> pour 5 GHz</p>
+                            <p>Puissance d'émission : <strong>100%</strong> (ajuster si nécessaire)</p>
+                            <p>Nombre max de clients : <strong>64</strong> (ajuster selon besoin)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Bonnes pratiques Wi-Fi :</strong>
+                    <ul>
+                        <li>Utiliser un mot de passe fort et unique</li>
+                        <li>Activer WPA2 minimum (WPA3 si supporté)</li>
+                        <li>Changer le SSID par défaut</li>
+                        <li>Désactiver WPS si non utilisé (sécurité)</li>
+                        <li>Mettre à jour le firmware régulièrement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Configuration réseau LAN -->
+            <div class="section">
+                <h2>🔌 Configuration du Réseau LAN</h2>
+                
+                <h3>Paramètres IP et DHCP</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder aux paramètres LAN</h4>
+                            <p>Menu : <strong>Paramètres</strong> → <strong>LAN</strong> → <strong>Paramètres DHCP</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configuration IP du routeur</h4>
+                            <p>Adresse IP : <strong>192.168.8.1</strong> (par défaut)</p>
+                            <p>Masque de sous-réseau : <strong>255.255.255.0</strong></p>
+                            <p><em>Note : Modifier uniquement si conflit avec réseau existant</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Configuration DHCP</h4>
+                            <p>Activer le serveur DHCP : <strong>OUI</strong></p>
+                            <p>Plage d'adresses : <strong>192.168.8.100</strong> à <strong>192.168.8.200</strong></p>
+                            <p>Durée du bail : <strong>86400</strong> secondes (24h)</p>
+                            <p>DNS primaire : <strong>Auto</strong> (ou 8.8.8.8 pour Google DNS)</p>
+                            <p>DNS secondaire : <strong>Auto</strong> (ou 8.8.4.4)</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Réservations DHCP (optionnel)</h4>
+                            <p>Créer des réservations pour équipements critiques</p>
+                            <p>Associer adresse MAC → Adresse IP fixe</p>
+                            <p>Exemple : Serveur, imprimante réseau, caméras</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Configuration port WAN/LAN</h3>
+                <p>Le port WAN/LAN configurable permet deux modes d'utilisation :</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Mode LAN (par défaut)</h4>
+                        <p>Le port fonctionne comme un 5ème port LAN standard</p>
+                        <p>Utilisé pour connecter un appareil supplémentaire</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mode WAN</h4>
+                        <p>Le port accepte une connexion Internet alternative</p>
+                        <p>Permet le basculement automatique (failover)</p>
+                        <p>Exemple : ADSL/Fibre en principal, 4G en backup</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Configuration mode WAN :</strong>
+                    <p>Menu : <strong>Paramètres</strong> → <strong>WAN</strong> → Sélectionner <strong>Mode WAN</strong></p>
+                    <p>Configurer les priorités : WAN filaire prioritaire, 4G en secours</p>
+                </div>
+            </div>
+
+            <!-- Sécurité et pare-feu -->
+            <div class="section">
+                <h2>🔒 Sécurité et Pare-feu</h2>
+                
+                <h3>Configuration du pare-feu</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Activer le pare-feu</h4>
+                            <p>Menu : <strong>Sécurité</strong> → <strong>Pare-feu</strong></p>
+                            <p>Niveau de protection : <strong>Élevé</strong> (recommandé)</p>
+                            <p>Activer la protection DoS/DDoS</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Filtrage MAC</h4>
+                            <p>Menu : <strong>Sécurité</strong> → <strong>Filtrage MAC</strong></p>
+                            <p>Mode : Liste blanche (autoriser uniquement) ou Liste noire (bloquer)</p>
+                            <p>Ajouter les adresses MAC autorisées/bloquées</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Redirection de ports (NAT)</h4>
+                            <p>Menu : <strong>Sécurité</strong> → <strong>NAT</strong> → <strong>Redirection de port</strong></p>
+                            <p>Créer des règles pour exposer des services internes</p>
+                            <p>Exemple : Port 80/443 vers serveur web interne</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>DMZ (optionnel)</h4>
+                            <p>Menu : <strong>Sécurité</strong> → <strong>DMZ</strong></p>
+                            <p>Exposer complètement un appareil sur Internet</p>
+                            <p><em>⚠️ Attention : Utiliser avec précaution, risque de sécurité</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Modification du mot de passe administrateur</h3>
+                <div class="highlight-box danger">
+                    <strong>🔐 CRITIQUE - À faire immédiatement :</strong>
+                    <p>Menu : <strong>Système</strong> → <strong>Modifier le mot de passe</strong></p>
+                    <p>Changer le mot de passe admin par défaut</p>
+                    <p>Utiliser un mot de passe fort : 12+ caractères, mixte</p>
+                    <p>Conserver ce mot de passe en lieu sûr</p>
+                </div>
+            </div>
+
+            <!-- Optimisation et performances -->
+            <div class="section">
+                <h2>⚡ Optimisation et Performances</h2>
+                
+                <h3>Amélioration du signal 4G</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Positionnement optimal</h4>
+                        <p>Placer près d'une fenêtre orientée vers l'antenne relais</p>
+                        <p>Éviter les obstacles métalliques</p>
+                        <p>Surélever le routeur (étagère, meuble)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Antennes externes</h4>
+                        <p>Utiliser les connecteurs pour antennes 4G externes</p>
+                        <p>Type : Antenne MIMO 2x2 (2 antennes)</p>
+                        <p>Peut améliorer le signal de 10-20 dBm</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sélection de bande</h4>
+                        <p>Menu : <strong>Paramètres</strong> → <strong>Réseau mobile</strong></p>
+                        <p>Mode : Auto (LTE/3G/2G) ou LTE uniquement</p>
+                        <p>Bande : Auto ou forcer une bande spécifique</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Vérification du signal</h4>
+                        <p>Menu : <strong>État</strong> → <strong>Informations réseau</strong></p>
+                        <p>RSRP : > -90 dBm = bon signal</p>
+                        <p>RSRQ : > -10 dB = bonne qualité</p>
+                        <p>SINR : > 13 dB = excellent</p>
+                    </div>
+                </div>
+
+                <h3>Gestion de la consommation data</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Statistiques de consommation</h4>
+                            <p>Menu : <strong>Statistiques</strong> → <strong>Trafic</strong></p>
+                            <p>Visualiser la consommation journalière/mensuelle</p>
+                            <p>Identifier les appareils les plus consommateurs</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Limites de data</h4>
+                            <p>Menu : <strong>Paramètres</strong> → <strong>Gestion du trafic</strong></p>
+                            <p>Définir une limite mensuelle (ex: 100 GB)</p>
+                            <p>Activer les alertes à 80% et 95%</p>
+                            <p>Option : Couper Internet à 100%</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Contrôle parental et restrictions</h4>
+                            <p>Limiter l'accès à certaines heures</p>
+                            <p>Bloquer des sites web spécifiques</p>
+                            <p>Limiter la bande passante par appareil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance et mises à jour -->
+            <div class="section">
+                <h2>🔧 Maintenance et Mises à Jour</h2>
+                
+                <h3>Mise à jour du firmware</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Vérifier la version actuelle</h4>
+                            <p>Menu : <strong>Système</strong> → <strong>Informations système</strong></p>
+                            <p>Noter la version du firmware actuelle</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Recherche de mises à jour</h4>
+                            <p>Menu : <strong>Système</strong> → <strong>Mise à jour logicielle</strong></p>
+                            <p>Cliquer sur <strong>Vérifier les mises à jour</strong></p>
+                            <p>Le routeur vérifie automatiquement en ligne</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Installation</h4>
+                            <p>Si mise à jour disponible : cliquer sur <strong>Télécharger et installer</strong></p>
+                            <p>Ne pas éteindre le routeur pendant la mise à jour</p>
+                            <p>Durée : 5-10 minutes généralement</p>
+                            <p>Le routeur redémarre automatiquement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Précautions mise à jour :</strong>
+                    <ul>
+                        <li>Faire la mise à jour en dehors des heures de production</li>
+                        <li>Sauvegarder la configuration avant</li>
+                        <li>Vérifier que le routeur est sur secteur (pas de batterie)</li>
+                        <li>Ne pas interrompre le processus</li>
+                    </ul>
+                </div>
+
+                <h3>Sauvegarde et restauration</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Sauvegarder la configuration</h4>
+                            <p>Menu : <strong>Système</strong> → <strong>Sauvegarde et restauration</strong></p>
+                            <p>Cliquer sur <strong>Sauvegarder</strong></p>
+                            <p>Un fichier .cfg est téléchargé</p>
+                            <p>Conserver ce fichier en lieu sûr</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Restaurer une configuration</h4>
+                            <p>Cliquer sur <strong>Parcourir</strong></p>
+                            <p>Sélectionner le fichier .cfg de sauvegarde</p>
+                            <p>Cliquer sur <strong>Restaurer</strong></p>
+                            <p>Le routeur redémarre avec l'ancienne configuration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Réinitialisation usine</h3>
+                <div class="highlight-box danger">
+                    <strong>🚨 Reset complet (à utiliser en dernier recours) :</strong>
+                    <p><strong>Méthode 1 - Via interface :</strong></p>
+                    <p>Menu : <strong>Système</strong> → <strong>Restaurer paramètres usine</strong></p>
+                    <p><strong>Méthode 2 - Bouton physique :</strong></p>
+                    <p>Maintenir le bouton Reset enfoncé 10 secondes (routeur allumé)</p>
+                    <p>Relâcher quand toutes les LED clignotent</p>
+                    <p><em>⚠️ Efface TOUTE la configuration personnalisée</em></p>
+                </div>
+            </div>
+
+            <!-- Dépannage -->
+            <div class="section">
+                <h2>🔍 Dépannage et Résolution de Problèmes</h2>
+                
+                <h3>Problèmes courants et solutions</h3>
+                
+                <table>
+                    <tr>
+                        <th>Problème</th>
+                        <th>Causes possibles</th>
+                        <th>Solutions</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Pas de connexion Internet</strong></td>
+                        <td>
+                            • Carte SIM non activée<br>
+                            • Forfait data épuisé<br>
+                            • Problème réseau opérateur<br>
+                            • Mauvais signal 4G
+                        </td>
+                        <td>
+                            1. Vérifier LED Signal et Service<br>
+                            2. Tester la SIM dans un téléphone<br>
+                            3. Contacter l'opérateur<br>
+                            4. Déplacer le routeur<br>
+                            5. Redémarrer le routeur
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Déconnexions fréquentes</strong></td>
+                        <td>
+                            • Signal instable<br>
+                            • Congestion réseau<br>
+                            • Surchauffe<br>
+                            • Firmware obsolète
+                        </td>
+                        <td>
+                            1. Améliorer emplacement/signal<br>
+                            2. Ajouter antennes externes<br>
+                            3. Vérifier ventilation<br>
+                            4. Mettre à jour firmware<br>
+                            5. Changer de bande 4G
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Débit faible</strong></td>
+                        <td>
+                            • Signal 4G faible<br>
+                            • Congestion<br>
+                            • Limitation opérateur<br>
+                            • Trop d'appareils connectés
+                        </td>
+                        <td>
+                            1. Vérifier qualité signal (RSRP/RSRQ)<br>
+                            2. Tester à différents moments<br>
+                            3. Limiter nombre clients Wi-Fi<br>
+                            4. Utiliser bande 5 GHz<br>
+                            5. Contacter opérateur
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Impossible d'accéder à l'interface web</strong></td>
+                        <td>
+                            • Mauvaise adresse IP<br>
+                            • Problème de connexion<br>
+                            • Navigateur bloqué<br>
+                            • Configuration IP erronée
+                        </td>
+                        <td>
+                            1. Vérifier connexion Wi-Fi/Ethernet<br>
+                            2. Essayer http://192.168.8.1<br>
+                            3. Vider cache navigateur<br>
+                            4. Essayer autre navigateur<br>
+                            5. Reset routeur si nécessaire
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wi-Fi ne fonctionne pas</strong></td>
+                        <td>
+                            • Wi-Fi désactivé<br>
+                            • Mauvais mot de passe<br>
+                            • Conflit de canal<br>
+                            • Filtrage MAC actif
+                        </td>
+                        <td>
+                            1. Vérifier LED Wi-Fi allumée<br>
+                            2. Activer Wi-Fi dans interface<br>
+                            3. Vérifier mot de passe exact<br>
+                            4. Changer canal Wi-Fi<br>
+                            5. Désactiver filtrage MAC
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Surchauffe du routeur</strong></td>
+                        <td>
+                            • Mauvaise ventilation<br>
+                            • Environnement chaud<br>
+                            • Usage intensif<br>
+                            • Poussière accumulée
+                        </td>
+                        <td>
+                            1. Placer dans lieu ventilé<br>
+                            2. Ne pas couvrir le routeur<br>
+                            3. Nettoyer grilles d'aération<br>
+                            4. Éloigner sources de chaleur<br>
+                            5. Réduire charge réseau si possible
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>Commandes de diagnostic</h3>
+                <div class="highlight-box">
+                    <strong>📊 Informations utiles dans l'interface :</strong>
+                    <ul>
+                        <li><strong>État → Informations réseau :</strong> Qualité signal, bande, opérateur</li>
+                        <li><strong>État → Statistiques :</strong> Trafic data, appareils connectés</li>
+                        <li><strong>État → Journal système :</strong> Logs et événements</li>
+                        <li><strong>Système → Ping/Traceroute :</strong> Tester connectivité</li>
+                    </ul>
+                </div>
+
+                <h3>Tests de connectivité</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Test de signal 4G</h4>
+                            <p>Vérifier LED Signal : doit afficher 3-5 barres</p>
+                            <p>Menu : Vérifier RSRP > -90 dBm et RSRQ > -10 dB</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Test de connexion Internet</h4>
+                            <p>Ouvrir un navigateur et accéder à un site (ex: google.com)</p>
+                            <p>Ou utiliser : Menu → Système → Ping vers 8.8.8.8</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Test de débit</h4>
+                            <p>Utiliser un site de test comme speedtest.net</p>
+                            <p>Comparer avec les débits théoriques de votre forfait</p>
+                            <p>Tester à différents moments de la journée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cas d'usage pratiques -->
+            <div class="section">
+                <h2>💼 Cas d'Usage Pratiques</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Bureau temporaire</h4>
+                        <p>Installation rapide sur chantier</p>
+                        <p>Connexion de plusieurs postes</p>
+                        <p>Coût maîtrisé vs ligne fixe temporaire</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Connexion de secours</h4>
+                        <p>Backup automatique en cas de panne ADSL/Fibre</p>
+                        <p>Configuration en mode WAN failover</p>
+                        <p>Continuité d'activité garantie</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Site isolé</h4>
+                        <p>Connexion là où la fibre n'est pas disponible</p>
+                        <p>Alternative aux liaisons satellite coûteuses</p>
+                        <p>Idéal zones rurales avec couverture 4G</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Événementiel</h4>
+                        <p>Connexion temporaire pour salons, foires</p>
+                        <p>Mobilité totale</p>
+                        <p>Installation/désinstallation rapide</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bonnes pratiques -->
+            <div class="section">
+                <h2>✅ Bonnes Pratiques et Recommandations</h2>
+                
+                <div class="highlight-box success">
+                    <h3>Sécurité</h3>
+                    <ul>
+                        <li>Changer IMMÉDIATEMENT le mot de passe admin par défaut</li>
+                        <li>Utiliser WPA2-PSK minimum (WPA3 si disponible)</li>
+                        <li>Créer des mots de passe Wi-Fi complexes (12+ caractères)</li>
+                        <li>Activer le pare-feu en niveau élevé</li>
+                        <li>Désactiver WPS si non utilisé</li>
+                        <li>Mettre à jour le firmware régulièrement</li>
+                        <li>Sauvegarder la configuration après chaque modification importante</li>
+                        <li>Vérifier régulièrement les appareils connectés</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Performance</h3>
+                    <ul>
+                        <li>Positionner le routeur en hauteur, près d'une fenêtre</li>
+                        <li>Vérifier régulièrement la qualité du signal 4G</li>
+                        <li>Utiliser des antennes externes si signal faible (&lt; -100 dBm)</li>
+                        <li>Activer la bande 5 GHz pour les appareils compatibles proches</li>
+                        <li>Limiter le nombre d'appareils connectés simultanément</li>
+                        <li>Surveiller la consommation data mensuelle</li>
+                        <li>Redémarrer le routeur périodiquement (1 fois par mois)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box warning">
+                    <h3>Maintenance</h3>
+                    <ul>
+                        <li>Nettoyer régulièrement les grilles de ventilation</li>
+                        <li>Vérifier que le routeur ne surchauffe pas</li>
+                        <li>Consulter les logs système en cas de problème</li>
+                        <li>Documenter toutes les modifications de configuration</li>
+                        <li>Conserver les codes PIN, PUK et mots de passe en lieu sûr</li>
+                        <li>Planifier les mises à jour hors heures de production</li>
+                        <li>Tester régulièrement la connexion de secours (si configurée)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Spécifications techniques complètes -->
+            <div class="section">
+                <h2>📋 Spécifications Techniques Complètes</h2>
+                
+                <table>
+                    <tr>
+                        <th>Catégorie</th>
+                        <th>Spécification</th>
+                        <th>Détails</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="6"><strong>Réseau Mobile</strong></td>
+                        <td>Standard 4G</td>
+                        <td>LTE Category 6</td>
+                    </tr>
+                    <tr>
+                        <td>Débit download</td>
+                        <td>Jusqu'à 300 Mbps</td>
+                    </tr>
+                    <tr>
+                        <td>Débit upload</td>
+                        <td>Jusqu'à 50 Mbps</td>
+                    </tr>
+                    <tr>
+                        <td>Bandes supportées</td>
+                        <td>B1/B3/B7/B8/B20/B32/B38/B40</td>
+                    </tr>
+                    <tr>
+                        <td>Rétrocompatibilité</td>
+                        <td>3G UMTS/HSPA+, 2G GSM/EDGE</td>
+                    </tr>
+                    <tr>
+                        <td>Antennes</td>
+                        <td>2x internes + 2x connecteurs externes (SMA)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5"><strong>Wi-Fi</strong></td>
+                        <td>Standards</td>
+                        <td>IEEE 802.11 a/b/g/n/ac</td>
+                    </tr>
+                    <tr>
+                        <td>Fréquences</td>
+                        <td>2.4 GHz et 5 GHz (dual-band simultané)</td>
+                    </tr>
+                    <tr>
+                        <td>Débit Wi-Fi</td>
+                        <td>2.4 GHz: 300 Mbps / 5 GHz: 867 Mbps</td>
+                    </tr>
+                    <tr>
+                        <td>Clients max</td>
+                        <td>64 appareils simultanés</td>
+                    </tr>
+                    <tr>
+                        <td>Sécurité</td>
+                        <td>WEP, WPA, WPA2-PSK, WPA3 (selon firmware)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Ports</strong></td>
+                        <td>LAN</td>
+                        <td>4x Gigabit Ethernet (10/100/1000 Mbps)</td>
+                    </tr>
+                    <tr>
+                        <td>WAN/LAN</td>
+                        <td>1x port configurable Gigabit</td>
+                    </tr>
+                    <tr>
+                        <td>Téléphone</td>
+                        <td>1x RJ11 pour téléphonie fixe (VoLTE)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4"><strong>Système</strong></td>
+                        <td>Processeur</td>
+                        <td>CPU multi-core (détails constructeur)</td>
+                    </tr>
+                    <tr>
+                        <td>Mémoire</td>
+                        <td>RAM 256 MB / Flash 256 MB</td>
+                    </tr>
+                    <tr>
+                        <td>Interface admin</td>
+                        <td>Web UI (HTTP/HTTPS), Application mobile</td>
+                    </tr>
+                    <tr>
+                        <td>Protocoles</td>
+                        <td>IPv4, IPv6, DHCP, NAT, UPnP, DDNS</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Alimentation</strong></td>
+                        <td>Entrée</td>
+                        <td>100-240V AC, 50/60 Hz</td>
+                    </tr>
+                    <tr>
+                        <td>Sortie</td>
+                        <td>DC 12V / 1.5A</td>
+                    </tr>
+                    <tr>
+                        <td>Consommation</td>
+                        <td>Max 18W</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4"><strong>Physique</strong></td>
+                        <td>Dimensions</td>
+                        <td>225 x 165 x 65 mm</td>
+                    </tr>
+                    <tr>
+                        <td>Poids</td>
+                        <td>Environ 450g</td>
+                    </tr>
+                    <tr>
+                        <td>Température fonc.</td>
+                        <td>0°C à 40°C</td>
+                    </tr>
+                    <tr>
+                        <td>Humidité</td>
+                        <td>5% à 95% (sans condensation)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Glossaire -->
+            <div class="section">
+                <h2>📖 Glossaire des Termes Techniques</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>4G / LTE</h4>
+                        <p>Long Term Evolution - Technologie de réseau mobile de 4ème génération offrant des débits élevés</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Cat6 / Category 6</h4>
+                        <p>Catégorie de modem 4G supportant jusqu'à 300 Mbps en download</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>RSRP</h4>
+                        <p>Reference Signal Received Power - Puissance du signal 4G reçu (en dBm). Bon signal: > -90 dBm</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>RSRQ</h4>
+                        <p>Reference Signal Received Quality - Qualité du signal 4G. Bon: > -10 dB</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>SINR</h4>
+                        <p>Signal to Interference plus Noise Ratio - Rapport signal/bruit. Excellent: > 13 dB</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>SSID</h4>
+                        <p>Service Set Identifier - Nom du réseau Wi-Fi diffusé par le routeur</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>WPA2-PSK</h4>
+                        <p>Wi-Fi Protected Access 2 - Pre-Shared Key - Standard de sécurité Wi-Fi avec clé partagée</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>DHCP</h4>
+                        <p>Dynamic Host Configuration Protocol - Attribution automatique d'adresses IP aux appareils</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>NAT</h4>
+                        <p>Network Address Translation - Traduction d'adresses pour partager une connexion</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>DMZ</h4>
+                        <p>Demilitarized Zone - Zone permettant d'exposer un appareil directement sur Internet</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>VoLTE</h4>
+                        <p>Voice over LTE - Téléphonie passant par le réseau 4G au lieu du 2G/3G</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Dual-band</h4>
+                        <p>Routeur supportant 2 fréquences Wi-Fi simultanément (2.4 GHz + 5 GHz)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Failover</h4>
+                        <p>Basculement automatique vers connexion de secours en cas de panne</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Firmware</h4>
+                        <p>Logiciel interne du routeur (système d'exploitation embarqué)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>MAC Address</h4>
+                        <p>Media Access Control - Identifiant unique de chaque équipement réseau</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>WPS</h4>
+                        <p>Wi-Fi Protected Setup - Connexion simplifiée au Wi-Fi par appui bouton</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checklist de mise en service -->
+            <div class="section">
+                <h2>✔️ Checklist de Mise en Service</h2>
+                
+                <div class="highlight-box success">
+                    <h3>Phase 1 : Préparation (5 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Vérifier le contenu de la boîte</li>
+                        <li>☐ Carte SIM 4G activée disponible</li>
+                        <li>☐ Code PIN de la carte SIM noté</li>
+                        <li>☐ Emplacement idéal repéré (signal 4G, ventilation)</li>
+                        <li>☐ Prise électrique stable identifiée</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Phase 2 : Installation physique (10 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Carte SIM insérée (routeur éteint)</li>
+                        <li>☐ Routeur positionné correctement</li>
+                        <li>☐ Alimentation branchée</li>
+                        <li>☐ Routeur démarré (attendre stabilisation LED)</li>
+                        <li>☐ LED Power, Signal, Service vérifiées</li>
+                        <li>☐ Connexion Ethernet ou Wi-Fi établie</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Phase 3 : Configuration de base (15 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Accès interface web (192.168.8.1)</li>
+                        <li>☐ Connexion admin réussie</li>
+                        <li>☐ Langue configurée en Français</li>
+                        <li>☐ Code PIN SIM configuré/désactivé</li>
+                        <li>☐ SSID Wi-Fi personnalisé</li>
+                        <li>☐ Mot de passe Wi-Fi fort défini (WPA2)</li>
+                        <li>☐ Mot de passe admin changé</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Phase 4 : Configuration avancée (20 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Configuration LAN/DHCP si nécessaire</li>
+                        <li>☐ Dual-band Wi-Fi configuré (2.4 + 5 GHz)</li>
+                        <li>☐ Pare-feu activé (niveau élevé)</li>
+                        <li>☐ Redirections de ports créées (si nécessaire)</li>
+                        <li>☐ Limites data configurées</li>
+                        <li>☐ Antennes externes installées (si signal faible)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box success">
+                    <h3>Phase 5 : Tests et validation (10 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Test connexion Internet (navigateur)</li>
+                        <li>☐ Test de débit (speedtest)</li>
+                        <li>☐ Qualité signal vérifiée (RSRP, RSRQ)</li>
+                        <li>☐ Connexion Wi-Fi testée (2.4 et 5 GHz)</li>
+                        <li>☐ Connexion Ethernet testée</li>
+                        <li>☐ Plusieurs appareils connectés simultanément</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box warning">
+                    <h3>Phase 6 : Documentation (5 min)</h3>
+                    <ul style="list-style-type: none;">
+                        <li>☐ Configuration sauvegardée (.cfg)</li>
+                        <li>☐ Mots de passe documentés en lieu sûr</li>
+                        <li>☐ Paramètres réseau notés (IP, SSID, etc.)</li>
+                        <li>☐ Informations opérateur et forfait notées</li>
+                        <li>☐ Version firmware notée</li>
+                        <li>☐ Date de mise en service enregistrée</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section">
+                <h2>❓ Questions Fréquentes (FAQ)</h2>
+                
+                <h3>Installation et Configuration</h3>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Puis-je utiliser n'importe quelle carte SIM ?</h4>
+                            <p><strong>R:</strong> Oui, le routeur est débloqué et compatible avec tous les opérateurs. Vérifiez simplement que votre forfait inclut suffisamment de data et que la carte SIM est au format standard (ou utilisez un adaptateur).</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Combien d'appareils peuvent se connecter simultanément ?</h4>
+                            <p><strong>R:</strong> Le B525 supporte jusqu'à 64 appareils connectés simultanément (Wi-Fi + Ethernet). En pratique, 15-20 appareils actifs offrent les meilleures performances.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Quelle est la portée du Wi-Fi ?</h4>
+                            <p><strong>R:</strong> En 2.4 GHz: environ 50-100m en extérieur, 20-30m en intérieur. En 5 GHz: 30-50m extérieur, 10-15m intérieur. La portée varie selon les obstacles (murs, meubles).</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Dois-je désactiver le code PIN de la SIM ?</h4>
+                            <p><strong>R:</strong> Pour un routeur fixe toujours allumé, désactiver le PIN évite les blocages au redémarrage. Pour un usage mobile ou sensible, conservez le PIN pour la sécurité.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Comment améliorer la réception 4G ?</h4>
+                            <p><strong>R:</strong> 1) Positionner près d'une fenêtre, 2) Surélever le routeur, 3) Orienter vers l'antenne relais, 4) Ajouter des antennes externes 4G MIMO si signal < -100 dBm.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Performance et Débit</h3>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Pourquoi mon débit est inférieur à 300 Mbps ?</h4>
+                            <p><strong>R:</strong> 300 Mbps est le débit théorique maximum. En réel: qualité signal, congestion réseau, distance antenne relais, et limitations opérateur réduisent le débit. 50-150 Mbps est courant.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Le routeur peut-il remplacer une connexion fibre ?</h4>
+                            <p><strong>R:</strong> Pour un usage modéré (navigation, streaming standard), oui. Pour usage intensif (streaming 4K multiple, gaming compétitif, télétravail multi-utilisateurs), la fibre reste préférable.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Quelle consommation data prévoir ?</h4>
+                            <p><strong>R:</strong> Navigation: 1-2 GB/mois, Streaming HD: 3 GB/h, Télétravail: 5-10 GB/jour, Maison connectée: 50-200 GB/mois. Prévoir forfait 100-200 GB minimum pour usage familial.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Puis-je utiliser une connexion filaire en même temps que la 4G ?</h4>
+                            <p><strong>R:</strong> Oui ! Configurez le port WAN/LAN en mode WAN et paramétrez le failover. Le routeur bascule automatiquement sur 4G si la ligne fixe tombe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Sécurité et Maintenance</h3>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Comment savoir si quelqu'un utilise mon Wi-Fi ?</h4>
+                            <p><strong>R:</strong> Menu → État → Clients connectés. Vérifiez la liste des appareils. Si appareil inconnu: changez immédiatement le mot de passe Wi-Fi et activez le filtrage MAC.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>À quelle fréquence mettre à jour le firmware ?</h4>
+                            <p><strong>R:</strong> Vérifiez tous les 3-6 mois. Mettez à jour si: correctifs de sécurité, nouvelles fonctionnalités utiles, ou résolution de bugs connus.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>Faut-il éteindre le routeur régulièrement ?</h4>
+                            <p><strong>R:</strong> Non obligatoire mais recommandé 1 fois/mois pour vider la mémoire et rafraîchir les connexions. Redémarrez aussi après changements majeurs de config.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">Q</div>
+                        <div class="step-content">
+                            <h4>J'ai oublié le mot de passe admin, que faire ?</h4>
+                            <p><strong>R:</strong> Réinitialisation usine (bouton Reset 10 sec). ⚠️ Efface toute la configuration. Vous devrez tout reconfigurer et utiliser le mot de passe par défaut de l'étiquette.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ressources et support -->
+            <div class="section">
+                <h2>📚 Ressources et Support</h2>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Documentation officielle</h4>
+                        <p>Manuel utilisateur Huawei B525</p>
+                        <p>Guide de démarrage rapide</p>
+                        <p>Notes de version firmware</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Support Huawei</h4>
+                        <p>Site web: consumer.huawei.com</p>
+                        <p>Support technique en ligne</p>
+                        <p>Forums communautaires</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Support opérateur</h4>
+                        <p>Assistance forfait et data</p>
+                        <p>Vérification couverture réseau</p>
+                        <p>Optimisation configuration APN</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Outils utiles</h4>
+                        <p>Speedtest.net - Test de débit</p>
+                        <p>Opensignal - Carte couverture</p>
+                        <p>Applications monitoring réseau</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🔧 Informations de contact support :</strong>
+                    <p><strong>Garantie :</strong> 2 ans constructeur (conserver facture et emballage)</p>
+                    <p><strong>SAV Huawei :</strong> Via revendeur ou service client Huawei</p>
+                    <p><strong>Mises à jour :</strong> Automatiques via l'interface ou téléchargement sur site Huawei</p>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                
+                <p>Le routeur 4G Huawei B525 est une solution professionnelle complète et performante pour fournir une connectivité Internet via le réseau mobile. Sa configuration intuitive et ses nombreuses fonctionnalités en font un équipement polyvalent adapté à de multiples scénarios d'usage.</p>
+
+                <div class="highlight-box success">
+                    <strong>✅ Points clés à retenir :</strong>
+                    <ul>
+                        <li><strong>Installation simple :</strong> Mise en service en moins d'une heure</li>
+                        <li><strong>Performances élevées :</strong> Jusqu'à 300 Mbps en 4G LTE Cat6</li>
+                        <li><strong>Connectivité complète :</strong> Wi-Fi dual-band + 5 ports Ethernet Gigabit</li>
+                        <li><strong>Sécurité robuste :</strong> Pare-feu, WPA2/WPA3, filtrage MAC</li>
+                        <li><strong>Flexibilité :</strong> Mode failover, 64 appareils, téléphonie VoLTE</li>
+                        <li><strong>Maintenance facile :</strong> Interface web intuitive, mises à jour automatiques</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Conseils finaux :</strong>
+                    <ul>
+                        <li>Prendre le temps de bien configurer initialement pour éviter les problèmes</li>
+                        <li>Documenter toutes les configurations et conserver les mots de passe</li>
+                        <li>Surveiller régulièrement la qualité du signal et la consommation data</li>
+                        <li>Maintenir le firmware à jour pour bénéficier des améliorations</li>
+                        <li>Ne pas hésiter à contacter le support en cas de problème persistant</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: #3B5BDB;">
+                    <strong>Vous maîtrisez maintenant l'installation et la configuration complète du routeur 4G Huawei B525 !</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>TAI 2025 - Formation Technique</strong></p>
+        <p>Routeur 4G Huawei B525 | Document pédagogique | © 2025</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Ce document est destiné à un usage pédagogique dans le cadre de la formation TAI 2025
+        </p>
+    </footer>
+
+</body>
+</html>

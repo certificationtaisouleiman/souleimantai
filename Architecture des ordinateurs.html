@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture des ordinateurs - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #3B5BDB;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f7ff, #e8f5e9);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+        }
+
+        .quiz-section h3 {
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+        }
+
+        .command-box {
+            background: #1a1a1a;
+            color: #3DDAB4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .command-box code {
+            color: #3DDAB4;
+        }
+
+        /* Schéma Dell OptiPlex 3080 */
+        .pc-schema {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pc-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .pc-tower {
+            background: linear-gradient(145deg, #3a4a5c, #2c3a4a);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 3px solid #3DDAB4;
+            position: relative;
+        }
+
+        .pc-front {
+            background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            border: 2px solid #3B5BDB;
+        }
+
+        .pc-logo {
+            color: #3DDAB4;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .component-label {
+            background: rgba(59, 91, 219, 0.2);
+            border-left: 3px solid #3DDAB4;
+            padding: 0.8rem 1rem;
+            margin: 0.8rem 0;
+            border-radius: 5px;
+            color: white;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .component-label::before {
+            content: "●";
+            color: #3DDAB4;
+            font-size: 1.2rem;
+        }
+
+        .specs-panel {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid rgba(61, 218, 180, 0.3);
+        }
+
+        .spec-item {
+            background: rgba(59, 91, 219, 0.1);
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 8px;
+            border-left: 3px solid #3DDAB4;
+            color: white;
+        }
+
+        .spec-item h4 {
+            color: #3DDAB4;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-item p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+
+            .pc-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">Parc TAI</div>
+        <h1>Architecture des Ordinateurs</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>🖥️ Introduction</h2>
+                <p>Comprendre l'architecture d'un ordinateur est essentiel pour diagnostiquer, dépanner et maintenir efficacement le parc informatique. Nous allons étudier les composants d'un PC professionnel moderne : le <strong>Dell OptiPlex 3080</strong>.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Identifier les composants matériels, comprendre leur rôle et leurs interactions pour assurer la maintenance et l'évolution du parc informatique.
+                </div>
+            </div>
+
+            <!-- Schéma Dell OptiPlex 3080 -->
+            <div class="section">
+                <h2>🔧 Dell OptiPlex 3080 - Schéma Technique</h2>
+                
+                <div class="pc-schema">
+                    <div class="pc-container">
+                        <div class="pc-tower">
+                            <div class="pc-front">
+                                <div class="pc-logo">DELL OptiPlex 3080</div>
+                                <div class="component-label">Lecteur optique DVD±RW (optionnel)</div>
+                                <div class="component-label">Port USB 3.2 Gen 1 Type-C</div>
+                                <div class="component-label">2x USB 3.2 Gen 1 Type-A</div>
+                                <div class="component-label">Combo audio (casque/micro)</div>
+                                <div class="component-label">Bouton d'alimentation</div>
+                                <div class="component-label">Voyant d'activité disque dur</div>
+                                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(61, 218, 180, 0.3);">
+                                    <div class="component-label">Panneau arrière : DisplayPort</div>
+                                    <div class="component-label">HDMI 1.4</div>
+                                    <div class="component-label">4x USB 2.0</div>
+                                    <div class="component-label">2x USB 3.2 Gen 1</div>
+                                    <div class="component-label">RJ45 Gigabit Ethernet</div>
+                                    <div class="component-label">Audio ligne sortie/entrée</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="specs-panel">
+                            <div class="spec-item">
+                                <h4>💻 Processeur</h4>
+                                <p>Intel Core i3/i5/i7 10ème génération (Comet Lake)</p>
+                                <p>Socket LGA1200, jusqu'à 6 cœurs</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>🧠 Mémoire RAM</h4>
+                                <p>2x slots DDR4 2666 MHz</p>
+                                <p>Jusqu'à 64 GB (2x 32 GB)</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>💾 Stockage</h4>
+                                <p>1x M.2 2280 NVMe SSD</p>
+                                <p>1x baie 2.5" SATA (HDD/SSD)</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>🎮 Graphique</h4>
+                                <p>Intel UHD Graphics 630 intégré</p>
+                                <p>Support GPU discret low-profile</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>⚡ Alimentation</h4>
+                                <p>200W 80 PLUS Bronze</p>
+                                <p>Format SFF (Small Form Factor)</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>🌐 Réseau</h4>
+                                <p>Ethernet Intel I219-LM Gigabit</p>
+                                <p>Wi-Fi 6 AX201 (optionnel)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 1 : Processeur -->
+            <div class="section">
+                <h2>⚙️ 1. Le Processeur (CPU)</h2>
+                
+                <h3>Rôle du processeur</h3>
+                <p>Le <strong>CPU (Central Processing Unit)</strong> est le cerveau de l'ordinateur. Il exécute les instructions des programmes et coordonne l'ensemble des composants.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Cœurs et threads</h4>
+                        <p>Les cœurs permettent le multitâche. L'Hyper-Threading double les threads logiques par cœur physique.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Fréquence (GHz)</h4>
+                        <p>Vitesse d'exécution des instructions. Le Turbo Boost augmente temporairement la fréquence.</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Cache</h4>
+                        <p>Mémoire ultra-rapide intégrée (L1, L2, L3) pour accélérer l'accès aux données fréquentes.</p>
+                    </div>
+                </div>
+
+                <h3>OptiPlex 3080 - Options processeurs</h3>
+                <table>
+                    <tr>
+                        <th>Modèle</th>
+                        <th>Cœurs/Threads</th>
+                        <th>Fréquence</th>
+                        <th>Cache</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Core i3-10100</strong></td>
+                        <td>4 / 8</td>
+                        <td>3.6 GHz (4.3 Turbo)</td>
+                        <td>6 MB</td>
+                        <td>Bureautique standard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Core i5-10500</strong></td>
+                        <td>6 / 12</td>
+                        <td>3.1 GHz (4.5 Turbo)</td>
+                        <td>12 MB</td>
+                        <td>Usage professionnel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Core i7-10700</strong></td>
+                        <td>8 / 16</td>
+                        <td>2.9 GHz (4.8 Turbo)</td>
+                        <td>16 MB</td>
+                        <td>Tâches intensives</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Vérifier le processeur</h4>
+                    <div class="command-box">
+                        <code>
+# PowerShell<br>
+Get-WmiObject Win32_Processor | Select-Object Name, NumberOfCores, NumberOfLogicalProcessors, MaxClockSpeed<br><br>
+
+# Ligne de commande<br>
+wmic cpu get name, numberofcores, numberoflogicalprocessors
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 2 : Mémoire RAM -->
+            <div class="section">
+                <h2>🧠 2. La Mémoire RAM</h2>
+                
+                <h3>Rôle de la RAM</h3>
+                <p>La <strong>RAM (Random Access Memory)</strong> stocke temporairement les données et programmes en cours d'utilisation. Plus la RAM est importante, plus le système peut gérer d'applications simultanément.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>DDR4</h4>
+                        <p>Standard actuel offrant un bon équilibre performance/consommation (2666 MHz sur l'OptiPlex 3080)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Dual Channel</h4>
+                        <p>2 barrettes identiques doublent la bande passante mémoire</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Capacité</h4>
+                        <p>8 GB minimum, 16 GB recommandé, 32 GB+ pour usage intensif</p>
+                    </div>
+                </div>
+
+                <h3>Configuration mémoire recommandée</h3>
+                <table>
+                    <tr>
+                        <th>Usage</th>
+                        <th>RAM recommandée</th>
+                        <th>Configuration</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Bureautique légère</strong></td>
+                        <td>8 GB</td>
+                        <td>2x 4 GB DDR4-2666</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Usage professionnel</strong></td>
+                        <td>16 GB</td>
+                        <td>2x 8 GB DDR4-2666</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multitâche intensif</strong></td>
+                        <td>32 GB</td>
+                        <td>2x 16 GB DDR4-2666</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Vérifier la mémoire</h4>
+                    <div class="command-box">
+                        <code>
+# Informations mémoire<br>
+Get-WmiObject Win32_PhysicalMemory | Select-Object Manufacturer, Capacity, Speed<br><br>
+
+# Capacité totale<br>
+(Get-WmiObject Win32_ComputerSystem).TotalPhysicalMemory / 1GB
+                        </code>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Compatibilité :</strong> Vérifier la compatibilité des barrettes (même fréquence, même tension) avant toute mise à niveau. Installer par paire pour bénéficier du Dual Channel.
+                </div>
+            </div>
+
+            <!-- Partie 3 : Stockage -->
+            <div class="section">
+                <h2>💾 3. Solutions de Stockage</h2>
+                
+                <h3>Types de stockage</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>HDD (Hard Disk Drive)</h4>
+                        <p>Disque mécanique, grande capacité, économique mais lent (5400-7200 RPM)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>SSD SATA</h4>
+                        <p>Mémoire flash, rapide (jusqu'à 550 MB/s), pas de pièce mobile, format 2.5"</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>SSD NVMe</h4>
+                        <p>Ultra-rapide (jusqu'à 3500 MB/s), connecté via PCIe, format M.2</p>
+                    </div>
+                </div>
+
+                <h3>Configuration OptiPlex 3080</h3>
+                <table>
+                    <tr>
+                        <th>Emplacement</th>
+                        <th>Type</th>
+                        <th>Interface</th>
+                        <th>Usage recommandé</th>
+                    </tr>
+                    <tr>
+                        <td><strong>M.2 2280</strong></td>
+                        <td>SSD NVMe</td>
+                        <td>PCIe 3.0 x4</td>
+                        <td>Système d'exploitation + applications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Baie 2.5"</strong></td>
+                        <td>SSD SATA ou HDD</td>
+                        <td>SATA III (6 Gb/s)</td>
+                        <td>Stockage données / backup</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Configuration recommandée</h4>
+                    <p><strong>Système optimal :</strong></p>
+                    <ul>
+                        <li>SSD NVMe 256 GB (minimum) ou 512 GB (recommandé) pour Windows et logiciels</li>
+                        <li>SSD SATA 500 GB - 1 TB ou HDD 1-2 TB pour les données utilisateur</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Vérifier les disques</h4>
+                    <div class="command-box">
+                        <code>
+# Lister les disques<br>
+Get-PhysicalDisk | Select-Object FriendlyName, MediaType, Size<br><br>
+
+# Santé des disques<br>
+Get-PhysicalDisk | Get-StorageReliabilityCounter | Select-Object DeviceId, Wear, Temperature<br><br>
+
+# Espace disque<br>
+Get-Volume | Select-Object DriveLetter, FileSystem, SizeRemaining, Size
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 4 : Carte mère et chipset -->
+            <div class="section">
+                <h2>🔌 4. Carte Mère et Chipset</h2>
+                
+                <h3>Rôle de la carte mère</h3>
+                <p>La carte mère interconnecte tous les composants via le <strong>chipset</strong>. Sur l'OptiPlex 3080, le chipset Intel Q470 ou B460 gère les communications entre le CPU, la RAM, le stockage et les périphériques.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Socket LGA1200</h4>
+                        <p>Accueille les processeurs Intel 10ème génération (Comet Lake)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Slots d'extension</h4>
+                        <p>1x PCIe x16 (3.0) pour carte graphique low-profile</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Connectivité</h4>
+                        <p>USB 3.2, M.2, SATA, audio HD, Ethernet intégrés</p>
+                    </div>
+                </div>
+
+                <h3>BIOS/UEFI</h3>
+                <p>Le <strong>BIOS</strong> (Basic Input/Output System) ou <strong>UEFI</strong> (Unified Extensible Firmware Interface) initialise le matériel au démarrage et permet la configuration bas niveau.</p>
+
+                <div class="example-box">
+                    <h4>💡 Accès BIOS OptiPlex 3080</h4>
+                    <p><strong>Au démarrage :</strong> Appuyer sur <strong>F2</strong> pour accéder au Setup BIOS</p>
+                    <p><strong>Boot Menu :</strong> Appuyer sur <strong>F12</strong> pour choisir le périphérique de démarrage</p>
+                    <p><strong>Diagnostics :</strong> Appuyer sur <strong>F12</strong> puis sélectionner "Diagnostics"</p>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Sécurité BIOS :</strong>
+                    <ul>
+                        <li>Définir un mot de passe administrateur BIOS</li>
+                        <li>Activer le Secure Boot (UEFI)</li>
+                        <li>Désactiver le démarrage USB si non nécessaire</li>
+                        <li>Activer le TPM 2.0 pour Windows 11 et BitLocker</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 5 : Connectique et ports -->
+            <div class="section">
+                <h2>🔗 5. Connectique et Ports</h2>
+                
+                <h3>Ports avant</h3>
+                <table>
+                    <tr>
+                        <th>Port</th>
+                        <th>Type</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>USB-C</strong></td>
+                        <td>USB 3.2 Gen 1 (5 Gbps)</td>
+                        <td>Périphériques modernes, transfert rapide</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2x USB-A</strong></td>
+                        <td>USB 3.2 Gen 1 (5 Gbps)</td>
+                        <td>Clés USB, souris, clavier</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Combo Audio</strong></td>
+                        <td>Jack 3.5mm</td>
+                        <td>Casque avec microphone intégré</td>
+                    </tr>
+                </table>
+
+                <h3>Ports arrière</h3>
+                <table>
+                    <tr>
+                        <th>Port</th>
+                        <th>Quantité</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>DisplayPort 1.4</strong></td>
+                        <td>1</td>
+                        <td>Écran principal (jusqu'à 4K 60Hz)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HDMI 1.4</strong></td>
+                        <td>1</td>
+                        <td>Second écran (jusqu'à 4K 30hz)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USB 3.2 Gen 1</strong></td>
+                        <td>2</td>
+                        <td>Disques externes, périphériques rapides</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USB 2.0</strong></td>
+                        <td>4</td>
+                        <td>Clavier, souris, imprimante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RJ45 Ethernet</strong></td>
+                        <td>1</td>
+                        <td>Connexion réseau filaire Gigabit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Audio ligne</strong></td>
+                        <td>2 (sortie/entrée)</td>
+                        <td>Enceintes, microphone externe</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>💡 Support multi-écrans :</strong> L'OptiPlex 3080 supporte jusqu'à 3 écrans simultanés via DisplayPort, HDMI et un troisième via USB-C (avec adaptateur DisplayPort).
+                </div>
+            </div>
+
+            <!-- Partie 6 : Carte graphique -->
+            <div class="section">
+                <h2>🎮 6. Solution Graphique</h2>
+                
+                <h3>Intel UHD Graphics 630</h3>
+                <p>Le GPU intégré au processeur suffit pour la bureautique et la lecture vidéo 4K. Il partage la mémoire RAM du système.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Performances</h4>
+                        <p>24 unités d'exécution, fréquence jusqu'à 1,15 GHz selon le processeur</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Support codec</h4>
+                        <p>Décodage matériel H.264, H.265 (HEVC), VP9, jusqu'à 4K 60fps</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Sortie vidéo</h4>
+                        <p>3 écrans maximum, résolution jusqu'à 4096x2304 @ 60Hz</p>
+                    </div>
+                </div>
+
+                <h3>GPU dédié (optionnel)</h3>
+                <p>L'OptiPlex 3080 SFF peut accueillir une carte graphique low-profile pour des besoins spécifiques (CAO légère, multi-écrans haute résolution).</p>
+
+                <div class="example-box">
+                    <h4>💡 Cartes compatibles (low-profile)</h4>
+                    <ul>
+                        <li><strong>NVIDIA GeForce GT 1030</strong> - CAO 2D, multi-écrans</li>
+                        <li><strong>AMD Radeon RX 6400</strong> - Usage professionnel léger</li>
+                        <li><strong>NVIDIA Quadro P400</strong> - Stations de travail certifiées</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Vérifier la carte graphique</h4>
+                    <div class="command-box">
+                        <code>
+# Informations GPU<br>
+Get-WmiObject Win32_VideoController | Select-Object Name, DriverVersion, VideoMemoryType<br><br>
+
+# Version DirectX et pilote<br>
+dxdiag<br><br>
+
+# Utilisation GPU (Windows 10/11)<br>
+Get-Counter '\GPU Engine(*)\Utilization Percentage'
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partie 7 : Alimentation et refroidissement -->
+            <div class="section">
+                <h2>⚡ 7. Alimentation et Refroidissement</h2>
+                
+                <h3>Bloc d'alimentation</h3>
+                <p>L'OptiPlex 3080 est équipé d'une alimentation <strong>200W 80 PLUS Bronze</strong>, optimisée pour l'efficacité énergétique (85% minimum).</p>
+
+                <table>
+                    <tr>
+                        <th>Certification</th>
+                        <th>Efficacité</th>
+                        <th>Avantage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>80 PLUS Bronze</strong></td>
+                        <td>85-88%</td>
+                        <td>Économies d'énergie, moins de chaleur</td>
+                    </tr>
+                    <tr>
+                        <td><strong>80 PLUS Silver</strong></td>
+                        <td>88-91%</td>
+                        <td>Meilleure efficacité</td>
+                    </tr>
+                    <tr>
+                        <td><strong>80 PLUS Gold</strong></td>
+                        <td>90-93%</td>
+                        <td>Optimal pour usage intensif</td>
+                    </tr>
+                </table>
+
+                <h3>Système de refroidissement</h3>
+                <p>Refroidissement actif par ventilateur avec dissipateur thermique en aluminium. Le BIOS gère automatiquement la vitesse selon la température.</p>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Maintenance thermique :</strong>
+                    <ul>
+                        <li>Nettoyer les filtres et ventilateurs tous les 6 mois</li>
+                        <li>Vérifier les températures en charge (CPU &lt; 80°C)</li>
+                        <li>Assurer une bonne circulation d'air autour du PC</li>
+                        <li>Remplacer la pâte thermique tous les 3-4 ans</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>💡 Surveiller les températures</h4>
+                    <div class="command-box">
+                        <code>
+# Via WMIC (basique)<br>
+wmic /namespace:\\root\wmi PATH MSAcpi_ThermalZoneTemperature get CurrentTemperature<br><br>
+
+# PowerShell (nécessite admin)<br>
+Get-WmiObject MSAcpi_ThermalZoneTemperature -Namespace "root/wmi" | `<br>
+&nbsp;&nbsp;Select-Object @{n="Température(°C)";e={($_.CurrentTemperature/10)-273.15}}
+                        </code>
+                    </div>
+                    <p><strong>Outils tiers recommandés :</strong> HWMonitor, Core Temp, Dell Command Monitor</p>
+                </div>
+            </div>
+
+            <!-- Partie 8 : Évolutivité -->
+            <div class="section">
+                <h2>🔧 8. Évolutivité et Maintenance</h2>
+                
+                <h3>Composants remplaçables/upgradables</h3>
+                <table>
+                    <tr>
+                        <th>Composant</th>
+                        <th>Difficulté</th>
+                        <th>Recommandation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>RAM</strong></td>
+                        <td>⭐ Facile</td>
+                        <td>Passer de 8 GB à 16 GB pour améliorer les performances</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SSD NVMe</strong></td>
+                        <td>⭐⭐ Moyen</td>
+                        <td>Upgrade de 256 GB à 512 GB ou 1 TB</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disque 2.5"</strong></td>
+                        <td>⭐ Facile</td>
+                        <td>Ajouter un SSD SATA pour plus de stockage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carte Wi-Fi</strong></td>
+                        <td>⭐⭐ Moyen</td>
+                        <td>Ajouter Wi-Fi 6 (M.2 2230 slot)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GPU dédié</strong></td>
+                        <td>⭐⭐⭐ Avancé</td>
+                        <td>Uniquement low-profile, vérifier la puissance</td>
+                    </tr>
+                </table>
+
+                <h3>Procédure de démontage</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Sécurité</h4>
+                            <p>Éteindre le PC, débrancher l'alimentation, attendre 30 secondes</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Ouverture</h4>
+                            <p>Retirer la vis du panneau latéral, faire glisser le panneau vers l'arrière</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Accès composants</h4>
+                            <p>RAM directement accessible, SSD NVMe sous cache métallique, HDD dans caddy</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Remontage</h4>
+                            <p>Remettre le panneau, revisser, reconnecter les câbles, tester le démarrage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>⚠️ Précautions ESD (décharges électrostatiques) :</strong>
+                    <ul>
+                        <li>Utiliser un bracelet antistatique ou toucher régulièrement le châssis métallique</li>
+                        <li>Travailler sur une surface non conductrice</li>
+                        <li>Ne jamais toucher les composants électroniques directement</li>
+                        <li>Manipuler les barrettes RAM et cartes par les bords</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Partie 9 : Diagnostics -->
+            <div class="section">
+                <h2>🔍 9. Diagnostics et Dépannage</h2>
+                
+                <h3>Dell SupportAssist</h3>
+                <p>Outil de diagnostic intégré permettant de tester les composants matériels et de détecter les problèmes.</p>
+
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Tests automatiques</h4>
+                        <p>Scan complet du matériel (CPU, RAM, disque, carte réseau)</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mise à jour pilotes</h4>
+                        <p>Détection et installation automatique des pilotes Dell</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Optimisation système</h4>
+                        <p>Nettoyage et optimisation des performances</p>
+                    </div>
+                </div>
+
+                <h3>Codes bip et voyants</h3>
+                <table>
+                    <tr>
+                        <th>Voyant/Bip</th>
+                        <th>Signification</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Ambre fixe</strong></td>
+                        <td>Erreur matérielle détectée</td>
+                        <td>Vérifier les connexions, tester les composants</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ambre clignotant</strong></td>
+                        <td>Problème alimentation</td>
+                        <td>Vérifier le câble, tester l'alimentation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blanc fixe</strong></td>
+                        <td>Fonctionnement normal</td>
+                        <td>Aucune action requise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2 bips</strong></td>
+                        <td>Erreur mémoire RAM</td>
+                        <td>Réinsérer ou remplacer les barrettes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3 bips</strong></td>
+                        <td>Erreur carte mère/chipset</td>
+                        <td>Contacter le support technique</td>
+                    </tr>
+                </table>
+
+                <div class="example-box">
+                    <h4>💡 Diagnostics intégrés Dell</h4>
+                    <p><strong>ePSA (Enhanced Pre-boot System Assessment) :</strong></p>
+                    <ol>
+                        <li>Redémarrer le PC et appuyer sur <strong>F12</strong></li>
+                        <li>Sélectionner "Diagnostics" dans le menu</li>
+                        <li>Lancer le scan complet ou ciblé</li>
+                        <li>Noter les codes d'erreur pour le support</li>
+                    </ol>
+                </div>
+
+                <h3>Problèmes courants et solutions</h3>
+                <table>
+                    <tr>
+                        <th>Symptôme</th>
+                        <th>Cause probable</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td><strong>PC ne démarre pas</strong></td>
+                        <td>Alimentation, RAM, carte mère</td>
+                        <td>Vérifier câbles, tester RAM, diagnostic ePSA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lenteurs système</strong></td>
+                        <td>RAM insuffisante, disque saturé</td>
+                        <td>Ajouter RAM, migrer vers SSD, nettoyer disque</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Surchauffe</strong></td>
+                        <td>Ventilateur obstrué, pâte thermique</td>
+                        <td>Nettoyer ventilateurs, remplacer pâte</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Écrans noirs</strong></td>
+                        <td>Câble vidéo, GPU, pilote</td>
+                        <td>Tester câble/écran, MAJ pilote graphique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pas de réseau</strong></td>
+                        <td>Pilote, câble, désactivé dans BIOS</td>
+                        <td>MAJ pilote réseau, vérifier BIOS</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-section">
+                <h2>📝 Questions de Révision</h2>
+                
+                <div class="section">
+                    <h3>Question 1</h3>
+                    <p><strong>Quelle est la différence principale entre un SSD SATA et un SSD NVMe ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Le SSD NVMe utilise l'interface PCIe (jusqu'à 3500 MB/s) et est beaucoup plus rapide que le SSD SATA limité à 550 MB/s par l'interface SATA III.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 2</h3>
+                    <p><strong>Pourquoi installer la RAM en configuration Dual Channel ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Le Dual Channel (2 barrettes identiques) double la bande passante mémoire, améliorant significativement les performances globales du système.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 3</h3>
+                    <p><strong>Quelle touche appuyer au démarrage pour accéder au BIOS de l'OptiPlex 3080 ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> <strong>F2</strong> pour le Setup BIOS, <strong>F12</strong> pour le Boot Menu et les Diagnostics
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 4</h3>
+                    <p><strong>Combien d'écrans peut supporter l'OptiPlex 3080 avec le GPU intégré ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Jusqu'à 3 écrans simultanés via DisplayPort, HDMI et USB-C (avec adaptateur)
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Question 5</h3>
+                    <p><strong>Que signifie un voyant d'alimentation ambre clignotant sur un OptiPlex ?</strong></p>
+                    <div class="highlight-box">
+                        <strong>Réponse :</strong> Problème d'alimentation électrique. Vérifier le câble d'alimentation et tester le bloc d'alimentation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>🎯 Conclusion</h2>
+                <p>La connaissance approfondie de l'architecture matérielle est essentielle pour assurer un support technique efficace. Le Dell OptiPlex 3080 représente un excellent exemple de PC professionnel moderne, équilibrant performances, évolutivité et fiabilité.</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Composants clés</h4>
+                        <p>CPU, RAM, stockage, carte mère - comprendre leur rôle et interactions</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Évolutivité</h4>
+                        <p>RAM et stockage facilement upgradables pour prolonger la durée de vie</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Maintenance</h4>
+                        <p>Nettoyage régulier, surveillance thermique, mises à jour firmware</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Diagnostics</h4>
+                        <p>Outils intégrés Dell pour identifier et résoudre les problèmes matériels</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Points essentiels à retenir :</strong>
+                    <ul>
+                        <li>Toujours débrancher l'alimentation avant toute intervention</li>
+                        <li>Respecter les précautions antistatiques (bracelet ESD)</li>
+                        <li>Vérifier la compatibilité avant tout upgrade</li>
+                        <li>Documenter les configurations et interventions</li>
+                        <li>Utiliser les outils de diagnostic Dell SupportAssist</li>
+                        <li>Maintenir les pilotes et le BIOS à jour</li>
+                        <li>Planifier la maintenance préventive (nettoyage, vérifications)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 Ressources officielles Dell :</strong>
+                    <ul>
+                        <li><strong>Manuel technique :</strong> support.dell.com → OptiPlex 3080</li>
+                        <li><strong>Pilotes et téléchargements :</strong> Section "Drivers & Downloads"</li>
+                        <li><strong>Documentation :</strong> Guides d'installation et schémas détaillés</li>
+                        <li><strong>Support :</strong> Chat, téléphone, assistance à distance</li>
+                    </ul>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; color: #3B5BDB;">
+                    <strong>Maîtrisez l'architecture pour un support technique d'excellence ! 💻</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Formation TAI - Architecture des Ordinateurs</p>
+        <p>CCP 1 - Mettre en Service un Équipement Numérique</p>
+    </footer>
+
+</body>
+</html>

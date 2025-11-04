@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équipements Mobiles - TAI 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: #F5F5F7;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        nav {
+            background: white;
+            padding: 1.2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 91, 219, 0.3);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            padding: 4rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+        }
+
+        .course-content {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #3B5BDB;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #3DDAB4;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3B5BDB;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-box.success {
+            background: #e8f5e9;
+            border-left-color: #3DDAB4;
+        }
+
+        .highlight-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .highlight-box.danger {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #3B5BDB;
+        }
+
+        .key-point h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .step-content h4 {
+            color: #3B5BDB;
+            margin-bottom: 0.8rem;
+        }
+
+        .tablet-schema {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tablet-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tablet-device {
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 3px solid #3DDAB4;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .tablet-screen {
+            background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            border: 2px solid #3B5BDB;
+            min-height: 500px;
+        }
+
+        .tablet-logo {
+            color: #3DDAB4;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .spec-label {
+            background: rgba(59, 91, 219, 0.2);
+            border-left: 3px solid #3DDAB4;
+            padding: 0.8rem 1rem;
+            margin: 0.8rem 0;
+            border-radius: 5px;
+            color: white;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .spec-label::before {
+            content: "●";
+            color: #3DDAB4;
+            font-size: 1.2rem;
+        }
+
+        .wifi-icon {
+            text-align: center;
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: #3DDAB4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B5BDB, #3DDAB4);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav, .hero, .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .course-content {
+                padding: 2rem;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <div class="logo">TAI 2025</div>
+        </div>
+        <a href="index.html" class="back-btn">← Retour au programme</a>
+    </nav>
+
+    <div class="hero">
+        <div class="badge">Parc TAI - Mobilité</div>
+        <h1>Équipements Mobiles</h1>
+    </div>
+
+    <div class="container">
+        <div class="course-content">
+            
+            <!-- Introduction -->
+            <div class="section">
+                <h2>📱 Introduction</h2>
+                <p>Les équipements mobiles (tablettes et smartphones) sont devenus essentiels dans l'environnement professionnel. Savoir les configurer et les connecter au réseau est une compétence fondamentale pour un technicien d'assistance informatique.</p>
+                
+                <div class="highlight-box">
+                    <strong>Objectif principal :</strong> Maîtriser la connexion Wi-Fi d'une tablette Samsung Galaxy Tab A et comprendre les problèmes courants de connectivité mobile.
+                </div>
+            </div>
+
+            <!-- Schéma Galaxy Tab A -->
+            <div class="section">
+                <h2>📲 Samsung Galaxy Tab A - Présentation</h2>
+                
+                <div class="tablet-schema">
+                    <div class="tablet-container">
+                        <div class="tablet-device">
+                            <div class="tablet-screen">
+                                <div class="tablet-logo">SAMSUNG Galaxy Tab A</div>
+                                <div class="wifi-icon">📶</div>
+                                <div class="spec-label">Écran 10.1" - 1920x1200 pixels</div>
+                                <div class="spec-label">Android 11 (One UI)</div>
+                                <div class="spec-label">Wi-Fi 802.11 a/b/g/n/ac (2.4 & 5 GHz)</div>
+                                <div class="spec-label">Bluetooth 5.0</div>
+                                <div class="spec-label">Batterie 7040 mAh</div>
+                                <div class="spec-label">Processeur Octa-core</div>
+                                <div class="spec-label">3 GB RAM / 32-64 GB stockage</div>
+                                <div class="spec-label">Port USB-C + Jack 3.5mm</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connexion Wi-Fi -->
+            <div class="section">
+                <h2>📡 Connexion Wi-Fi - Procédure Complète</h2>
+                
+                <h3>Prérequis</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Informations nécessaires</h4>
+                        <p>Nom du réseau (SSID) et mot de passe Wi-Fi</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Portée réseau</h4>
+                        <p>La tablette doit être à portée du point d'accès Wi-Fi</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Réseau actif</h4>
+                        <p>Vérifier que le routeur/box est allumé et fonctionnel</p>
+                    </div>
+                </div>
+
+                <h3>Étapes de connexion</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder aux Paramètres</h4>
+                            <p>Balayez depuis le haut de l'écran pour ouvrir le panneau de notifications</p>
+                            <p>Appuyez sur l'icône <strong>⚙️ Paramètres</strong> (roue dentée)</p>
+                            <p><em>Alternative : Ouvrir l'application "Paramètres" depuis le menu d'applications</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Activer le Wi-Fi</h4>
+                            <p>Dans les Paramètres, sélectionnez <strong>"Connexions"</strong></p>
+                            <p>Appuyez sur <strong>"Wi-Fi"</strong></p>
+                            <p>Activez le commutateur Wi-Fi (il devient bleu) si ce n'est pas déjà fait</p>
+                            <p><em>Astuce : Vous pouvez aussi activer le Wi-Fi depuis le panneau rapide (balayage vers le bas)</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Rechercher les réseaux</h4>
+                            <p>La tablette scanne automatiquement les réseaux disponibles</p>
+                            <p>Une liste des réseaux Wi-Fi à portée s'affiche</p>
+                            <p>Les réseaux sécurisés affichent une icône de cadenas 🔒</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Sélectionner le réseau</h4>
+                            <p>Appuyez sur le nom du réseau Wi-Fi (SSID) souhaité</p>
+                            <p>Une fenêtre de connexion apparaît</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Entrer le mot de passe</h4>
+                            <p>Saisissez le <strong>mot de passe Wi-Fi</strong> dans le champ "Mot de passe"</p>
+                            <p>Cochez <strong>"Afficher le mot de passe"</strong> pour vérifier la saisie</p>
+                            <p><em>Important : Le mot de passe est sensible à la casse (majuscules/minuscules)</em></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Se connecter</h4>
+                            <p>Appuyez sur le bouton <strong>"Connexion"</strong></p>
+                            <p>La tablette établit la connexion (peut prendre quelques secondes)</p>
+                            <p>Un message "Connecté" apparaît sous le nom du réseau</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>Vérifier la connexion</h4>
+                            <p>L'icône Wi-Fi 📶 apparaît dans la barre d'état (en haut)</p>
+                            <p>Le nombre de barres indique la force du signal</p>
+                            <p>Ouvrez un navigateur web pour tester la connexion Internet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box success">
+                    <strong>✅ Connexion réussie !</strong> La tablette se reconnectera automatiquement à ce réseau lorsqu'il sera à portée.
+                </div>
+            </div>
+
+            <!-- Configuration avancée -->
+            <div class="section">
+                <h2>⚙️ Configuration Avancée Wi-Fi</h2>
+                
+                <h3>Options de connexion</h3>
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Se connecter automatiquement</strong></td>
+                        <td>Reconnexion auto au réseau</td>
+                        <td>Activé par défaut pour les réseaux connus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Réseau masqué</strong></td>
+                        <td>SSID non diffusé</td>
+                        <td>Saisir manuellement le nom du réseau</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Proxy</strong></td>
+                        <td>Serveur intermédiaire</td>
+                        <td>Configuration réseau d'entreprise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IP statique</strong></td>
+                        <td>Adresse IP fixe</td>
+                        <td>Réseau professionnel, serveur local</td>
+                    </tr>
+                </table>
+
+                <h3>Configuration IP manuelle</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Accéder aux options</h4>
+                            <p>Appui long sur le réseau connecté</p>
+                            <p>Sélectionner "Gérer les paramètres réseau"</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Paramètres IP</h4>
+                            <p>Appuyer sur "Options avancées"</p>
+                            <p>Paramètres IP : sélectionner <strong>"Statique"</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Saisir les informations</h4>
+                            <p><strong>Adresse IP :</strong> Ex: 192.168.1.50</p>
+                            <p><strong>Passerelle :</strong> Ex: 192.168.1.1</p>
+                            <p><strong>DNS 1 :</strong> Ex: 8.8.8.8 (Google)</p>
+                            <p><strong>DNS 2 :</strong> Ex: 8.8.4.4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dépannage -->
+            <div class="section">
+                <h2>🔧 Dépannage Connexion Wi-Fi</h2>
+                
+                <h3>Problèmes courants et solutions</h3>
+                <table>
+                    <tr>
+                        <th>Problème</th>
+                        <th>Cause probable</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Réseau introuvable</strong></td>
+                        <td>Hors de portée, Wi-Fi désactivé</td>
+                        <td>Se rapprocher du routeur, activer le Wi-Fi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mot de passe incorrect</strong></td>
+                        <td>Erreur de saisie</td>
+                        <td>Vérifier majuscules/minuscules, "Afficher mot de passe"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Connexion impossible</strong></td>
+                        <td>Routeur saturé, filtre MAC</td>
+                        <td>Redémarrer routeur, vérifier liste des appareils autorisés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Connecté sans Internet</strong></td>
+                        <td>Problème FAI, DNS</td>
+                        <td>Tester avec autre appareil, changer DNS (8.8.8.8)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Signal faible</strong></td>
+                        <td>Distance, obstacles</td>
+                        <td>Se rapprocher, éviter murs épais, utiliser 5 GHz</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Déconnexions fréquentes</strong></td>
+                        <td>Interférences, économie énergie</td>
+                        <td>Changer canal Wi-Fi, désactiver économie énergie Wi-Fi</td>
+                    </tr>
+                </table>
+
+                <h3>Actions de dépannage</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Oublier le réseau</h4>
+                            <p>Paramètres → Connexions → Wi-Fi</p>
+                            <p>Appui long sur le réseau → "Oublier"</p>
+                            <p>Reconnecter en saisissant à nouveau le mot de passe</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Redémarrer le Wi-Fi</h4>
+                            <p>Désactiver le Wi-Fi pendant 10 secondes</p>
+                            <p>Réactiver et rechercher les réseaux</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Redémarrer la tablette</h4>
+                            <p>Maintenir le bouton Power</p>
+                            <p>Sélectionner "Redémarrer"</p>
+                            <p>Réessayer la connexion après redémarrage</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Réinitialiser les paramètres réseau</h4>
+                            <p>Paramètres → Gestion globale → Réinitialiser</p>
+                            <p>Sélectionner "Réinitialiser les paramètres réseau"</p>
+                            <p><em>Attention : Supprime tous les réseaux Wi-Fi enregistrés</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box warning">
+                    <strong>⚠️ Attention :</strong> Avant de réinitialiser les paramètres réseau, notez tous les mots de passe Wi-Fi enregistrés, car ils seront supprimés.
+                </div>
+            </div>
+
+            <!-- Sécurité -->
+            <div class="section">
+                <h2>🔒 Sécurité Wi-Fi</h2>
+                
+                <h3>Types de sécurité Wi-Fi</h3>
+                <table>
+                    <tr>
+                        <th>Protocole</th>
+                        <th>Sécurité</th>
+                        <th>Recommandation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>WPA3</strong></td>
+                        <td>Excellent</td>
+                        <td>✅ Recommandé pour nouveaux réseaux</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WPA2</strong></td>
+                        <td>Bon</td>
+                        <td>✅ Standard actuel, compatible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WPA</strong></td>
+                        <td>Moyen</td>
+                        <td>⚠️ À éviter si possible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WEP</strong></td>
+                        <td>Faible</td>
+                        <td>❌ Obsolète, non sécurisé</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ouvert</strong></td>
+                        <td>Aucune</td>
+                        <td>❌ Jamais pour usage professionnel</td>
+                    </tr>
+                </table>
+
+                <h3>Bonnes pratiques</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Réseaux publics</h4>
+                        <p>Éviter les transactions sensibles, utiliser un VPN si nécessaire</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mots de passe forts</h4>
+                        <p>Minimum 12 caractères, mélange lettres/chiffres/symboles</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Mises à jour</h4>
+                        <p>Maintenir Android et les apps à jour pour les correctifs de sécurité</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box danger">
+                    <strong>🚨 Réseaux publics :</strong>
+                    <ul>
+                        <li>Ne jamais saisir de mots de passe bancaires sur Wi-Fi public</li>
+                        <li>Désactiver le partage de fichiers</li>
+                        <li>Utiliser HTTPS pour la navigation (cadenas dans l'URL)</li>
+                        <li>Oublier le réseau après utilisation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Optimisation -->
+            <div class="section">
+                <h2>⚡ Optimisation Wi-Fi</h2>
+                
+                <h3>Améliorer la connexion</h3>
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>Bande 5 GHz</h4>
+                        <p>Plus rapide mais portée réduite, idéal à proximité du routeur</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Bande 2.4 GHz</h4>
+                        <p>Meilleure portée mais plus lent, mieux pour longue distance</p>
+                    </div>
+                    <div class="key-point">
+                        <h4>Smart Network Switch</h4>
+                        <p>Bascule auto entre Wi-Fi et données mobiles si signal faible</p>
+                    </div>
+                </div>
+
+                <h3>Paramètres d'économie d'énergie</h3>
+                <p>Paramètres → Connexions → Wi-Fi → Menu (⋮) → Avancé</p>
+                <ul>
+                    <li><strong>Maintenir le Wi-Fi activé en veille :</strong> "Toujours" pour meilleure connectivité</li>
+                    <li><strong>Réseau instable :</strong> Désactiver pour éviter les déconnexions</li>
+                    <li><strong>Notifier les réseaux ouverts :</strong> Utile en déplacement</li>
+                </ul>
+
+                <div class="highlight-
