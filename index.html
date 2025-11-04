@@ -621,8 +621,13 @@
                         <p>Installer et configurer un routeur 4G pour un bon fonctionnement Wi-Fi.</p>
                     </div>
                     <div class="competence-item">
-                        <h4>Habilitations électriques</h4>
-                        <p>Respecter les normes de sécurité électrique lors des interventions, obtenir les habilitations nécessaires.</p>
+                        <h4>
+  <a href="Imprimante et Scanner.html" style="text-decoration: none; color: inherit;">
+    Imprimante et Scanner
+  </a>
+</h4>
+
+                        <p>Mettre en service une imprimante.</p>
                     </div>
                 </div>
             </div>
@@ -849,15 +854,120 @@
 </h3>
 
 <script>
-  const h3f = document.querySelectorAll('h3')[5]; // 6ᵉ h3
-  h3f.addEventListener('mouseover', () => {
-    h3f.style.transform = 'translateY(-2px) scale(1.01)';
-    h3f.style.boxShadow = '0 8px 28px rgba(0,0,0,0.12)';
-  });
-  h3f.addEventListener('mouseout', () => {
-    h3f.style.transform = 'translateY(0) scale(1)';
-    h3f.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
-  });
+  // REMPLACER TOUT LE SCRIPT À LA FIN DE VOTRE INDEX.HTML PAR CELUI-CI
+
+const tabs = document.querySelectorAll('.tab');
+const tabContents = document.querySelectorAll('.tab-content');
+const searchInput = document.querySelector('.search-bar input');
+const competenceItems = document.querySelectorAll('.competence-item');
+
+// Fonction pour activer un onglet
+function activateTab(targetTab) {
+    tabs.forEach(t => t.classList.remove('active'));
+    tabContents.forEach(tc => tc.classList.remove('active'));
+    
+    const tabButton = document.querySelector(`[data-tab="${targetTab}"]`);
+    const tabContent = document.getElementById(targetTab);
+    
+    if (tabButton && tabContent) {
+        tabButton.classList.add('active');
+        tabContent.classList.add('active');
+    }
+}
+
+// Gestion des onglets avec sauvegarde
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const targetTab = tab.getAttribute('data-tab');
+        
+        // Sauvegarder l'onglet actif dans localStorage
+        localStorage.setItem('activeTab', targetTab);
+        
+        // Activer l'onglet
+        activateTab(targetTab);
+        
+        // Réinitialiser la recherche lors du changement d'onglet
+        searchInput.value = '';
+        competenceItems.forEach(item => {
+            item.style.display = 'block';
+            item.style.backgroundColor = '#f8f9fa';
+        });
+    });
+});
+
+// Restaurer l'onglet actif au chargement de la page
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab) {
+        activateTab(savedTab);
+    }
+});
+
+// Fonction de recherche
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    
+    if (searchTerm === '') {
+        // Si la recherche est vide, afficher tous les éléments
+        competenceItems.forEach(item => {
+            item.style.display = 'block';
+            item.style.backgroundColor = '#f8f9fa';
+        });
+        return;
+    }
+
+    // Rechercher dans toutes les compétences
+    let foundResults = false;
+    
+    competenceItems.forEach(item => {
+        const title = item.querySelector('h4').textContent.toLowerCase();
+        const description = item.querySelector('p').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            item.style.display = 'block';
+            item.style.backgroundColor = '#fff3cd';
+            foundResults = true;
+        } else {
+            item.style.display = 'none';
+            item.style.backgroundColor = '#f8f9fa';
+        }
+    });
+
+    // Gérer l'affichage des onglets contenant des résultats
+    tabContents.forEach(content => {
+        const visibleItems = content.querySelectorAll('.competence-item[style*="display: block"]');
+        if (visibleItems.length === 0) {
+            content.style.display = 'none';
+        } else {
+            content.style.display = 'block';
+        }
+    });
+
+    // Afficher automatiquement le premier onglet avec des résultats
+    if (foundResults) {
+        tabs.forEach(tab => tab.classList.remove('active'));
+        tabContents.forEach(content => {
+            if (content.style.display === 'block') {
+                const visibleItems = content.querySelectorAll('.competence-item[style*="display: block"]');
+                if (visibleItems.length > 0 && !content.classList.contains('active')) {
+                    content.classList.add('active');
+                    const tabId = content.id;
+                    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+                    return;
+                }
+            }
+        });
+    }
+});
+
+// Réinitialiser les styles au focus sur la recherche
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value === '') {
+        competenceItems.forEach(item => {
+            item.style.backgroundColor = '#f8f9fa';
+        });
+    }
+});
 </script>
 
                     </div>
